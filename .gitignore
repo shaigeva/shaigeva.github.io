@@ -23,3 +23,6 @@ go.work.sum
 
 # env file
 .env
+
+# We don't want the public directory because it changes the adderess of the site whenever running a local build
+shai_site/public/
