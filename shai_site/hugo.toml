@@ -1,5 +1,3 @@
 baseURL = 'https://shaigeva.github.io/'
 languageCode = 'en-us'
 title = "Shai's site"
-
-theme="hugo-blog-awesome"
