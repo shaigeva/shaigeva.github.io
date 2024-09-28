@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://shaigeva.github.io/about/</loc>
+    <lastmod>2024-09-22T22:38:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.github.io/posts/post_1/</loc>
     <lastmod>2024-09-22T22:38:56+03:00</lastmod>
   </url><url>
@@ -15,6 +18,8 @@
     <lastmod>2024-09-22T22:38:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.github.io/categories/</loc>
+  </url><url>
+    <loc>https://shaigeva.github.io/search/</loc>
   </url><url>
     <loc>https://shaigeva.github.io/tags/</loc>
   </url>
