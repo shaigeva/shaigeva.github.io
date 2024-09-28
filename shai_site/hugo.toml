@@ -33,3 +33,19 @@ Code is good.
 # Needed to enable the search page.
 [outputs]
 home = ["HTML", "RSS", "JSON"]
+
+
+[[params.socialIcons]]
+name = "github"
+title = "Github profile"
+url = "https://github.com/shaigeva"
+
+[[params.socialIcons]]
+name = "X"
+title = "Follow on Twitter / X"
+url = "https://x.com/shai_ge"
+
+[[params.socialIcons]]
+name = "Linkedin"
+title = "Linkedin profile"
+url = "https://www.linkedin.com/in/shai-geva-bb51404/"
