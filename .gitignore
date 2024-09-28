@@ -26,3 +26,4 @@ go.work.sum
 
 # We don't want the public directory because it changes the adderess of the site whenever running a local build
 shai_site/public/
+shai_site/resources/_gen/
