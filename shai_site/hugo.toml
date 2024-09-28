@@ -2,6 +2,22 @@ baseURL = 'https://shaigeva.github.io/'
 languageCode = 'en-us'
 title = "Shai Geva"
 
+[module]
+  [[module.imports]]
+    path = "github.com/adityatelange/hugo-PaperMod"
+
+[menu]
+
+[[menu.main]]
+name = "About"
+url = "about"
+weight = 1
+
+[[menu.main]]
+name = "Search"
+url = "search/"
+weight = 2
+
 [params]
 author = "Shai Geva"
 
@@ -14,7 +30,6 @@ I write about code.
 Code is good.
 """
 
-
-[module]
-  [[module.imports]]
-    path = "github.com/adityatelange/hugo-PaperMod"
+# Needed to enable the search page.
+[outputs]
+home = ["HTML", "RSS", "JSON"]
