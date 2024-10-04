@@ -35,8 +35,21 @@ Similar to the below talk but more python oriented, with more concrete examples.
       <link>https://shaigeva.github.io/about/</link>
       <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
       <guid>https://shaigeva.github.io/about/</guid>
-      <description>&lt;p&gt;(UNDER CONSTRUCTION)
-I&amp;rsquo;m Shai, this page is about me.&lt;/p&gt;</description>
+      <description>&lt;div style=&#34;display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;&#34;&gt;
+&lt;div&gt;
+  &lt;img src=&#34;https://shaigeva.github.io/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
+&lt;/div&gt;
+&lt;div style=&#34;padding: 30px 0 0 30px;&#34;&gt;
+  &lt;p&gt;My name is Shai Geva.&lt;/p&gt;
+
+  &lt;p&gt;I&#39;ve been creating software for humans, with humans, for over 20 years.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I&amp;rsquo;m mostly a builder, but have also played more &amp;ldquo;high level roles&amp;rdquo;, like product and management.&lt;/p&gt;
+&lt;p&gt;Today I&amp;rsquo;m a tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I &lt;a href=&#34;https://shaigeva.github.io/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
+a great passion for me.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Post Title 1</title>
