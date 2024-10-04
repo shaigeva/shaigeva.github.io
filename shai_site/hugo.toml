@@ -27,12 +27,19 @@ weight = 3
 author = "Shai Geva"
 
 [params.homeInfoParams]
-Title = "Shai Geva (UNDER CONSTRUCTION)"
+Title = "Optimistic coding (UNDER CONSTRUCTION)"
 
 Content = """
-I write about code.
+Hey!
 
-Code is good.
+My name is Shai Geva.
+
+I've been writing code for over 20 years, and I remain optimistic about our ability
+to create stuff that work and are not too complex to maintain.
+
+I write about code, tests (a lot), ai and other stuff.
+
+Look around, and ping me on social to tell me if you found something useful!
 """
 
 # Needed to enable the search page.
