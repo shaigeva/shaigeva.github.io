@@ -14,9 +14,14 @@ url = "about"
 weight = 1
 
 [[menu.main]]
+name = "Talks"
+url = "talks"
+weight = 2
+
+[[menu.main]]
 name = "Search"
 url = "search/"
-weight = 2
+weight = 3
 
 [params]
 author = "Shai Geva"
