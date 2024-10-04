@@ -6,8 +6,39 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Sep 2024 07:38:56 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 04 Oct 2024 13:01:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
+      <link>https://shaigeva.github.io/posts/10_footguns/ten_footguns/</link>
+      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.github.io/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following two talks I gave (at Pycon-US and Pycon-IL), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Untested tests&lt;/li&gt;
+&lt;li&gt;The tests are not isolated&lt;/li&gt;
+&lt;li&gt;No locality of behavior&lt;/li&gt;
+&lt;li&gt;Unclear language&lt;/li&gt;
+&lt;li&gt;Testing too many things&lt;/li&gt;
+&lt;li&gt;Improper test scope&lt;/li&gt;
+&lt;li&gt;Test doubles everywhere&lt;/li&gt;
+&lt;li&gt;Slow tests&lt;/li&gt;
+&lt;li&gt;Wrong priorities&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;
+&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-us-2023-english&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)&lt;/h1&gt;
+&lt;p&gt;Given at Salt Lake City, Utah.
+Slides: &lt;a href=&#34;https://bit.ly/testing_footguns_pycon_2023&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Slideshare PyCon US 2023&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #1 - there are no tests</title>
+      <link>https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/</link>
+      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.github.io/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+&lt;p&gt;UNDER CONSTRUCTION&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Talks</title>
       <link>https://shaigeva.github.io/talks/</link>
