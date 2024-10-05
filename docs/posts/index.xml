@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Oct 2024 13:01:56 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2024 17:15:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
@@ -18,7 +18,7 @@
 &lt;p&gt;Starting with useful, but simple, and moving on to more complex ideas:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
-&lt;li&gt;Untested tests&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/02_untested_tests/&#34;&gt;Untested tests&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;The tests are not isolated&lt;/li&gt;
 &lt;li&gt;No locality of behavior&lt;/li&gt;
 &lt;li&gt;Unclear language&lt;/li&gt;
@@ -31,6 +31,18 @@
 &lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Footgun #2 - untested tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/02_untested_tests/</link>
+      <pubDate>Sat, 05 Oct 2024 17:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/02_untested_tests/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+&lt;p&gt;Sometimes our tests lie to us.&lt;/p&gt;
+&lt;p&gt;We have a test that was supposed to protect us from some bug, but that bug happened after all.&lt;/p&gt;
+&lt;p&gt;Of course, what happened was that we made a mistake, and the test didn&amp;rsquo;t really verify what we thought it does.&lt;/p&gt;
+&lt;p&gt;As it turns out - when we write a test, it&amp;rsquo;s a good idea to spend a little effort to verify the test actually works.&lt;br&gt;
+To make sure that if the bug happens, the test does indeed fail.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Footgun #1 - there are no tests</title>
       <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
       <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
@@ -40,23 +52,6 @@
 &lt;p&gt;The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.&lt;/p&gt;
 &lt;p&gt;In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&amp;rsquo;re just a drop in the sea.&lt;/p&gt;
 &lt;p&gt;There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Post Title 1</title>
-      <link>https://shaigeva.com/posts/post_1/</link>
-      <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/post_1/</guid>
-      <description>&lt;p&gt;Content&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Post Title 2</title>
-      <link>https://shaigeva.com/posts/post_2/</link>
-      <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/post_2/</guid>
-      <description>&lt;p&gt;Content 2&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;foo&lt;/span&gt;(bar):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; bar&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

@@ -5,11 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Post Title 1 | Shai Geva</title>
+<title>Footgun #2 - untested tests | Shai Geva</title>
 <meta name="keywords" content="">
-<meta name="description" content="Content">
+<meta name="description" content="(this post is part of a series about good testing practices)
+Sometimes our tests lie to us.
+We have a test that was supposed to protect us from some bug, but that bug happened after all.
+Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.
+As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.
+To make sure that if the bug happens, the test does indeed fail.">
 <meta name="author" content="Shai Geva">
-<link rel="canonical" href="https://shaigeva.com/posts/post_1/">
+<link rel="canonical" href="https://shaigeva.com/posts/10_footguns/02_untested_tests/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
@@ -18,7 +23,7 @@
 <link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/post_1/">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/10_footguns/02_untested_tests/">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,16 +60,28 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Post Title 1" />
-<meta property="og:description" content="Content" />
+</noscript><meta property="og:title" content="Footgun #2 - untested tests" />
+<meta property="og:description" content="(this post is part of a series about good testing practices)
+Sometimes our tests lie to us.
+We have a test that was supposed to protect us from some bug, but that bug happened after all.
+Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.
+As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.
+To make sure that if the bug happens, the test does indeed fail." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://shaigeva.com/posts/post_1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-09-22T22:38:56+03:00" />
-<meta property="article:modified_time" content="2024-09-22T22:38:56+03:00" />
+<meta property="og:url" content="https://shaigeva.com/posts/10_footguns/02_untested_tests/" />
+<meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-05T17:15:56+03:00" />
+<meta property="article:modified_time" content="2024-10-05T17:15:56+03:00" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Post Title 1"/>
-<meta name="twitter:description" content="Content"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png" />
+<meta name="twitter:title" content="Footgun #2 - untested tests"/>
+<meta name="twitter:description" content="(this post is part of a series about good testing practices)
+Sometimes our tests lie to us.
+We have a test that was supposed to protect us from some bug, but that bug happened after all.
+Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.
+As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.
+To make sure that if the bug happens, the test does indeed fail."/>
 
 
 <script type="application/ld+json">
@@ -81,8 +98,8 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Post Title 1",
-      "item": "https://shaigeva.com/posts/post_1/"
+      "name": "Footgun #2 - untested tests",
+      "item": "https://shaigeva.com/posts/10_footguns/02_untested_tests/"
     }
   ]
 }
@@ -91,24 +108,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Post Title 1",
-  "name": "Post Title 1",
-  "description": "Content\n",
+  "headline": "Footgun #2 - untested tests",
+  "name": "Footgun #2 - untested tests",
+  "description": "(this post is part of a series about good testing practices)\nSometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn\u0026rsquo;t really verify what we thought it does.\nAs it turns out - when we write a test, it\u0026rsquo;s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\n",
   "keywords": [
     
   ],
-  "articleBody": "Content\n",
-  "wordCount" : "1",
+  "articleBody": "(this post is part of a series about good testing practices)\nSometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.\nAs it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\nHow to avoid this My suggestion -\nWhen you write a test, for every assertion you write, make a small change:\nEither change the code a little and introduce the bug. Or change the test a little bit, so it verifies something a little different. This way you will be able to see if the test would have failed in the way you expect it to, and you’ll be able to count on it.\n",
+  "wordCount" : "169",
   "inLanguage": "en",
-  "datePublished": "2024-09-22T22:38:56+03:00",
-  "dateModified": "2024-09-22T22:38:56+03:00",
+  "image":"https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png","datePublished": "2024-10-05T17:15:56+03:00",
+  "dateModified": "2024-10-05T17:15:56+03:00",
   "author":{
     "@type": "Person",
     "name": "Shai Geva"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shaigeva.com/posts/post_1/"
+    "@id": "https://shaigeva.com/posts/10_footguns/02_untested_tests/"
   },
   "publisher": {
     "@type": "Organization",
@@ -186,13 +203,29 @@
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      Post Title 1
+      Footgun #2 - untested tests
     </h1>
-    <div class="post-meta"><span title='2024-09-22 22:38:56 +0300 IDT'>September 22, 2024</span>&nbsp;·&nbsp;Shai Geva
+    <div class="post-meta"><span title='2024-10-05 17:15:56 +0300 IDT'>October 5, 2024</span>&nbsp;·&nbsp;Shai Geva
 
 </div>
   </header> 
-  <div class="post-content"><p>Content</p>
+<figure class="entry-cover"><img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png" alt="">
+        
+</figure>
+  <div class="post-content"><p>(this post is part of a <a href="https://shaigeva.com/posts/10_footguns/ten_footguns/">series</a> about good testing practices)</p>
+<p>Sometimes our tests lie to us.</p>
+<p>We have a test that was supposed to protect us from some bug, but that bug happened after all.</p>
+<p>Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.</p>
+<p>As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.<br>
+To make sure that if the bug happens, the test does indeed fail.</p>
+<h3 id="how-to-avoid-this">How to avoid this<a hidden class="anchor" aria-hidden="true" href="#how-to-avoid-this">#</a></h3>
+<p>My suggestion -<br>
+When you write a test, for every assertion you write, make a small change:</p>
+<ol>
+<li>Either change the code a little and introduce the bug.</li>
+<li>Or change the test a little bit, so it verifies something a little different.</li>
+</ol>
+<p>This way you will be able to see if the test would have failed in the way you expect it to, and you&rsquo;ll be able to count on it.</p>
 
 
   </div>
