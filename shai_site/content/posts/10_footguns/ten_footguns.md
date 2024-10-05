@@ -12,7 +12,7 @@ The talk shares 10 practices that I had bad experience with, along with ways of 
 Starting with useful, but simple, and moving on to more complex ideas:
 
 1. [There are no tests]({{< relref "01_there_are_no_tests" >}}) (warm up)
-1. Untested tests
+1. [Untested tests]({{< relref "02_untested_tests" >}})
 1. The tests are not isolated
 1. No locality of behavior
 1. Unclear language
