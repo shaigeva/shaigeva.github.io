@@ -27,7 +27,7 @@ weight = 3
 author = "Shai Geva"
 
 [params.homeInfoParams]
-Title = "Optimistic coding (UNDER CONSTRUCTION)"
+Title = "Optimistic coding"
 
 Content = """
 Hey there! My name is Shai Geva.
