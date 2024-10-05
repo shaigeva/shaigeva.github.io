@@ -47,21 +47,17 @@ To make sure that if the bug happens, the test does indeed fail.&lt;/p&gt;</desc
       <link>https://shaigeva.com/about/</link>
       <pubDate>Sat, 05 Oct 2024 17:00:56 +0300</pubDate>
       <guid>https://shaigeva.com/about/</guid>
-      <description>&lt;div style=&#34;display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;&#34;&gt;
-&lt;div&gt;
-  &lt;img src=&#34;https://shaigeva.com/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
-&lt;/div&gt;
-&lt;div style=&#34;padding: 30px 0 0 30px;&#34;&gt;
-  &lt;p&gt;My name is Shai Geva.&lt;/p&gt;
-
-  &lt;p&gt;I&#39;ve been creating software for humans, with humans, for over 20 years.&lt;/p&gt;
-&lt;/div&gt;
+      <description>&lt;div style=&#34;position: relative; display: inline-block;&#34;&gt;
+  &lt;img src=&#34;https://shaigeva.com/shai_mic_cover.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;margin:0; display: block; width: 100%;&#34; /&gt;
+  &lt;div style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.7) 100%); pointer-events: none;&#34;&gt;&lt;/div&gt;
 &lt;/div&gt;
 
+
+
+&lt;p&gt;My name is Shai Geva.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been creating software for humans, with humans, for over 20 years.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m mostly a builder, but have also played more &amp;ldquo;high level roles&amp;rdquo;, like product and management (my current position is
-tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I &lt;a href=&#34;https://shaigeva.com/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
-a great passion for me.&lt;/p&gt;</description>
+tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Footgun #1 - there are no tests</title>
