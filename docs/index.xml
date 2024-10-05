@@ -6,7 +6,7 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Oct 2024 13:01:56 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2024 17:00:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
@@ -31,12 +31,36 @@
 &lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
     </item>
     <item>
+      <title>About</title>
+      <link>https://shaigeva.com/about/</link>
+      <pubDate>Sat, 05 Oct 2024 17:00:56 +0300</pubDate>
+      <guid>https://shaigeva.com/about/</guid>
+      <description>&lt;div style=&#34;display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;&#34;&gt;
+&lt;div&gt;
+  &lt;img src=&#34;https://shaigeva.com/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
+&lt;/div&gt;
+&lt;div style=&#34;padding: 30px 0 0 30px;&#34;&gt;
+  &lt;p&gt;My name is Shai Geva.&lt;/p&gt;
+
+  &lt;p&gt;I&#39;ve been creating software for humans, with humans, for over 20 years.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I&amp;rsquo;m mostly a builder, but have also played more &amp;ldquo;high level roles&amp;rdquo;, like product and management (my current position is
+tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I &lt;a href=&#34;https://shaigeva.com/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
+a great passion for me.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Footgun #1 - there are no tests</title>
       <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
       <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</guid>
       <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
-&lt;p&gt;UNDER CONSTRUCTION&lt;/p&gt;</description>
+&lt;p&gt;This is a &amp;ldquo;warm-up footgun&amp;rdquo; to the blog post series.&lt;/p&gt;
+&lt;p&gt;The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.&lt;/p&gt;
+&lt;p&gt;In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&amp;rsquo;re just a drop in the sea.&lt;/p&gt;
+&lt;p&gt;There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Talks</title>
@@ -59,27 +83,6 @@ The talk shares hard-learned advice about how to avoid getting yourself in troub
 &lt;p&gt;General intro to property-based testing.
 Similar to the below talk but more python oriented, with more concrete examples.
 (and in zoom)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>https://shaigeva.com/about/</link>
-      <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.com/about/</guid>
-      <description>&lt;div style=&#34;display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;&#34;&gt;
-&lt;div&gt;
-  &lt;img src=&#34;https://shaigeva.com/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
-&lt;/div&gt;
-&lt;div style=&#34;padding: 30px 0 0 30px;&#34;&gt;
-  &lt;p&gt;My name is Shai Geva.&lt;/p&gt;
-
-  &lt;p&gt;I&#39;ve been creating software for humans, with humans, for over 20 years.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I&amp;rsquo;m mostly a builder, but have also played more &amp;ldquo;high level roles&amp;rdquo;, like product and management.&lt;/p&gt;
-&lt;p&gt;Today I&amp;rsquo;m a tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I &lt;a href=&#34;https://shaigeva.com/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
-a great passion for me.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Post Title 1</title>
