@@ -4,17 +4,17 @@ date = 2024-10-05T17:00:56+03:00
 +++
 
 {{< inline >}}
-<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;">
-<div>
-  <img src="/shai_avatar.jpg" alt="Profile pic" title="Profile pic" style="width: 200px; border-radius:100px;" />
+<div style="position: relative; display: inline-block;">
+  <img src="/shai_mic_cover.jpg" alt="Profile pic" title="Profile pic" style="margin:0; display: block; width: 100%;" />
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.7) 100%); pointer-events: none;"></div>
 </div>
-<div style="padding: 30px 0 0 30px;">
-  <p>My name is Shai Geva.</p>
 
-  <p>I've been creating software for humans, with humans, for over 20 years.</p>
-</div>
-</div>
+
 {{< /inline >}}
+
+My name is Shai Geva.
+
+I've been creating software for humans, with humans, for over 20 years.
 
 I'm mostly a builder, but have also played more "high level roles", like product and management (my current position is
 tech-lead at [Sayata](https://www.sayata.com/ "Sayata home page")).
