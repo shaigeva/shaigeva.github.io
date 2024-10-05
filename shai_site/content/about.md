@@ -1,6 +1,6 @@
 +++
 title = "About"
-date = 2024-09-22T22:38:56+03:00
+date = 2024-10-05T17:00:56+03:00
 +++
 
 {{< inline >}}
@@ -16,9 +16,8 @@ date = 2024-09-22T22:38:56+03:00
 </div>
 {{< /inline >}}
 
-I'm mostly a builder, but have also played more "high level roles", like product and management.
-
-Today I'm a tech-lead at [Sayata](https://www.sayata.com/ "Sayata home page")
+I'm mostly a builder, but have also played more "high level roles", like product and management (my current position is
+tech-lead at [Sayata](https://www.sayata.com/ "Sayata home page")).
 
 
 I [write about]({{< ref "/posts/" >}}) various topics, focusing on code quality and automated tests, which are 
