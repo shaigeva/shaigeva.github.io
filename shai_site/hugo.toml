@@ -30,14 +30,18 @@ author = "Shai Geva"
 Title = "Optimistic coding (UNDER CONSTRUCTION)"
 
 Content = """
-Hey!
+Hey there! My name is Shai Geva.
 
-My name is Shai Geva.
+&nbsp;
 
 I've been writing code for over 20 years, and I remain optimistic about our ability
 to create stuff that work and are not too complex to maintain.
 
+&nbsp;
+
 I write about code, tests (a lot), ai and other stuff.
+
+&nbsp;
 
 Look around, and ping me on social to tell me if you found something useful!
 """
