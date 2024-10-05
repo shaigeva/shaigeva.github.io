@@ -1,5 +1,5 @@
 +++
-title = "Footgun #1 - there are no tests"
+title = "Footgun #1 - There Are No Tests"
 date = 2024-10-04T13:01:56+03:00
 [cover]
   image = "10_footguns/10_footguns_01_there_are_no_tests_cover.png"
