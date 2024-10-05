@@ -2,20 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Shai Geva</title>
-    <link>https://shaigeva.github.io/</link>
+    <link>https://shaigeva.com/</link>
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Oct 2024 13:01:56 +0300</lastBuildDate>
-    <atom:link href="https://shaigeva.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
-      <link>https://shaigeva.github.io/posts/10_footguns/ten_footguns/</link>
+      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
       <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/posts/10_footguns/ten_footguns/</guid>
-      <description>&lt;p&gt;This is a series of posts, following two talks I gave (at Pycon-US and Pycon-IL), about testing best (and not-so-best) practices.&lt;/p&gt;
+      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following two talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
+&lt;p&gt;Starting with useful, but simple, and moving on to more complex ideas:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
 &lt;li&gt;Untested tests&lt;/li&gt;
 &lt;li&gt;The tests are not isolated&lt;/li&gt;
 &lt;li&gt;No locality of behavior&lt;/li&gt;
@@ -26,24 +28,21 @@
 &lt;li&gt;Slow tests&lt;/li&gt;
 &lt;li&gt;Wrong priorities&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;
-&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-us-2023-english&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)&lt;/h1&gt;
-&lt;p&gt;Given at Salt Lake City, Utah.
-Slides: &lt;a href=&#34;https://bit.ly/testing_footguns_pycon_2023&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Slideshare PyCon US 2023&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
     </item>
     <item>
       <title>Footgun #1 - there are no tests</title>
-      <link>https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/</link>
+      <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
       <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/posts/10_footguns/01_there_are_no_tests/</guid>
-      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.github.io/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+      <guid>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
 &lt;p&gt;UNDER CONSTRUCTION&lt;/p&gt;</description>
     </item>
     <item>
       <title>Talks</title>
-      <link>https://shaigeva.github.io/talks/</link>
+      <link>https://shaigeva.com/talks/</link>
       <pubDate>Sun, 29 Sep 2024 07:38:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/talks/</guid>
+      <guid>https://shaigeva.com/talks/</guid>
       <description>&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-us-2023-english&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)&lt;/h1&gt;
 &lt;p&gt;Given at Salt Lake City, Utah.
 The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.&lt;/p&gt;
@@ -63,12 +62,12 @@ Similar to the below talk but more python oriented, with more concrete examples.
     </item>
     <item>
       <title>About</title>
-      <link>https://shaigeva.github.io/about/</link>
+      <link>https://shaigeva.com/about/</link>
       <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/about/</guid>
+      <guid>https://shaigeva.com/about/</guid>
       <description>&lt;div style=&#34;display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;&#34;&gt;
 &lt;div&gt;
-  &lt;img src=&#34;https://shaigeva.github.io/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
+  &lt;img src=&#34;https://shaigeva.com/shai_avatar.jpg&#34; alt=&#34;Profile pic&#34; title=&#34;Profile pic&#34; style=&#34;width: 200px; border-radius:100px;&#34; /&gt;
 &lt;/div&gt;
 &lt;div style=&#34;padding: 30px 0 0 30px;&#34;&gt;
   &lt;p&gt;My name is Shai Geva.&lt;/p&gt;
@@ -79,21 +78,21 @@ Similar to the below talk but more python oriented, with more concrete examples.
 
 &lt;p&gt;I&amp;rsquo;m mostly a builder, but have also played more &amp;ldquo;high level roles&amp;rdquo;, like product and management.&lt;/p&gt;
 &lt;p&gt;Today I&amp;rsquo;m a tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I &lt;a href=&#34;https://shaigeva.github.io/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
+&lt;p&gt;I &lt;a href=&#34;https://shaigeva.com/posts/&#34;&gt;write about&lt;/a&gt; various topics, focusing on code quality and automated tests, which are
 a great passion for me.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Post Title 1</title>
-      <link>https://shaigeva.github.io/posts/post_1/</link>
+      <link>https://shaigeva.com/posts/post_1/</link>
       <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/posts/post_1/</guid>
+      <guid>https://shaigeva.com/posts/post_1/</guid>
       <description>&lt;p&gt;Content&lt;/p&gt;</description>
     </item>
     <item>
       <title>Post Title 2</title>
-      <link>https://shaigeva.github.io/posts/post_2/</link>
+      <link>https://shaigeva.com/posts/post_2/</link>
       <pubDate>Sun, 22 Sep 2024 22:38:56 +0300</pubDate>
-      <guid>https://shaigeva.github.io/posts/post_2/</guid>
+      <guid>https://shaigeva.com/posts/post_2/</guid>
       <description>&lt;p&gt;Content 2&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;foo&lt;/span&gt;(bar):
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; bar&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
