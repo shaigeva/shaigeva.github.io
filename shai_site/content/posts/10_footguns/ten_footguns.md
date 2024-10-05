@@ -5,9 +5,13 @@ weight = 1
 [cover]
   image = "10_footguns/10_footguns_main_post.png"
 +++
-This is a series of posts, following two talks I gave (at Pycon-US and Pycon-IL), about testing best (and not-so-best) practices.
+This is a series of posts, following two talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.
 
-1. [There are no tests]({{< relref "01_there_are_no_tests" >}})
+The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.
+
+Starting with useful, but simple, and moving on to more complex ideas:
+
+1. [There are no tests]({{< relref "01_there_are_no_tests" >}}) (warm up)
 1. Untested tests
 1. The tests are not isolated
 1. No locality of behavior
