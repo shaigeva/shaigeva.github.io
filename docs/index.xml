@@ -6,7 +6,7 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Oct 2024 17:15:56 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2024 20:15:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
@@ -31,7 +31,19 @@
 &lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Footgun #2 - untested tests</title>
+      <title>Footgun #3 - The Tests Are Not Isolated</title>
+      <link>https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/</link>
+      <pubDate>Tue, 08 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+&lt;p&gt;Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.&lt;/p&gt;
+&lt;p&gt;By &amp;ldquo;tests that are not isolated&amp;rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
+only a subset of them, if we run them in a different order or if we run them in parallel.&lt;/p&gt;
+&lt;h2 id=&#34;why-is-this-a-problem&#34;&gt;Why is this a problem?&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #2 - Untested Tests</title>
       <link>https://shaigeva.com/posts/10_footguns/02_untested_tests/</link>
       <pubDate>Sat, 05 Oct 2024 17:15:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/10_footguns/02_untested_tests/</guid>
@@ -60,7 +72,7 @@ To make sure that if the bug happens, the test does indeed fail.&lt;/p&gt;</desc
 tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Sayata&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Footgun #1 - there are no tests</title>
+      <title>Footgun #1 - There Are No Tests</title>
       <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
       <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</guid>
