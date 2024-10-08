@@ -13,7 +13,7 @@ Starting with simple (but useful!), and moving on to more complex ideas:
 
 1. [There are no tests]({{< relref "01_there_are_no_tests" >}}) (warm up)
 1. [Untested tests]({{< relref "02_untested_tests" >}})
-1. The tests are not isolated
+1. [The tests are not isolated]({{< relref "03_the_tests_are_not_isolated" >}})
 1. No locality of behavior
 1. Unclear language
 1. Testing too many things
