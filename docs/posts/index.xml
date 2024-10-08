@@ -19,7 +19,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/02_untested_tests/&#34;&gt;Untested tests&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;The tests are not isolated&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/&#34;&gt;The tests are not isolated&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;No locality of behavior&lt;/li&gt;
 &lt;li&gt;Unclear language&lt;/li&gt;
 &lt;li&gt;Testing too many things&lt;/li&gt;
