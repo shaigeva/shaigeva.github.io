@@ -5,61 +5,90 @@ date = 2024-10-18T20:15:56+03:00
   image = "10_footguns/10_footguns_05_unclear_language.png"
 +++
 
+{{< inline >}}
+<style>
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+</style>
+{{< /inline >}}
+
 (this mini-post is part of a [series]({{< ref "/posts/10_footguns/ten_footguns" >}}) about good testing practices)
 
-One testing problem that doesn't get enough attention in my opinion is tests that don't have locality of behavior.
 
-By that I mean cases where a test is broken down into different parts in a way that makes understanding more difficult.
+Another problem that makes it more difficult to understand tests is unclear language.
 
-This is important in every type of code, and tests are no exception.
+Two guidelines that help me deal with this:
+1. We want to use decisive language
+1. We want the language to be specific and explicit
 
-## Example: non-local data
-Consider this test:
-```python
-def test_something():
-    data = Path(PATH_TO_DATA_FILE).read_text()
-    assert calc_something(data) == 4.5
-```
 
-The data that the test uses is in a different file, so in order to understand the test we will need to locate that file
-and open it.  
-Even if the data was in the same file, but a different place - it would still be an issue.
+Suppose we have a book store and we're testing the functionality for editing a book.  
+Let's see some examples of test phrasing:
 
-Now, sometimes we don't have a choice, and it's the only way to do it.  
-But sometimes we do.
+---
+{{< inline >}}
+<div class="code-example">def test_<span class="highlight-red">edit_book</span>():
+    ...
+</div>
+{{< /inline >}}
 
-For example, if we can find a data example that's small enough, we can do something like this:
+This is simply too general.  
+There are so many things that might be tested, and this means almost nothing about what will get tested in practice.
 
-```python
-def test_something():
-    data = “””
-{
-    <JSON data>
-}
-“””
-    assert calc_something(data) == 4.5
-```
+---
+{{< inline >}}
+<div class="code-example">def test_edit_book_<span class="highlight-red">works_correctly</span>():
+    ...
+</div>
+{{< /inline >}}
 
-This is exactly the same test, but the data is local so it's going to be much easier to understand at a glance, without
-"breaking the flow".
+Adding things like "it works" or "it's correct" - most of the time, this is just bloat.  
+It only makes the name bigger, but doesn't give us any extra information.
 
-## It's easier in tests than in production code
-One of the main problems with achieving locality of behavior is that it conflicts with DRY ("don't repeat yourself").
+---
+{{< inline >}}
+<div class="code-example">def test_user_<span class="highlight-red">should_be_able_to</span>_edit_their_own_book():
+    ...
+</div>
+{{< /inline >}}
 
-What's the problem with code duplication in production code?
 
-You'll often hear people talking about the "economics" - if you repeat a piece of code 3 times, then if you need to change that logic, you would need to do that work 3 times.  
-However, this is actually a secondary consideration, especially if the number of repetitions is not high (let's say 5 or less).  
-The real issue with repeating yourself is that duplication is an implicit dependency.  
-If you repeat the same logic in 3 different places, there's a risk that if the logic needs to change, you would not notice one of these places, which would cause that "usage" to be deprecated and incosistent with the rest of the code - which will result in bugs and maintainability overhead, of course.
+That's much better - it's a lot more specific.  
+The only problem here is the indecisive language.
 
-The nice thing about tests here is that this consideration is weaker, because of several factors.
-1. When we change code that has a test and make it behave differently, the relevant tests will usually break, so we will have something that points out to the duplicated "usages". Where in production code - we only get that benefit if that piece of code has relevant tests - which might be very far from "always".
-1. If the tests are focused and verify only a single fact, the number of times that we have duplication will be lower. And it's far easier to write a test (at least a test that's not end-to-end) that "checks one thing" than it is to write code that "does a single thing", because if a piece of code does multiple things - you can just write multiple tests that run it separately, and each of them would test one thing.
-1. And, finally, if the mistake does happen in test-code and we forget to update a "usage" - it'll render the test "wrong", but it won't actually cause a bug. Making a test wrong is bad, but it's not as bad as a production bug, unless it affects a lot of tests.
+Why "should"?  
+Will this ever NOT be correct?
 
-Of course, duplication is still something to consider - if there's complex setup, or something that's not complex but repeats many times - it's probably worth it to extract functionality.  
-The point is that in production code, the right time to extract functionality is often after two or three usages - but in tests the balance allows for more.
+It's both bloated and confusing.  
+So this as well - not optimal.
+
+---
+{{< inline >}}
+<div class="code-example">def test_<span class="highlight-green">user_can_edit_their_own_book</span>():
+    ...
+</div>
+{{< /inline >}}
+
+That's much better in my opinion.  
+It's decisive, explicit and specific.  
+I suggest to aim towards this whenever possible.  
+
+---
 
 ## Conclusion
-Be aware that tests which are "non-local" are far more difficult to maintain, and make a conscious effort to find ways to reduce the problem.
+When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.
