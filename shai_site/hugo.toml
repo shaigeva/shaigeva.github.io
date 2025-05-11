@@ -25,6 +25,8 @@ weight = 3
 
 [params]
 author = "Shai Geva"
+env = "production"
+googleAnalytics = "G-YWC9X8YE9C"
 
 [params.homeInfoParams]
 Title = "Optimistic coding"
