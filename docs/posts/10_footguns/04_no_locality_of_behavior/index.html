@@ -60,7 +60,21 @@ Consider this test:">
         }
 
     </style>
-</noscript><meta property="og:title" content="Footgun #4 - No Locality of Behavior" />
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:title" content="Footgun #4 - No Locality of Behavior" />
 <meta property="og:description" content="(this mini-post is part of a series about good testing practices)
 One testing problem that doesn&rsquo;t get enough attention in my opinion is tests that don&rsquo;t have locality of behavior.
 By that I mean cases where a test is broken down into different parts in a way that makes understanding more difficult.

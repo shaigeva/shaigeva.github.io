@@ -59,7 +59,21 @@ There are a few reasons I noticed, why moving from no tests at all to even one t
         }
 
     </style>
-</noscript><meta property="og:title" content="Footgun #1 - There Are No Tests" />
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:title" content="Footgun #1 - There Are No Tests" />
 <meta property="og:description" content="(this post is part of a series about good testing practices)
 This is a &ldquo;warm-up footgun&rdquo; to the blog post series.
 The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.

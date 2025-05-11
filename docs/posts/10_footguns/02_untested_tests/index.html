@@ -60,7 +60,21 @@ To make sure that if the bug happens, the test does indeed fail.">
         }
 
     </style>
-</noscript><meta property="og:title" content="Footgun #2 - Untested Tests" />
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:title" content="Footgun #2 - Untested Tests" />
 <meta property="og:description" content="(this post is part of a series about good testing practices)
 Sometimes our tests lie to us.
 We have a test that was supposed to protect us from some bug, but that bug happened after all.

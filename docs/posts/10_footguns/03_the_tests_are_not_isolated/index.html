@@ -60,7 +60,21 @@ Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually b
         }
 
     </style>
-</noscript><meta property="og:title" content="Footgun #3 - The Tests Are Not Isolated" />
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:title" content="Footgun #3 - The Tests Are Not Isolated" />
 <meta property="og:description" content="(this post is part of a series about good testing practices)
 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
 By &ldquo;tests that are not isolated&rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
