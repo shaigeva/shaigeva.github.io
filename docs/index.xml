@@ -134,22 +134,22 @@ tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34
       <link>https://shaigeva.com/talks/</link>
       <pubDate>Sun, 29 Sep 2024 07:38:56 +0300</pubDate>
       <guid>https://shaigeva.com/talks/</guid>
-      <description>&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-us-2023-english&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)&lt;/h1&gt;
-&lt;p&gt;Given at Salt Lake City, Utah.
-The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.&lt;/p&gt;
+      <description>&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-il-2024-hebrew&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-IL 2024 (Hebrew)&lt;/h1&gt;
+&lt;p&gt;(English version below)&lt;/p&gt;
+&lt;p&gt;The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.&lt;/p&gt;
+&lt;p&gt;Slides: &lt;a href=&#34;https://bit.ly/testing_footguns_pycon_il_2024&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Slideshare PyCon IL 2024&lt;/a&gt;&lt;/p&gt;
 
 
     
     &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/Ub31Ae6S1BY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;
+      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/k-vDmoPT84g?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;
       &gt;&lt;/iframe&gt;
     &lt;/div&gt;
 
 &lt;hr&gt;
-&lt;h1 id=&#34;property-based-testing---pyweb-il-zoom-meetup-hebrew&#34;&gt;Property-based testing - PyWeb-IL zoom meetup (Hebrew)&lt;/h1&gt;
-&lt;p&gt;General intro to property-based testing.
-Similar to the below talk but more python oriented, with more concrete examples.
-(and in zoom)&lt;/p&gt;</description>
+&lt;h1 id=&#34;10-ways-to-shoot-yourself-in-the-foot-with-tests---pycon-us-2023-english&#34;&gt;10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)&lt;/h1&gt;
+&lt;p&gt;Given at Salt Lake City, Utah.
+The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

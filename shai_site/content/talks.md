@@ -3,6 +3,17 @@ title = "Talks"
 date = 2024-09-29T07:38:56+03:00
 +++
 
+# 10 Ways To Shoot Yourself In The Foot With Tests - PyCon-IL 2024 (Hebrew)
+(English version below)
+
+The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.
+
+Slides: [Slideshare PyCon IL 2024](https://bit.ly/testing_footguns_pycon_il_2024) 
+
+{{< youtube k-vDmoPT84g >}}
+
+---
+
 # 10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)
 Given at Salt Lake City, Utah.
 The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.
