@@ -9,11 +9,25 @@ date = 2025-05-09T13:01:56+03:00
 I'll focus here on the reason I think frameworks are the direction and what I think they will include.  
 
 At a very high level, the rationale is this:
+1. It makes sense to "aim our code for the AI", because it'll be the new norm.
 1. With the current way we're making software, it's just not realistic to make a paradigm shift happen, because AI 
 cannot have a feedback loop that's good enough to change code at an acceptable speed and self-heal enough issues.
 1. I believe there are solutions that will make it possible, with the current generation of LLMs, or close to it.
 
 Let's dig in.
+
+## An industrial revolution
+Soon enough, the vast majority of code will be written by AI.  
+So in a sense, this is a large automation movement.  
+Things human craftsmen currently make will be handed over en masse to the machine.
+
+Given that, it makes sense to think about the common case for software creation, which will soon be the automated
+process.  
+And as with other automations, the automation might involve a redesign.
+
+A printing press is not a faster pen, and digital photography is not a "better film camera".  
+They work differently, and create something a little different.  
+And we should expect the same from automating software creation, even though the process is less mechanical.
 
 ## A reality of imperfection
 There's a fundamental truth about "making things": it's not going to be perfect.
@@ -79,7 +93,7 @@ And I let this run automatically in a loop until either all tests are green, it 
 This is possible, for example with Cursor, for some time now.  
 
 A note here: like with human feedback loops, speed matters. If every small change takes 15 minutes, then it's slow
-enough that the human can't manage it, and it'd usually be better for the human to do it themselves.  
+enough that the human can't manage it, and it'd often be better for the human to do it themselves.  
 
 This works extremely well. The AI having its own internal self-healing feedback loop, backed by the right tests to make
 me feel safe-enough that nothing breaks, is a different category of productivity.  
@@ -91,18 +105,18 @@ When I can set it up, it's just great. But... for most of my work, I can't.
 ## AI's internal feedback loop tomorrow
 So when I distill the situation as far as I can, this is what remains.  
 1. AI will statistically make mistakes at any given step it does.  
-1. Large codebases and systems are FAR too large for these "imperfections" to be rare.
+1. Large, standard codebases and systems are FAR too complex for these "imperfections" to be rare.
 1. We must allow the AI to self-correct using a feedback loop, to minimize these.
 
-Any coding the AI does and doesn't have a good feedback loop - we will have to understand every small part of it and
+Any coding the AI does and which doesn't have a good feedback loop - a human will have to understand every small part of it and
 test it thoroughly.  
-This has a "glass ceiling" of diminishing returns since even if the AI becomes far better at coding than it is today,
-the changes will be so large that it'll be that much more difficult for us to reason about them and test them.  
+This has a "glass ceiling" of diminishing returns since even when the AI becomes far better at coding than it is today,
+the changes will be so large that it'll be that much more difficult for a human to reason about them and test them.  
 
 Therefore: any coding that we want AI to do consistently, has to be backed by a strong feedback loop like this, where
 it has the capability to consistently move forward, and it's rare-enough that it makes significant mistakes without us
 knowing.  
-It is also important that it'll very, very rare that unexpected and unrelated things break. If you add a button and a
+It is also important that it'll be very, very rare that unexpected and unrelated things break. If you add a button and a
 serious security issue appears - that's not an AI workflow that backs a paradigm shift.
 
 So the feedback loop is sort-of a "constant" in this "movement to AI". A requirement that must be satistified.  
@@ -114,49 +128,29 @@ are only incremental improvements to be had. Large increments, but still - it's 
 ## What are the limiting factors?
 So, what's preventing such a feedback loop today?
 
-Twitter is full of tips and tricks on rule files and project documentation, workflows that break planning out (and
-also some tools for mananging plan execution, as composed of small steps).  
+Twitter is full of tips and tricks on rule files and project documentation, workflows that break out planning into
+different steps (and also some tools for mananging plan execution, as composed of small steps).  
 These help "plan" and "do", though far from enough.  
 
-The way I see it, we have two significant bottlenecks.  
-The first is understanding complex code well, incl. flow execution. I believe there are codebases where this works
-pretty well, but certainly not consistently enough.
-The second is the real limiting factor of the AI software movement - "verify".  
+The way I see it, we have two significant bottlenecks:  
+First: understanding complex code well, incl. flow execution. I believe there are codebases where this works
+pretty well, but certainly not consistently enough.  
+And second: the real limiting factor of the AI software movement - "verify".  
 
 The tests.  
-Well, mostly the tests - there are other verifications, for example automatically taking a one-time screenshot of a UI
-component "before and after" is very much a verification, though it's not considered a "test" by most terminology. But
-I'll include all verification in "tests" usually to be less verbose.
+Well, mostly the tests - there are other verifications.  
+For example, automatically taking a one-time screenshot of a UI component "before and after" and comparing is very much
+a verification, though it's not considered a "test" by common terminology. But
+I'll usually include all verification in "tests" to be a little less verbose.
 
 
 ## The tests
-When you change code, you check it somehow. Some of it with unit tests, some e2e tests that are only in CI, some you
-test manually etc.  
-Importantly, some of it you run in your head, with all the knowledge built from months or years dealing with the
-business, system and code.
-
-In order for the AI to produce code that is stable-enough, it needs to be able to "test out" the vast majority of issues
-in the tight feedback loop (I would aim for seconds, though a minute might be possible).  
-e2e tests in CI are fine, but if a lot of bugs "make it" to the CI - you'll often need to wait for deployment and CI to
-run and feed back the error to your agent.  
-That's too slow.  
-If you have e2e tests that run locally and take 2 minutes and they often catch bugs - it'll still be too slow in most
-scenarios. If you run the tests on each small change, a 2 minutes means complex tasks will take hours. If you run them
-rarely, the chance of bugs happening in any run increases and so does the difficulty to debug. So catching bugs there
-needs to be rare.
-
-
-Now, I'm proficient with tests. I have given testing a lot of attention for two decades, I give talks about tests, I had
+I'm proficient with tests. I have given testing a lot of attention for two decades, I give talks about tests, I had
 successes and failures and I have an "arsenal" of effective techniques.
 
 Because of that, I know it's not realistic to add good tests to most code bases. At least, good tests that will be fast
 enough.  
-**CODE IS USUALLY NOT TESTABLE IF IT IS NOT DESIGNED TO BE TESTABLE.**
-
-If you have enough experience with code that you felt "if this passes tests, I'm sending it to prod", you know you're
-not getting getting that from a few dozen e2e tests for a system with a hundred thousand lines of code.  
-Stable code usually means small-ish independent standalone components, each with dozens or hundreds of lines of
-test-code.
+**Code is usually not testable if it's not designed to be testable.**
 
 Some common issues are
 1. Logical complexity, where some component does a lot of stuff and it's difficult to isolate what you want to test
@@ -166,64 +160,18 @@ components.
 processes, but the more hairy issues involve things like like relying on some external thing that's not easy to control.
 1. Side-effects, where the code interacts with the outside world in some way.
 
-Systems composed of many small services with different technical setups, different dependencies (maybe even different
-languages) are specifically a very tough nut to crack.  
-It is very hard to set up anything "generic" that can test something like that well.
-
+A specific common example where this is extremely difficult is a microservices architecture (or just many-services),
+especially if the services have different technical setups, different dependencies (maybe even different
+languages).  
 
 There are solutions, but they require specific design patterns and tooling.  
 
-There are also approaches that can semi-methodically take an existing codebase and fix some of the issues - but it won't
-be all issues, it'll often be laber-intensive, and the result won't be as good as designed well from the ground up.  
-It'll often not be good enough.
+I'll finish this point here, because this is already a very long post.  
+If what I wrote here has not convinced you - let's mark this as a debt to be explained, and one of the planned posts in
+the series will be a deep-dive into this point.  
 
+For now, let's assume that adding good, fast tests to an arbitrary code base is very hard.  
+Hard enough that to make the paradigm shift it's easier to switch coding styles than it is to create tools that can deal
+with the old code style.
 
-Try to consider adding fast, reliable tests to a CRUD API service that has one database with a lot of multi-step
-processes and a couple of 3rd party http services it calls.  
-I know how to approach this myself, and I can write an AI agent that will help guide a developer with how to set it
-up, but it'll probably be labor-intensive (weeks? months?) and the result will be 
-
-, if
-it wasn't designed for that.  
-There are thousands of calls to the ORM in the service
-If you dealt a lot with testing, you'd have some good directions for how to do it if you start building it now.
-
-I'll note this: If you haven't spent a lot of time testing real enterprise software, what I'm writing here might not
-convince you.  
-I plan that one of the posts in the series will be a deep-dive into this point, showing how the common testing
-techniques that can be bolted-on code are just not good enough.
-
-For now, you can get an intuition that it's very hard by considering how far most teams are in practice from giving AI
-a way to run fast tests that will get rid of most bugs:
-1. If you ask the standard cloud-service team, for example, how can they test to make their system rock-solid, they
-don't know. They'll say something like "we had bad experience with too much unit tests, these days we do some unit tests
-for the small stuff and end-to-end on the major flows. The developer that writes the code manually tests stuff that
-don't fit in the test and we get by just fine".
-1. 
-
-For example, for side-effects, you can just try to run a test and add mocks that will return what you think makes sense
-when the test fails, until you get the test to pass. But mocks are usually a horrible techniques. They assume more than
-necessary when you write them, they drift from reality as the world changes, and they break every time you change an
-API. They are tests of implementation, when we need to test behavior.  
-
-
-In many teams, even if they have a lot of tests, there is still a lot of the code is only really tested by firing up the
-system in staging, clicking on buttons and seeing what happens.  
-There's no setup to automate this. And it would be too slow if there was.  
-And A LOT of the more complex interactions, such as complex business processes involving multiple stages over many days
-and a bunch of external services - these are only tested in the brain of the developer. "Yeah, I'm pretty sure that's
-not going to affect that thing".  
-
-Even if we automate this completely, it'll be too slow.  
-
-If you try hard enough, there are ways to successfully deal with most issues - but the code needs to be designed for
-that.
-
-Let's say you have a service in a distributed system, as one does.  
-
-
-But 
-
-
-But for a paradigm shift, we need to almost always have very good tests.
 

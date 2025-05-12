@@ -31,8 +31,8 @@ There will be posts that discuss high-level ideas, but most of it will
 be dedicated to analyzing the situation and pointing out some lower-level technical directions.  
 The plan is to do a discussion of technical ideas, and a few POCs to demonstrate things are realistic in places where
 it's more difficult to see (not planning implementation of a framework or engine ATM).  
-We'll talk about design, tests, system architecture, source-controlled caches, random algorithms, functional programming, simulations,
-craaaaazy types, RAGs and a bunch of other cool stuff.
+We'll talk about design, tests, system architecture, source-controlled caches, random algorithms, functional
+programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.
 
 Since I've had these ideas running around in my mind for while and at least for me they are interesting, I felt like
 it's time to share.  
