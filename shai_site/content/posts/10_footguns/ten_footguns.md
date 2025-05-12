@@ -1,7 +1,6 @@
 +++
 title = "10 Ways To Shoot Yourself In The Foot With Tests"
-date = 2024-10-04T13:01:56+03:00
-weight = 1
+date = 2024-10-19T20:15:56+03:00
 [cover]
   image = "10_footguns/10_footguns_main_post.png"
 +++
