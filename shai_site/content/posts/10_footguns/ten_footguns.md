@@ -27,7 +27,7 @@ Videos and slide decks from the talks
 
 # 10 Ways To Shoot Yourself In The Foot With Tests - PyCon-US 2023 (English)
 
-Given at Salt Lake City, Utah.
+Given at Salt Lake City, Utah.  
 Slides: [Slideshare PyCon US 2023](https://bit.ly/testing_footguns_pycon_2023) 
 
 {{< youtube Ub31Ae6S1BY >}}
@@ -38,5 +38,4 @@ Slides: [Slideshare PyCon US 2023](https://bit.ly/testing_footguns_pycon_2023)
 
 Slides: [Slideshare PyCon IL 2024](https://bit.ly/testing_footguns_pycon_il_2024) 
 
-
-(video will be linked when uploaded to youtube)
+{{< youtube k-vDmoPT84g >}}
