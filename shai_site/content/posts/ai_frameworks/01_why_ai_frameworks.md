@@ -174,4 +174,53 @@ For now, let's assume that adding good, fast tests to an arbitrary code base is 
 Hard enough that to make the paradigm shift it's easier to switch coding styles than it is to create tools that can deal
 with the old code style.
 
+## Security
+I'd be remiss if I didn't mention security.  
+Even for something as simple as testing locally - the disk on our machine typically has a `.env` file with secrets.  
+Running a unit test that was created without human supervision might leak that.  
+
+So if we want to be able to just let the AI do its thing with minimal supervision, it might be a good idea to have some
+guardrails.
+
+## Frameworks
+It therefore seems that the most make-sense way forward, is to build AI-compatibility into every part of software
+creation - design, coding, workflows, security etc.
+
+If tests on a general codebase are hard, let's have a design that guarantees our codebases can be tested.  
+If we need to avoid leaking information, we probably need to address that.
+
+We need to understand what AI needs, and give it that, instead of trying to have it "just work" on whatever arbitrary
+code base we happen to have.
+
+This is what I call an AI-native framework.  
+It would take a certain use case (hopefully relatively broad) and design some of the of the aspects of the project to
+make them AI-compatible.
+
+I don't know what would be the granularity of these frameworks
+- Maybe it'll be a single idea like testing at a certain layer in an http web server and you would compose a bunch of 
+these together
+- Maybe it'll be "FastAPI + Postgres + React has at least these layers and tests that look like these"
+- Maybe it'll be much more generic than that.
+- Maybe the only frameworks we see will be part of platforms that also contain the AI engines that use the platforms and
+have a price tag (I don't think so, but maybe).
+
+
+What I am sure of is that frameworks will set up software projects so that AI engines can have effective feedback
+loops.  
+They will include at least some design guidelines and tests, and will probably include ways to document and declare a
+spec for parts of the software.  
+
+I do believe the successful ones will probably be technology-specific, at least to some degree.  
+There are things you can do with some technologies that you can't do with others, and they matter.  
+For example, you don't have types in javascript (put aside jsdoc for a sec), but you do have them in typescript. This
+changes some tradeoffs of what's easy for the AI to self-heal and what is not.  
+
+I believe some of the conventions we see in these frameworks will be very similar to what some teams already do.  
+But some will not. It is easier for a machine to do some things that are difficult for us and vice versa.  
+For example, the way it makes sense for an AI to use types is typescript is very different in my opinion from the common
+conventios. I'll dig into quite a bit later on.  
+
+Some tooling will almost certainly be very different from today.  
+I don't think we'll have Python generation at scale without at least something like a sandbox be part of common
+frameworks. Maybe even the ability to easily configure file access, limitations on network calling etc.
 

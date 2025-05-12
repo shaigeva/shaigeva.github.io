@@ -26,7 +26,7 @@ and workflows will change.
 Aside from the fact that I think a change has better UX, the main reason I think they will change is that any way I look
 at it, our current methods will simply block the major improvements that are coming.
 
-This blog post series will a little non-standard.  
+This blog post series will be a little non-standard.  
 There will be posts that discuss high-level ideas, but most of it will
 be dedicated to analyzing the situation and pointing out some lower-level technical directions.  
 The plan is to do a discussion of technical ideas, and a few POCs to demonstrate things are realistic in places where
