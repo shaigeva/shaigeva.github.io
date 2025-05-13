@@ -6,12 +6,42 @@
     <description>Recent content in Posts on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Oct 2024 20:15:56 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 10 May 2025 13:01:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI-Native Development Frameworks (blog post series)</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/ai_frameworks/</link>
+      <pubDate>Sat, 10 May 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/ai_frameworks/</guid>
+      <description>&lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
+&lt;p&gt;I belong to the camp that believes that AI is a total paradigm shift - it&amp;rsquo;ll redefine the ecosystem and what it means to
+create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;
+&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering&lt;/strong&gt; perspective, to understand what that that change
+would look like.&lt;br&gt;
+Figure out what are the technical &amp;ldquo;bottlenecks&amp;rdquo; and what would move the needle on them.&lt;br&gt;
+Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
+Maybe a specific workflow?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Why AI frameworks?</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/01_why_ai_frameworks/</link>
+      <pubDate>Fri, 09 May 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/01_why_ai_frameworks/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/ai_frameworks/&#34;&gt;series&lt;/a&gt; about ai-native frameworks)&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll focus here on the reason I think frameworks are the direction and what I think they will include.&lt;/p&gt;
+&lt;p&gt;At a very high level, the rationale is this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It makes sense to &amp;ldquo;aim our code for the AI&amp;rdquo;, because it&amp;rsquo;ll be the new norm.&lt;/li&gt;
+&lt;li&gt;With the current way we&amp;rsquo;re making software, it&amp;rsquo;s just not realistic to make a paradigm shift happen, because AI
+cannot have a feedback loop that&amp;rsquo;s good enough to change code at an acceptable speed and self-heal enough issues.&lt;/li&gt;
+&lt;li&gt;I believe there are solutions that will make it possible, with the current generation of LLMs, or close to it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s dig in.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
       <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
-      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <pubDate>Sat, 19 Oct 2024 20:15:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
       <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
 &lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;

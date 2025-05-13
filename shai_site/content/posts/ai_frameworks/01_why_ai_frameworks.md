@@ -160,15 +160,17 @@ components.
 processes, but the more hairy issues involve things like like relying on some external thing that's not easy to control.
 1. Side-effects, where the code interacts with the outside world in some way.
 
-A specific common example where this is extremely difficult is a microservices architecture (or just many-services),
-especially if the services have different technical setups, different dependencies (maybe even different
-languages).  
+Consider something like this: we have an arbitrary microservice architecture with 50 repos, where some services are written in typescript, some are written in python without type hints, and the team has even braved Rust on one of them. We mostly use Postgres with redis, but some workflows use s3. 5 3rd party APIs handle a few concerns like payments, opening support tickets or similar. We might not even have a trivial way to set up "new clean test" on a local machine. Now, the AI made a significant change to a shared python library that deals with the DB.  
+When you call the typescript web service, which will then call 15 different services, how easy will it be for the us to trust that all read-only transactions stay read-only and that the latest change doesn't accidentally override a value in some obscure sequence of events where Stripe returns 502 once every 3 weeks?
+We can't run all the options. It might not even be possible to technically test all failure modes for all 3rd party services that we use. And would it not run for 30 years if we tried?  
+And since we're not testing it out, what will we do? Do you trust any model that tells you "I've seen all the context, there's no sequence of events that triggers a dormant bug from 2 years ago and breaks this"?  
+We need to trust it, or this doesn't work.
 
-There are solutions, but they require specific design patterns and tooling.  
+Now, there are solutions, but they require specific design patterns and tooling.  
 
 I'll finish this point here, because this is already a very long post.  
 If what I wrote here has not convinced you - let's mark this as a debt to be explained, and one of the planned posts in
-the series will be a deep-dive into this point.  
+the series will take a deep-dive into this point.  
 
 For now, let's assume that adding good, fast tests to an arbitrary code base is very hard.  
 Hard enough that to make the paradigm shift it's easier to switch coding styles than it is to create tools that can deal
@@ -177,10 +179,9 @@ with the old code style.
 ## Security
 I'd be remiss if I didn't mention security.  
 Even for something as simple as testing locally - the disk on our machine typically has a `.env` file with secrets.  
-Running a unit test that was created without human supervision might leak that.  
+Automatically running a unit test that was created automatically, on code that was created automatically might leak that.  
 
-So if we want to be able to just let the AI do its thing with minimal supervision, it might be a good idea to have some
-guardrails.
+So if we want to be able to just let the AI do its thing with minimal supervision, it might be a good idea to have some guardrails.
 
 ## Frameworks
 It therefore seems that the most make-sense way forward, is to build AI-compatibility into every part of software
@@ -188,6 +189,9 @@ creation - design, coding, workflows, security etc.
 
 If tests on a general codebase are hard, let's have a design that guarantees our codebases can be tested.  
 If we need to avoid leaking information, we probably need to address that.
+
+It's difficult enough to solve these issues if we "own" the tech stack and design.  
+If we don't, it just becomes exponentially more difficult.
 
 We need to understand what AI needs, and give it that, instead of trying to have it "just work" on whatever arbitrary
 code base we happen to have.
@@ -204,20 +208,19 @@ these together
 - Maybe the only frameworks we see will be part of platforms that also contain the AI engines that use the platforms and
 have a price tag (I don't think so, but maybe).
 
-
 What I am sure of is that frameworks will set up software projects so that AI engines can have effective feedback
 loops.  
-They will include at least some design guidelines and tests, and will probably include ways to document and declare a
+They will include at least some strict design and testing guidelines, and will probably include ways to document and declare a
 spec for parts of the software.  
 
 I do believe the successful ones will probably be technology-specific, at least to some degree.  
 There are things you can do with some technologies that you can't do with others, and they matter.  
-For example, you don't have types in javascript (put aside jsdoc for a sec), but you do have them in typescript. This
+For example, you don't have static types in javascript (put aside jsdoc for a sec), but you do have them in typescript. This
 changes some tradeoffs of what's easy for the AI to self-heal and what is not.  
 
 I believe some of the conventions we see in these frameworks will be very similar to what some teams already do.  
 But some will not. It is easier for a machine to do some things that are difficult for us and vice versa.  
-For example, the way it makes sense for an AI to use types is typescript is very different in my opinion from the common
+For example, the way it makes sense for an AI to use types is typescript is not the same in my opinion as the common
 conventios. I'll dig into quite a bit later on.  
 
 Some tooling will almost certainly be very different from today.  
