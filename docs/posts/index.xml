@@ -10,31 +10,34 @@
     <atom:link href="https://shaigeva.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI-Native Development Frameworks (blog post series)</title>
-      <link>https://shaigeva.com/posts/ai_frameworks/ai_frameworks/</link>
+      <link>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</link>
       <pubDate>Sat, 10 May 2025 13:01:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/ai_frameworks/ai_frameworks/</guid>
-      <description>&lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
+      <guid>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</guid>
+      <description>&lt;p&gt;(this is the first post in a series about ai-native frameworks)&lt;/p&gt;
+&lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
 &lt;p&gt;I belong to the camp that believes that AI is a total paradigm shift - it&amp;rsquo;ll redefine the ecosystem and what it means to
 create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;
-&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering&lt;/strong&gt; perspective, to understand what that that change
+&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering&lt;/strong&gt; perspective, to understand what that change
 would look like.&lt;br&gt;
 Figure out what are the technical &amp;ldquo;bottlenecks&amp;rdquo; and what would move the needle on them.&lt;br&gt;
-Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
-Maybe a specific workflow?&lt;/p&gt;</description>
+Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
+Disallow use of some tooling? Maybe a specific workflow?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why AI frameworks?</title>
-      <link>https://shaigeva.com/posts/ai_frameworks/01_why_ai_frameworks/</link>
+      <link>https://shaigeva.com/posts/ai_frameworks/02_why_ai_frameworks/</link>
       <pubDate>Fri, 09 May 2025 13:01:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/ai_frameworks/01_why_ai_frameworks/</guid>
-      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/ai_frameworks/&#34;&gt;series&lt;/a&gt; about ai-native frameworks)&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ll focus here on the reason I think frameworks are the direction and what I think they will include.&lt;/p&gt;
+      <guid>https://shaigeva.com/posts/ai_frameworks/02_why_ai_frameworks/</guid>
+      <description>&lt;p&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/&#34;&gt;series&lt;/a&gt; about ai-native frameworks)&lt;/p&gt;
+&lt;p&gt;In this post I&amp;rsquo;ll focus here on the reason I think frameworks are the direction and what I think they will include,
+where following posts will dive deeper into the technical details.&lt;/p&gt;
 &lt;p&gt;At a very high level, the rationale is this:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;It makes sense to &amp;ldquo;aim our code for the AI&amp;rdquo;, because it&amp;rsquo;ll be the new norm.&lt;/li&gt;
 &lt;li&gt;With the current way we&amp;rsquo;re making software, it&amp;rsquo;s just not realistic to make a paradigm shift happen, because AI
 cannot have a feedback loop that&amp;rsquo;s good enough to change code at an acceptable speed and self-heal enough issues.&lt;/li&gt;
-&lt;li&gt;Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code, in order to give AI what it needs so it can do its job.&lt;/li&gt;
+&lt;li&gt;Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code and
+workflow, in order to give AI what it needs so it can do its job.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s dig in.&lt;/p&gt;</description>
     </item>

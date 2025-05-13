@@ -32,7 +32,7 @@ env = "production"
 id = 'G-YWC9X8YE9C'
 
 [params.homeInfoParams]
-Title = "Optimistic coding"
+Title = "Optimistic Coding Craftsmanship"
 
 Content = """
 Hey there! My name is Shai Geva.
@@ -40,7 +40,7 @@ Hey there! My name is Shai Geva.
 &nbsp;
 
 I've been writing code for over 20 years, and I remain optimistic about our ability
-to create stuff that work and are not too complex to maintain.
+to create stuff that works and are not too complex to maintain.
 
 &nbsp;
 

@@ -4,15 +4,17 @@ date = 2025-05-09T13:01:56+03:00
 [cover]
   image = "ai_frameworks/ai_feedback_loop_1-min.png"
 +++
-(this post is part of a [series]({{< ref "/posts/ai_frameworks/ai_frameworks.md" >}}) about ai-native frameworks)
+(this post is part of a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about ai-native frameworks)
 
-I'll focus here on the reason I think frameworks are the direction and what I think they will include.  
+In this post I'll focus here on the reason I think frameworks are the direction and what I think they will include,
+where following posts will dive deeper into the technical details.
 
 At a very high level, the rationale is this:
 1. It makes sense to "aim our code for the AI", because it'll be the new norm.
 1. With the current way we're making software, it's just not realistic to make a paradigm shift happen, because AI 
 cannot have a feedback loop that's good enough to change code at an acceptable speed and self-heal enough issues.
-1. Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code, in order to give AI what it needs so it can do its job.
+1. Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code and
+workflow, in order to give AI what it needs so it can do its job.
 
 Let's dig in.
 
@@ -27,20 +29,18 @@ And as with other automations, the automation might involve a redesign.
 
 The printing press is not a faster pen, and digital photography is not a "better film camera".  
 They work differently, and create something a little different.  
-And we should expect the same from automating software creation, even though the process is less mechanical.
+And we should expect the same from automating software creation.
 
 ## A reality of imperfection
-There's a fundamental truth about "making things": it's not going to be perfect.
-Three main reasons for this are
-1. Mistakes: whoever makes something complex, often makes mistakes. Either in understanding what to do or in implementing. Randomness will happen.
-2. Tradeoffs for multiple concerns: some things need to balance different concerns. Being better at one often means giving up something on the other.
-3. Change: even if it's perfect today, it won't be perfect in a year. Requirements change, you have more data than you can handle, a package you're using has a security breach that requires upgrading, some 3rd party service you're working with is changing or shutting down, whatever.
+There's a fundamental truth about "making things": it's not going to be perfect.  
+The specification might not be clear, some implicit assumption might be incorrect, or even a simple mistake. Randomness
+will happen.
 
 We are imperfect humans in imperfect teams, building imperfect products in an imperfect reality.
 
-And it is the same with AI.  
-For all the same reasons, when AI makes a change, sometimes it won't be what we need. It's not going to be the same
-imperfections a human creates, but it'll happen.
+And it is the same with AI. LLMs have limits, and they have randomness built in.  
+So when AI makes a change, sometimes it won't be what we need.  
+It's not going to be the same imperfections a human creates, but it'll happen.
 
 ## The almighty feedback loop
 The way to deal with this reality is to iterate. We all know this:
@@ -55,25 +55,27 @@ Then, given that new information from the feedback - we go back to the beginning
 
 And again and again...
 
-For me, this feedback loop is the main mental model for thinking about software development processes, at every scale.   
-(well, software development is a human activity, so human interaction and the human skillset are the most important
-things, but in terms of the high level process, this is my thinking)
+For me, this feedback loop is the main mental model for thinking about software development processes.
 
-The business might iterate on product-market fit, product might iterate on UX details, a complex project would be built
-in iterations. And so would an individual development task.  
-You write some code (maybe all the code you think is needed), you test and fix and test again. Deploy to staging, deploy to prod, fix if something broke etc.
+Product might iterate on UX details, a complex project would be built in iterations.  
+And so would an individual development task.  
 
-This is an essential part of dealing with imperfection or randomness. We don't have a solution that doesn't include an
-auto-correcting feedback loop.
+You write some code, then you test and fix and test again. Deploy to staging and test some more, fixing again if you
+find a new bug etc. etc.
 
-An important note on speed: the shorter a feedback loop is, the better. This matters A LOT. Any imperfection can send
-you off in the wrong direction, so you want to get feedback as early as possible. True for low-level debugging as it is 
-for product-market fit.  
+This is an essential part of dealing with imperfection or randomness.  
+If things sometimes go wrong, we need to know to spot the error and fix it.  
+It's always an auto-correcting feedback loop.
+
+An important note on speed: the shorter a feedback loop is, the better. This matters A LOT. Any mistake can send
+you off in the wrong direction, so you want to get feedback as early as possible.  
+A simple example would be to try to write code for 3 days without ever running it, and then trying to test the whole
+thing.  
 There's no surprise there. It's a random process with some chance of going wrong each step and auto-correction. The
 more iterations you can squeeze in at a given timeframe, the more chance you have at reaching the goal.
 
 ## AI and our feedback loops
-Although not always discussed this way, what we're doing now with AI tools is integrating them into our own feedback
+Although not always discussed this way, a lot ofwhat we're doing now with AI tools is integrating them into our own feedback
 loop.  
 And when you look at it from this angle, you can see that a lot of the techniques we use to improve the performance of
 human+ai are just optimizing some part of our feedback loop - adding steps in the process for detailed planning,
@@ -120,7 +122,7 @@ It is also important that it'll be very, very rare that unexpected and unrelated
 serious security issue appears - that's not an AI workflow that backs a paradigm shift.
 
 So the feedback loop is sort-of a "constant" in this "movement to AI". A requirement that must be satistified.  
-There's no model strong enough, no shiny UX that will work without it, no brilliant prompt, no RAG pipeline that will
+There's no model strong enough, no shiny agentic workflow that will work without it, no brilliant prompt, no RAG pipeline that will
 get just the right context.  
 If it's too slow, if it can't prevent nasty surprises and can't auto-heal most issues before it hands us a result, there
 are only incremental improvements to be had. Large increments, but still - it's limited.
@@ -157,7 +159,8 @@ Some common issues are
 in a way that's both reliable and simple enough. Especially for complex flows that include multiple steps and many
 components with non-trivial state changes.
 1. Technical complexity, where it's difficult to set up things. A simple example would be data samples for complex
-processes, but the more hairy issues involve things like like relying on some external thing for which it's tricky to simulate failure modes.
+processes, but the more hairy issues involve things like like relying on some external thing for which it's tricky to 
+simulate failure modes.
 1. Side-effects, where the code interacts with the outside world in some way.
 
 Consider something like this: we have an arbitrary microservice architecture with 50 repos, where some services are written in typescript, some are written in python without type hints, and the team has even braved Rust on one of them. We mostly use Postgres with redis, but some workflows use s3. 5 3rd party APIs handle a few concerns like payments, opening support tickets or similar. We might not even have a trivial way to set up "new clean test" on a local machine. Now, the AI made a significant change to a shared python library that deals with the DB.  

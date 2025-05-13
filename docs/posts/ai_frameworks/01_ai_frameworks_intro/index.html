@@ -7,16 +7,17 @@
 <meta name="robots" content="index, follow">
 <title>AI-Native Development Frameworks (blog post series) | Shai Geva</title>
 <meta name="keywords" content="">
-<meta name="description" content="Like many others, I spent a lot of time thinking about AI and software development.
+<meta name="description" content="(this is the first post in a series about ai-native frameworks)
+Like many others, I spent a lot of time thinking about AI and software development.
 I belong to the camp that believes that AI is a total paradigm shift - it&rsquo;ll redefine the ecosystem and what it means to
 create software, and it&rsquo;ll be the deepest change we have seen to date.
-My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that that change
+My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that change
 would look like.
 Figure out what are the technical &ldquo;bottlenecks&rdquo; and what would move the needle on them.
-Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
-Maybe a specific workflow?">
+Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
+Disallow use of some tooling? Maybe a specific workflow?">
 <meta name="author" content="Shai Geva">
-<link rel="canonical" href="https://shaigeva.com/posts/ai_frameworks/ai_frameworks/">
+<link rel="canonical" href="https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
@@ -25,7 +26,7 @@ Maybe a specific workflow?">
 <link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/ai_frameworks/ai_frameworks/">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/">
 <noscript>
     <style>
         #theme-toggle,
@@ -77,16 +78,17 @@ Maybe a specific workflow?">
           gtag('config', 'G-YWC9X8YE9C');
         }
       </script><meta property="og:title" content="AI-Native Development Frameworks (blog post series)" />
-<meta property="og:description" content="Like many others, I spent a lot of time thinking about AI and software development.
+<meta property="og:description" content="(this is the first post in a series about ai-native frameworks)
+Like many others, I spent a lot of time thinking about AI and software development.
 I belong to the camp that believes that AI is a total paradigm shift - it&rsquo;ll redefine the ecosystem and what it means to
 create software, and it&rsquo;ll be the deepest change we have seen to date.
-My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that that change
+My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that change
 would look like.
 Figure out what are the technical &ldquo;bottlenecks&rdquo; and what would move the needle on them.
-Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
-Maybe a specific workflow?" />
+Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
+Disallow use of some tooling? Maybe a specific workflow?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://shaigeva.com/posts/ai_frameworks/ai_frameworks/" />
+<meta property="og:url" content="https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/" />
 <meta property="og:image" content="https://shaigeva.com/ai_frameworks/ai_feedback_loop_1-min.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-05-10T13:01:56+03:00" />
 <meta property="article:modified_time" content="2025-05-10T13:01:56+03:00" />
@@ -94,14 +96,15 @@ Maybe a specific workflow?" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://shaigeva.com/ai_frameworks/ai_feedback_loop_1-min.png" />
 <meta name="twitter:title" content="AI-Native Development Frameworks (blog post series)"/>
-<meta name="twitter:description" content="Like many others, I spent a lot of time thinking about AI and software development.
+<meta name="twitter:description" content="(this is the first post in a series about ai-native frameworks)
+Like many others, I spent a lot of time thinking about AI and software development.
 I belong to the camp that believes that AI is a total paradigm shift - it&rsquo;ll redefine the ecosystem and what it means to
 create software, and it&rsquo;ll be the deepest change we have seen to date.
-My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that that change
+My own &ldquo;flavor&rdquo; of thinking about this is to try, from an engineering perspective, to understand what that change
 would look like.
 Figure out what are the technical &ldquo;bottlenecks&rdquo; and what would move the needle on them.
-Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
-Maybe a specific workflow?"/>
+Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
+Disallow use of some tooling? Maybe a specific workflow?"/>
 
 
 <script type="application/ld+json">
@@ -119,7 +122,7 @@ Maybe a specific workflow?"/>
       "@type": "ListItem",
       "position":  2 ,
       "name": "AI-Native Development Frameworks (blog post series)",
-      "item": "https://shaigeva.com/posts/ai_frameworks/ai_frameworks/"
+      "item": "https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/"
     }
   ]
 }
@@ -130,12 +133,12 @@ Maybe a specific workflow?"/>
   "@type": "BlogPosting",
   "headline": "AI-Native Development Frameworks (blog post series)",
   "name": "AI-Native Development Frameworks (blog post series)",
-  "description": "Like many others, I spent a lot of time thinking about AI and software development.\nI belong to the camp that believes that AI is a total paradigm shift - it\u0026rsquo;ll redefine the ecosystem and what it means to create software, and it\u0026rsquo;ll be the deepest change we have seen to date.\nMy own \u0026ldquo;flavor\u0026rdquo; of thinking about this is to try, from an engineering perspective, to understand what that that change would look like.\nFigure out what are the technical \u0026ldquo;bottlenecks\u0026rdquo; and what would move the needle on them.\nDo the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling? Maybe a specific workflow?\n",
+  "description": "(this is the first post in a series about ai-native frameworks)\nLike many others, I spent a lot of time thinking about AI and software development.\nI belong to the camp that believes that AI is a total paradigm shift - it\u0026rsquo;ll redefine the ecosystem and what it means to create software, and it\u0026rsquo;ll be the deepest change we have seen to date.\nMy own \u0026ldquo;flavor\u0026rdquo; of thinking about this is to try, from an engineering perspective, to understand what that change would look like.\nFigure out what are the technical \u0026ldquo;bottlenecks\u0026rdquo; and what would move the needle on them.\nDo the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling? Disallow use of some tooling? Maybe a specific workflow?\n",
   "keywords": [
     
   ],
-  "articleBody": "Like many others, I spent a lot of time thinking about AI and software development.\nI belong to the camp that believes that AI is a total paradigm shift - it’ll redefine the ecosystem and what it means to create software, and it’ll be the deepest change we have seen to date.\nMy own “flavor” of thinking about this is to try, from an engineering perspective, to understand what that that change would look like.\nFigure out what are the technical “bottlenecks” and what would move the needle on them.\nDo the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling? Maybe a specific workflow?\nI’ve come to the conclusion that the way forward goes through something I think of as AI-native frameworks (or AI-drive, or AI-first), and AI engines that use these frameworks to develop software.\nVery loosely, what I mean by a framework is “definitions of the shape of the codebase”. Kind-of like React or Python’s Django are frameworks - language, tooling, conventions.\nThe central point here is that we will not continue to write code like we do now. The design, coding practices, testing and workflows will change.\nAside from the fact that I think a change has better UX, the main reason I think they will change is that any way I look at it, our current methods will simply block the major improvements that are coming.\nThis blog post series will be a little non-standard.\nThere will be posts that discuss high-level ideas, but most of it will be dedicated to analyzing the situation and pointing out some lower-level technical directions.\nThe plan is to do a discussion of technical ideas, and a few POCs to demonstrate things are realistic in places where it’s more difficult to see (not planning implementation of a framework or engine ATM).\nWe’ll talk about design, tests, system architecture, source-controlled caches, random algorithms, functional programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.\nSince I’ve had these ideas running around in my mind for while and at least for me they are interesting, I felt like it’s time to share.\nI hope you find this interesting as well and that it’ll spark some discussion :)\nPing me on social and let me know!\nPosts (well, first post right now):\nWhy AI frameworks? (high level) ",
-  "wordCount" : "397",
+  "articleBody": "(this is the first post in a series about ai-native frameworks)\nLike many others, I spent a lot of time thinking about AI and software development.\nI belong to the camp that believes that AI is a total paradigm shift - it’ll redefine the ecosystem and what it means to create software, and it’ll be the deepest change we have seen to date.\nMy own “flavor” of thinking about this is to try, from an engineering perspective, to understand what that change would look like.\nFigure out what are the technical “bottlenecks” and what would move the needle on them.\nDo the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling? Disallow use of some tooling? Maybe a specific workflow?\nI’ve come to the conclusion that the way forward goes through something I think of as AI-native frameworks**, and AI engines that use these frameworks to develop software.\nVery loosely, what I mean by a framework is “definitions that dictate important aspects of the code and workflow”.\nThis can include things like programming language, tooling, conventions.\nThe central point here is that we will not continue to write code like we do now. The specifications, design, coding practices, testing and workflows will change.\nThe main reason I think they will change is that any way I look at it, our current methods will simply block the major improvements that are coming.\nThis blog post series will start with explaining at high-level why I believe our current practices won’t work for a paradigm shift, and then dive into concrete, low-level examples: showing how something would be difficult for AI on general, and how we can make it substantially easier by enforcing specific solutions.\nI’ll try to set up POCs to show that things are realistic in places where it’s more difficult to see (I’m not planning actual implementation of a framework or engine).\nWe’ll talk about design, tests, error handling, system architecture, random algorithms, functional programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.\nSince I’ve had these ideas running around in my head for while and at least for me they are interesting, I felt like it’s time to share.\nI hope you find this interesting as well and that it’ll spark some discussion :)\nPing me on social and let me know!\n** There are other names we can call this except AI-native. I also have AI-driven and AI-first in mind. The term AI-native actually comes from Tessl. I like it so adopted it as the main way I think of it.\nNext post: Why AI frameworks? (high level)\n",
+  "wordCount" : "442",
   "inLanguage": "en",
   "image":"https://shaigeva.com/ai_frameworks/ai_feedback_loop_1-min.png","datePublished": "2025-05-10T13:01:56+03:00",
   "dateModified": "2025-05-10T13:01:56+03:00",
@@ -145,7 +148,7 @@ Maybe a specific workflow?"/>
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shaigeva.com/posts/ai_frameworks/ai_frameworks/"
+    "@id": "https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/"
   },
   "publisher": {
     "@type": "Organization",
@@ -232,37 +235,38 @@ Maybe a specific workflow?"/>
 <figure class="entry-cover"><img loading="eager" src="https://shaigeva.com/ai_frameworks/ai_feedback_loop_1-min.png" alt="">
         
 </figure>
-  <div class="post-content"><p>Like many others, I spent a lot of time thinking about AI and software development.</p>
+  <div class="post-content"><p>(this is the first post in a series about ai-native frameworks)</p>
+<p>Like many others, I spent a lot of time thinking about AI and software development.</p>
 <p>I belong to the camp that believes that AI is a total paradigm shift - it&rsquo;ll redefine the ecosystem and what it means to
 create software, and it&rsquo;ll be the deepest change we have seen to date.</p>
-<p>My own &ldquo;flavor&rdquo; of thinking about this is to try, from an <strong>engineering</strong> perspective, to understand what that that change
+<p>My own &ldquo;flavor&rdquo; of thinking about this is to try, from an <strong>engineering</strong> perspective, to understand what that change
 would look like.<br>
 Figure out what are the technical &ldquo;bottlenecks&rdquo; and what would move the needle on them.<br>
-Do the LLMs have to be essentially smarter? Do we need to create some specific tooling? Disallow use of some tooling?
-Maybe a specific workflow?</p>
-<p>I&rsquo;ve come to the conclusion that the way forward goes through something I think of as <strong>AI-native frameworks</strong> (or AI-drive,
-or AI-first), and AI engines that use these frameworks to develop software.</p>
-<p>Very loosely, what I mean by a framework is &ldquo;definitions of the shape of the codebase&rdquo;. Kind-of like React or Python&rsquo;s
-Django are frameworks - language, tooling, conventions.<br>
-The central point here is that we will not continue to write code like we do now. The design, coding practices, testing
-and workflows will change.<br>
-Aside from the fact that I think a change has better UX, the main reason I think they will change is that any way I look
-at it, our current methods will simply block the major improvements that are coming.</p>
-<p>This blog post series will be a little non-standard.<br>
-There will be posts that discuss high-level ideas, but most of it will
-be dedicated to analyzing the situation and pointing out some lower-level technical directions.<br>
-The plan is to do a discussion of technical ideas, and a few POCs to demonstrate things are realistic in places where
-it&rsquo;s more difficult to see (not planning implementation of a framework or engine ATM).<br>
-We&rsquo;ll talk about design, tests, system architecture, source-controlled caches, random algorithms, functional
-programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.</p>
-<p>Since I&rsquo;ve had these ideas running around in my mind for while and at least for me they are interesting, I felt like
+Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
+Disallow use of some tooling? Maybe a specific workflow?</p>
+<p>I&rsquo;ve come to the conclusion that the way forward goes through something I think of as <strong>AI-native frameworks</strong>**, and
+AI engines that use these frameworks to develop software.</p>
+<p>Very loosely, what I mean by a framework is &ldquo;definitions that dictate important aspects of the code and workflow&rdquo;.<br>
+This can include things like programming language, tooling, conventions.<br>
+The central point here is that we will not continue to write code like we do now. The specifications, design, coding
+practices, testing and workflows will change.</p>
+<p>The main reason I think they will change is that any way I look at it, our current methods will simply block the major
+improvements that are coming.</p>
+<p>This blog post series will start with explaining at high-level why I believe our current practices won&rsquo;t work for a
+paradigm shift,
+and then dive into concrete, low-level examples: showing how something would be difficult for AI on general, and how
+we can make it substantially easier by enforcing specific solutions.<br>
+I&rsquo;ll try to set up POCs to show that things are realistic in places where it&rsquo;s more difficult to see (I&rsquo;m not planning
+actual implementation of a framework or engine).</p>
+<p>We&rsquo;ll talk about design, tests, error handling, system architecture, random algorithms,
+functional programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.</p>
+<p>Since I&rsquo;ve had these ideas running around in my head for while and at least for me they are interesting, I felt like
 it&rsquo;s time to share.<br>
 I hope you find this interesting as well and that it&rsquo;ll spark some discussion :)<br>
 Ping me on social and let me know!</p>
-<p>Posts (well, first post right now):</p>
-<ol>
-<li><a href="/posts/ai_frameworks/01_why_ai_frameworks/">Why AI frameworks?</a> (high level)</li>
-</ol>
+<p>** There are other names we can call this except AI-native. I also have AI-driven and AI-first in mind. The term
+AI-native actually comes from Tessl. I like it so adopted it as the main way I think of it.</p>
+<p><strong>Next post</strong>: <a href="/posts/ai_frameworks/02_why_ai_frameworks/">Why AI frameworks?</a> (high level)</p>
 
 
   </div>
