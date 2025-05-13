@@ -12,7 +12,7 @@ At a very high level, the rationale is this:
 1. It makes sense to "aim our code for the AI", because it'll be the new norm.
 1. With the current way we're making software, it's just not realistic to make a paradigm shift happen, because AI 
 cannot have a feedback loop that's good enough to change code at an acceptable speed and self-heal enough issues.
-1. I believe there are solutions that will make it possible, with the current generation of LLMs, or close to it.
+1. Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code, in order to give AI what it needs so it can do its job.
 
 Let's dig in.
 
@@ -25,7 +25,7 @@ Given that, it makes sense to think about the common case for software creation,
 process.  
 And as with other automations, the automation might involve a redesign.
 
-A printing press is not a faster pen, and digital photography is not a "better film camera".  
+The printing press is not a faster pen, and digital photography is not a "better film camera".  
 They work differently, and create something a little different.  
 And we should expect the same from automating software creation, even though the process is less mechanical.
 
@@ -90,7 +90,7 @@ assistant for a feedback loop like this:
 1. Write a new test + Run all relevant tests. If something breaks - the next action would be to fix it.
 
 And I let this run automatically in a loop until either all tests are green, it gives up or it starts going crazy.  
-This is possible, for example with Cursor, for some time now.  
+This is possible, for example with Cursor, for some time now. In fact, Cursor will try to self-heal what it can out of the box - stuff like lint errors.
 
 A note here: like with human feedback loops, speed matters. If every small change takes 15 minutes, then it's slow
 enough that the human can't manage it, and it'd often be better for the human to do it themselves.  
@@ -155,9 +155,9 @@ enough.
 Some common issues are
 1. Logical complexity, where some component does a lot of stuff and it's difficult to isolate what you want to test
 in a way that's both reliable and simple enough. Especially for complex flows that include multiple steps and many
-components.
+components with non-trivial state changes.
 1. Technical complexity, where it's difficult to set up things. A simple example would be data samples for complex
-processes, but the more hairy issues involve things like like relying on some external thing that's not easy to control.
+processes, but the more hairy issues involve things like like relying on some external thing for which it's tricky to simulate failure modes.
 1. Side-effects, where the code interacts with the outside world in some way.
 
 Consider something like this: we have an arbitrary microservice architecture with 50 repos, where some services are written in typescript, some are written in python without type hints, and the team has even braved Rust on one of them. We mostly use Postgres with redis, but some workflows use s3. 5 3rd party APIs handle a few concerns like payments, opening support tickets or similar. We might not even have a trivial way to set up "new clean test" on a local machine. Now, the AI made a significant change to a shared python library that deals with the DB.  
@@ -190,13 +190,14 @@ creation - design, coding, workflows, security etc.
 If tests on a general codebase are hard, let's have a design that guarantees our codebases can be tested.  
 If we need to avoid leaking information, we probably need to address that.
 
-It's difficult enough to solve these issues if we "own" the tech stack and design.  
+It's difficult enough to solve these issues if we "own" the tech stack and design, and can freely run
+any part of the code that we want.  
 If we don't, it just becomes exponentially more difficult.
 
 We need to understand what AI needs, and give it that, instead of trying to have it "just work" on whatever arbitrary
 code base we happen to have.
 
-This is what I call an AI-native framework.  
+This is what I think of as an AI-native framework.  
 It would take a certain use case (hopefully relatively broad) and design some of the of the aspects of the project to
 make them AI-compatible.
 
@@ -205,8 +206,7 @@ I don't know what would be the granularity of these frameworks
 these together
 - Maybe it'll be "FastAPI + Postgres + React has at least these layers and tests that look like these"
 - Maybe it'll be much more generic than that.
-- Maybe the only frameworks we see will be part of platforms that also contain the AI engines that use the platforms and
-have a price tag (I don't think so, but maybe).
+- Maybe the only frameworks we see will be part of paid platforms that also contain the AI engines that use the frameworks. You could satisfy a lot of these requirements by having something like Wix and have custom-generated-code hook into different parts of the system. I don't think this is where it's going, but maybe.
 
 What I am sure of is that frameworks will set up software projects so that AI engines can have effective feedback
 loops.  
@@ -214,16 +214,22 @@ They will include at least some strict design and testing guidelines, and will p
 spec for parts of the software.  
 
 I do believe the successful ones will probably be technology-specific, at least to some degree.  
-There are things you can do with some technologies that you can't do with others, and they matter.  
-For example, you don't have static types in javascript (put aside jsdoc for a sec), but you do have them in typescript. This
+There are things we can do with some technologies that we can't do with others, and they matter.  
+For example, we don't have static types in javascript (put aside jsdoc for a sec), but we do have them in typescript. This
 changes some tradeoffs of what's easy for the AI to self-heal and what is not.  
 
 I believe some of the conventions we see in these frameworks will be very similar to what some teams already do.  
 But some will not. It is easier for a machine to do some things that are difficult for us and vice versa.  
 For example, the way it makes sense for an AI to use types is typescript is not the same in my opinion as the common
-conventios. I'll dig into quite a bit later on.  
+conventios. I'll dig into this quite a bit later on.  
 
 Some tooling will almost certainly be very different from today.  
-I don't think we'll have Python generation at scale without at least something like a sandbox be part of common
+I don't think we'll have Python code generation at scale without at least something like a sandbox be part of common
 frameworks. Maybe even the ability to easily configure file access, limitations on network calling etc.
 
+## Wrapping up
+I hope I managed to make the case that it'll very difficult to have industrial-strength code generation at scale for arbitrary code bases.  
+And that we must therefore explore frameworks that would allow us to control enough of the structure of the code
+that would allow the AI to have an effective internal feedback loop.
+
+In the next post, we'll start exploring an example of what a simple framework might look like.

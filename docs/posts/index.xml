@@ -34,7 +34,7 @@ Maybe a specific workflow?&lt;/p&gt;</description>
 &lt;li&gt;It makes sense to &amp;ldquo;aim our code for the AI&amp;rdquo;, because it&amp;rsquo;ll be the new norm.&lt;/li&gt;
 &lt;li&gt;With the current way we&amp;rsquo;re making software, it&amp;rsquo;s just not realistic to make a paradigm shift happen, because AI
 cannot have a feedback loop that&amp;rsquo;s good enough to change code at an acceptable speed and self-heal enough issues.&lt;/li&gt;
-&lt;li&gt;I believe there are solutions that will make it possible, with the current generation of LLMs, or close to it.&lt;/li&gt;
+&lt;li&gt;Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code, in order to give AI what it needs so it can do its job.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s dig in.&lt;/p&gt;</description>
     </item>
