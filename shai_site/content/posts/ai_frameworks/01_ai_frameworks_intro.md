@@ -25,16 +25,25 @@ Very loosely, what I mean by a framework is "definitions that dictate important 
 This can include things like programming language, tooling, conventions.  
 The central point here is that we will not continue to write code like we do now. The specifications, design, coding
 practices, testing and workflows will change.  
+And I think that change will be substantial.
 
-The main reason I think they will change is that any way I look at it, our current methods will simply block the major
-improvements that are coming.
+The main reason I think this needs to happen is that any way I look at it, our current methods will simply make it very
+hard to implement some of the most important improvements that are coming.  
+And since the productivity boosts are so significant - I believe it'll happen.  
 
-This blog post series will start with explaining at high-level why I believe our current practices won't work for a
-paradigm shift,
+In this series of posts, I will try to show in detail why I believe this and what kind of changes we can expect.  
+I'll start with some of the high-level of are some of the limitations of our current methods, 
 and then dive into concrete, low-level examples: showing how something would be difficult for AI on general, and how
 we can make it substantially easier by enforcing specific solutions.  
 I'll try to set up POCs to show that things are realistic in places where it's more difficult to see (I'm not planning
 actual implementation of a framework or engine).
+
+NOTE: MAYBE say something about how a standard way to approach difficult problems is both to find a direct solution, and
+to redesign the problem.
+
+The approaches we'll explore are all existing industry techniques, though I'm not aware of them being applied in an organized way to the general problem of programming with AI.
+
+
 
 We'll talk about design, tests, error handling, system architecture, random algorithms, 
 functional programming, simulations, craaaaazy types, RAGs and a bunch of other cool stuff.  
