@@ -72,7 +72,10 @@ Try to have each test case will test a SINGLE FACT about the BEHAVIOR of the cod
 This makes a huge difference and it's worth it to invest a lot into this.
 
 ---
-{{% center %}}
-[<< previous post: unclear language]({{< ref "/posts/10_footguns/05_unclear_language" >}}) |
-[next post: improper test scope >>]({{< ref "/posts/10_footguns/07_improper_test_scope" >}})
-{{% /center %}}
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/05_unclear_language">&lt;&lt; previous post: Unclear Language</a>
+|
+<a href="/posts/10_footguns/07_improper_test_scope">next post: Improper Test Scope &gt;&gt;</a>
+</div>
+{{< /inline >}}

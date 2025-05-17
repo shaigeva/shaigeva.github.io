@@ -128,7 +128,7 @@ And it helps if I use these specific words mentally."/>
   "keywords": [
     
   ],
-  "articleBody": " (this mini-post is part of a series about good testing practices)\nJust like with product code, if we put too many things in the same place we get a mess.\nMy rule of thumb is to try hard to test a single fact about the behavior of the code. And it helps if I use these specific words mentally.\nSINGLE. FACT. About the BEHAVIOR.\nExample Let’s continue with our example from the previous post, and say we have a book store and we’re testing the edit book functionality.\nFor example, that’s a single fact about the behavior the code: test_user_can_edit_their_own_book And, this is not a single fact, it’s too general: test_edit_book How do they compare? Easy to understand? Single fact test: It’s clear what the test checks. It’s clear that it only checks that. General test: we’ll need to read and understand all the test code to know. Easy to debug? Single fact test: If it fails, it’s clear what functionality stopped working. And because it’s small, it’ll be easy to debug it. General test: if it fails, anything related to edit book might have failed. We’ll need to dig in. And it does a lot of things, so debugging might be a lot of work. Conclusion Try to have each test case will test a SINGLE FACT about the BEHAVIOR of the code.\nThis makes a huge difference and it’s worth it to invest a lot into this.\n« previous post: unclear language | next post: improper test scope » ",
+  "articleBody": " (this mini-post is part of a series about good testing practices)\nJust like with product code, if we put too many things in the same place we get a mess.\nMy rule of thumb is to try hard to test a single fact about the behavior of the code. And it helps if I use these specific words mentally.\nSINGLE. FACT. About the BEHAVIOR.\nExample Let’s continue with our example from the previous post, and say we have a book store and we’re testing the edit book functionality.\nFor example, that’s a single fact about the behavior the code: test_user_can_edit_their_own_book And, this is not a single fact, it’s too general: test_edit_book How do they compare? Easy to understand? Single fact test: It’s clear what the test checks. It’s clear that it only checks that. General test: we’ll need to read and understand all the test code to know. Easy to debug? Single fact test: If it fails, it’s clear what functionality stopped working. And because it’s small, it’ll be easy to debug it. General test: if it fails, anything related to edit book might have failed. We’ll need to dig in. And it does a lot of things, so debugging might be a lot of work. Conclusion Try to have each test case will test a SINGLE FACT about the BEHAVIOR of the code.\nThis makes a huge difference and it’s worth it to invest a lot into this.\n\u003c\u003c previous post: Unclear Language | next post: Improper Test Scope \u003e\u003e ",
   "wordCount" : "251",
   "inLanguage": "en",
   "image":"https://shaigeva.com/10_footguns/10_footguns_06_testing_too_many_things.png","datePublished": "2025-05-16T10:15:56+03:00",
@@ -285,10 +285,13 @@ of things, so debugging might be a lot of work.</li>
 <p>Try to have each test case will test a SINGLE FACT about the BEHAVIOR of the code.</p>
 <p>This makes a huge difference and it&rsquo;s worth it to invest a lot into this.</p>
 <hr>
+
 <div style="text-align: center; display: block; width: 100%;">
-  <a href="https://shaigeva.com/posts/10_footguns/05_unclear_language/" target="_blank" rel="noopener noreferrer">&laquo; previous post: unclear language</a> |
-<a href="https://shaigeva.com/posts/10_footguns/07_improper_test_scope/" target="_blank" rel="noopener noreferrer">next post: improper test scope &raquo;</a>
+<a href="/posts/10_footguns/05_unclear_language">&lt;&lt; previous post: Unclear Language</a>
+|
+<a href="/posts/10_footguns/07_improper_test_scope">next post: Improper Test Scope &gt;&gt;</a>
 </div>
+
 
 
   </div>
