@@ -4,6 +4,7 @@ date = 2025-05-16T10:16:56+03:00
 [cover]
   image = "10_footguns/10_footguns_07_improper_test_scope.png"
 +++
+(this post is part of a [series]({{< ref "/posts/10_footguns/ten_footguns" >}}) about good testing practices)
 
 
 Let’s say our Book Store is a web service, and it uses a DB.
