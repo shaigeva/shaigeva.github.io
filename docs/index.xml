@@ -6,8 +6,88 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Oct 2024 20:15:56 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 10:19:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Footgun #10 - Wrong Priorities</title>
+      <link>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</guid>
+      <description>&lt;p&gt;Footgun 10: wrong priorities&lt;/p&gt;
+&lt;p&gt;We saw a bunch of different practices,
+and how they will affect us by changing the properties of our tests.&lt;/p&gt;
+&lt;p&gt;The bug funnel is all about performance.
+“Testing implementation instead of behavior” us about maintainability and strength.&lt;/p&gt;
+&lt;p&gt;But how do we prioritize?&lt;/p&gt;
+&lt;p&gt;Now, the objective of tests is their strength.
+We have tests so that they catch bugs.&lt;/p&gt;
+&lt;p&gt;The unintuitive thing is that this is not what we should prioritize when we work.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #9 - Slow Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/09_slow_tests/</link>
+      <pubDate>Fri, 16 May 2025 10:18:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/09_slow_tests/</guid>
+      <description>&lt;p&gt;Footgun 9: Slow tests&lt;/p&gt;
+&lt;p&gt;Yeah, slow tests are not fun.&lt;/p&gt;
+&lt;p&gt;I’ll talk about two ways in which they are not fun.&lt;/p&gt;
+&lt;p&gt;The first way is what I like to think of as the bottleneck and the time bomb.&lt;/p&gt;
+&lt;p&gt;The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.&lt;/p&gt;
+&lt;p&gt;What kind of numbers are we’re talking about here?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #8 - Test Doubles Everywhere</title>
+      <link>https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/</guid>
+      <description>&lt;p&gt;Footgun 8 - test doubles everywhere
+Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.&lt;/p&gt;
+&lt;p&gt;These are called test doubles. Things like stubs, mocks and fakes.&lt;/p&gt;
+&lt;p&gt;The main reason we use them is performance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double.&lt;/p&gt;
+&lt;p&gt;Test doubles can be useful, but…&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #7 - Improper Test Scope</title>
+      <link>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</link>
+      <pubDate>Fri, 16 May 2025 10:16:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</guid>
+      <description>&lt;p&gt;Let’s say our Book Store is a web service, and it uses a DB.&lt;/p&gt;
+&lt;p&gt;We’ll think about two alternative test suites - “behavior tests” and “implementation tests”
+And try to imagine what our life will look like if we would have chosen one test suite or the other.&lt;/p&gt;
+&lt;p&gt;We’ll look at an almost identical test in both test suites.&lt;/p&gt;
+&lt;p&gt;The test verifies that if we edit the description of a book, then it has really been updated.
+Pretty simple.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #6 - Testing Too Many Things</title>
+      <link>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</link>
+      <pubDate>Fri, 16 May 2025 10:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</guid>
+      <description>&lt;style&gt;
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+&lt;/style&gt;
+
+&lt;p&gt;(this mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+&lt;p&gt;Just like with product code, if we put too many things in the same place we get a mess.&lt;/p&gt;
+&lt;p&gt;My rule of thumb is to try hard to test a single fact about the behavior of the code.
+And it helps if I use these specific words mentally.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
       <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>

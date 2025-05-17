@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Footgun #9 - Slow Tests | Shai Geva</title>
+<meta name="keywords" content="">
+<meta name="description" content="Footgun 9: Slow tests
+Yeah, slow tests are not fun.
+I’ll talk about two ways in which they are not fun.
+The first way is what I like to think of as the bottleneck and the time bomb.
+The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.
+What kind of numbers are we’re talking about here?">
+<meta name="author" content="Shai Geva">
+<link rel="canonical" href="https://shaigeva.com/posts/10_footguns/09_slow_tests/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shaigeva.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shaigeva.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/10_footguns/09_slow_tests/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:title" content="Footgun #9 - Slow Tests" />
+<meta property="og:description" content="Footgun 9: Slow tests
+Yeah, slow tests are not fun.
+I’ll talk about two ways in which they are not fun.
+The first way is what I like to think of as the bottleneck and the time bomb.
+The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.
+What kind of numbers are we’re talking about here?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shaigeva.com/posts/10_footguns/09_slow_tests/" />
+<meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-05-16T10:18:56+03:00" />
+<meta property="article:modified_time" content="2025-05-16T10:18:56+03:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png" />
+<meta name="twitter:title" content="Footgun #9 - Slow Tests"/>
+<meta name="twitter:description" content="Footgun 9: Slow tests
+Yeah, slow tests are not fun.
+I’ll talk about two ways in which they are not fun.
+The first way is what I like to think of as the bottleneck and the time bomb.
+The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.
+What kind of numbers are we’re talking about here?"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shaigeva.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Footgun #9 - Slow Tests",
+      "item": "https://shaigeva.com/posts/10_footguns/09_slow_tests/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Footgun #9 - Slow Tests",
+  "name": "Footgun #9 - Slow Tests",
+  "description": "Footgun 9: Slow tests\nYeah, slow tests are not fun.\nI’ll talk about two ways in which they are not fun.\nThe first way is what I like to think of as the bottleneck and the time bomb.\nThe bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.\nWhat kind of numbers are we’re talking about here?\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Footgun 9: Slow tests\nYeah, slow tests are not fun.\nI’ll talk about two ways in which they are not fun.\nThe first way is what I like to think of as the bottleneck and the time bomb.\nThe bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.\nWhat kind of numbers are we’re talking about here?\nAssume we have, say, 10 work-hours each day.\nwith tests that take 5 minutes.\nSo, that’s 12 merges per hour,\nWhich is 120 merges a day before the tests slow us down.\nFor most teams, that virtually never happens, so a 5-minute test suite -\nnot a bottleneck.\nOn the other extreme, and it usually won’t get to that but just so it’s easy to imagine -\nif the test suite takes 2 HOURS,\nThen we can only merge 5 tasks to main each day.\nWhenever we want to wrap up a bunch of tasks quickly, maybe before a major version, the merge queue length becomes days. If the tests sometimes fail, then this can happen on any random day.\nIt just doesn’t work.\nThe team will probably just stop waiting for the tests to pass before merging, and spend a lot of time with the tests being broken.\nNow, we can SURVIVE this way. But it’s a lot of extra work and it’s really not what we want.\nAnd really, even with less extreme numbers,\nFrom what I see:\nWith a 30 minutes test suite\nThe same things happen. They happen less, but they happen.\nAnd, a few years ago I was actually part of a team where this happened.\nWhen the tests took 20 minutes, I understood it’s a time bomb and eventually things were going to get bad.\nBut I didn’t have this clear phrasing of exactly how the slowness would be a problem. The bottleneck.\nAnother problem there was that the tests were also flaky and we always needed to fix them, so it wasn’t clear to most people that slowness was the more urgent problem.\nAfter a while, we were getting all these problems every few weeks. Multi-day merge queues, everything was stuck. Real crisis mode.\nIt only became ok after we did an expensive project and made the tests run in parallel. Tests would still break sometimes, but the queue got back to zero fast enough so it was not a crisis.\nThe question is - what do we do about this?\nWe don’t want premature optimization, so what we need on day 1 is to make sure that WHEN we want to optimize, it’s not going to be a very expensive project.\nAnd specifically, it should be possible to run the tests in parallel because that’s going to be the go-to solution.\nThe only thing we need for that, is to remember the footgun about isolated tests. If the tests don’t affect each other, they can run in parallel.\nMy advice is to consider this as a must-have.\nAnother way that slow tests can hurt us is by making our feedback loop longer.\nThe feedback loop is how fast we learn about bugs and understand what happened. And I’m talking about any type of bug here - anything from a typo to complex concurrency issues.\nThe feedback loop is very important, And anything that makes it shorter is very good. Even a squiggly red line in the IDE.\nI usually aim for a setup where most of the time, I’m working in watch-mode, so the tests re-run every time a file changes, and I run a sub-set of the tests that finishes within 2 or 3 seconds.\nBeing on the fast side is great. For example, if a test fails just a few seconds after I wrote the code - I instantly understand what’s going on.\nWith a 10-minute tests suite in CI - the commit with a failing test contains a lot of code. Plus my brain will do a context switch and go catch up on slack. So when I try to understand what’s going on with the failing test - it’s a lot more work.\nNow, some tests HAVE to be slow. But, we can still have pretty fast feedback loop.\nWhat helps me here is that instead of asking “How long does it take for the tests to run” I’m asking “How long does it take to catch a bug”\nAnd I’m visualizing this using the “bug funnel”.\nAll possible theoretical bugs come in, and some of them get filtered out on every stage.\nAnd the key observation here is that what matters to the feedback loop is that we catch MOST bugs quickly. We will have a good experience if the feedback loop is USUALLY fast.\nLet’s say we start out with a bug funnel that looks like this. We only have long-running integration tests, and we only run them in CI.\nSo if we create 10 bugs - we need to wait and debug the CI 10 times.\nIf we start adding fast unit tests, then pretty quickly the bug funnel will look more like this. We don’t wait 10 times for the long-running CI anymore. Only for, say, 2 of the bugs.\nFor the rest of the bugs, so most of the time - we’ll have a much faster feedback loop.\nAnd try to run at least some of the tests in watch-mode! You will have a 2-second feedback loop, even if it’s not for everything.\nAnd, as we discussed - you can also use test doubles, that’s why they exist.\nBy the way, local recordings have a very good tradeoff here - you should try it.\nConclusion ",
+  "wordCount" : "957",
+  "inLanguage": "en",
+  "image":"https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png","datePublished": "2025-05-16T10:18:56+03:00",
+  "dateModified": "2025-05-16T10:18:56+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Shai Geva"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shaigeva.com/posts/10_footguns/09_slow_tests/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shai Geva",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shaigeva.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shaigeva.com/" accesskey="h" title="Shai Geva (Alt + H)">Shai Geva</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shaigeva.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/talks" title="Talks">
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Footgun #9 - Slow Tests
+    </h1>
+    <div class="post-meta"><span title='2025-05-16 10:18:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;Shai Geva
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png" alt="">
+        
+</figure>
+  <div class="post-content"><p>Footgun 9: Slow tests</p>
+<p>Yeah, slow tests are not fun.</p>
+<p>I’ll talk about two ways in which they are not fun.</p>
+<p>The first way is what I like to think of as the bottleneck and the time bomb.</p>
+<p>The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.</p>
+<p>What kind of numbers are we’re talking about here?</p>
+<p>Assume we have, say, 10 work-hours each day.</p>
+<p>with tests that take 5 minutes.</p>
+<p>So, that’s 12 merges per hour,</p>
+<p>Which is 120 merges a day before the tests slow us down.</p>
+<p>For most teams, that virtually never happens, so a 5-minute test suite -</p>
+<p>not a bottleneck.</p>
+<p>On the other extreme, and it usually won’t get to that but just so it’s easy to imagine -</p>
+<p>if the test suite takes 2 HOURS,</p>
+<p>Then we can only merge 5 tasks to main each day.</p>
+<p>Whenever we want to wrap up a bunch of tasks quickly, maybe before a major version, the merge queue length becomes days.
+If the tests sometimes fail, then this can happen on any random day.</p>
+<p>It just doesn’t work.</p>
+<p>The team will probably just stop waiting for the tests to pass before merging, and spend a lot of time with the tests being broken.</p>
+<p>Now, we can SURVIVE this way.
+But it’s a lot of extra work and it’s really not what we want.</p>
+<p>And really, even with less extreme numbers,</p>
+<p>From what I see:</p>
+<p>With a 30 minutes test suite</p>
+<p>The same things happen.
+They happen less, but they happen.</p>
+<p>And, a few years ago I was actually part of a team where this happened.</p>
+<p>When the tests took 20 minutes, I understood it’s a time bomb and eventually things were going to get bad.</p>
+<p>But I didn’t have this clear phrasing of exactly how the slowness would be a problem. The bottleneck.</p>
+<p>Another problem there was that the tests were also flaky and we always needed to fix them,
+so it wasn’t clear to most people that slowness was the more urgent problem.</p>
+<p>After a while, we were getting all these problems every few weeks.
+Multi-day merge queues, everything was stuck.
+Real crisis mode.</p>
+<p>It only became ok after we did an expensive project and made the tests run in parallel.
+Tests would still break sometimes, but the queue got back to zero fast enough so it was not a crisis.</p>
+<p>The question is - what do we do about this?</p>
+<p>We don’t want premature optimization, so what we need on day 1 is to make sure that WHEN we want to optimize, it’s not going to be a very expensive project.</p>
+<p>And specifically, it should be possible to run the tests in parallel because that’s going to be the go-to solution.</p>
+<p>The only thing we need for that, is to remember the footgun about isolated tests.
+If the tests don’t affect each other, they can run in parallel.</p>
+<p>My advice is to consider this as a must-have.</p>
+<p>Another way that slow tests can hurt us is by making our feedback loop longer.</p>
+<p>The feedback loop is how fast we learn about bugs and understand what happened.
+And I’m talking about any type of bug here - anything from a typo to complex concurrency issues.</p>
+<p>The feedback loop is very important,
+And anything that makes it shorter is very good.
+Even a squiggly red line in the IDE.</p>
+<p>I usually aim for a setup where most of the time, I’m working in watch-mode, so the tests re-run every time a file changes, and I run a sub-set of the tests that finishes within 2 or 3 seconds.</p>
+<p>Being on the fast side is great.
+For example, if a test fails just a few seconds after I wrote the code - I instantly understand what’s going on.</p>
+<p>With a 10-minute tests suite in CI - the commit with a failing test contains a lot of code.
+Plus my brain will do a context switch and go catch up on slack.
+So when I try to understand what’s going on with the failing test - it’s a lot more work.</p>
+<p>Now, some tests HAVE to be slow.
+But, we can still have pretty fast feedback loop.</p>
+<p>What helps me here is that instead of asking
+“How long does it take for the tests to run”
+I’m asking
+“How long does it take to catch a bug”</p>
+<p>And I’m visualizing this using the “bug funnel”.</p>
+<p>All possible theoretical bugs come in, and some of them get filtered out on every stage.</p>
+<p>And the key observation here is that what matters to the feedback loop is that we catch MOST bugs quickly.
+We will have a good experience if the feedback loop is USUALLY fast.</p>
+<p>Let’s say we start out with a bug funnel that looks like this.
+We only have long-running integration tests, and we only run them in CI.</p>
+<p>So if we create 10 bugs - we need to wait and debug the CI 10 times.</p>
+<p>If we start adding fast unit tests, then pretty quickly the bug funnel will look more like this.
+We don’t wait 10 times for the long-running CI anymore. Only for, say, 2 of the bugs.</p>
+<p>For the rest of the bugs, so most of the time - we’ll have a much faster feedback loop.</p>
+<p>And try to run at least some of the tests in watch-mode!
+You will have a 2-second feedback loop, even if it’s not for everything.</p>
+<p>And, as we discussed - you can also use test doubles, that’s why they exist.</p>
+<p>By the way, local recordings have a very good tradeoff here - you should try it.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shaigeva.com/">Shai Geva</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
