@@ -23,3 +23,12 @@ When you write a test, for every assertion you write, make a small change:
 1. Or change the test a little bit, so it verifies something a little different.
 
 This way you will be able to see if the test would have failed in the way you expect it to, and you'll be able to count on it.
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/01_there_are_no_tests">&lt;&lt; previous post: There Are No Tests</a>
+|
+<a href="/posts/10_footguns/03_the_tests_are_not_isolated">next post: The Tests Are Not Isolated &gt;&gt;</a>
+</div>
+{{< /inline >}}

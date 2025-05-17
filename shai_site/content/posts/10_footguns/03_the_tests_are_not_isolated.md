@@ -72,3 +72,12 @@ cause the tests to be too slow.
 If it's not too expensive - initialize the entire thing, of course.  
 Otherwise - make sure to clean up - delete created resources and revert the database / file system / etc. to its
 original state before continuing.
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/02_untested_tests">&lt;&lt; previous post: Untested Tests</a>
+|
+<a href="/posts/10_footguns/04_no_locality_of_behavior">next post: No Locality of Behavior &gt;&gt;</a>
+</div>
+{{< /inline >}}

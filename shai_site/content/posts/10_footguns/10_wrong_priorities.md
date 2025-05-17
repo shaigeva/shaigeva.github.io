@@ -12,7 +12,7 @@ We saw a bunch of different practices,
 and how they will affect us by changing the properties of our tests.
 
 The bug funnel is all about performance.
-“Testing implementation instead of behavior” us about maintainability and strength.
+"Testing implementation instead of behavior" us about maintainability and strength.
 
 But how do we prioritize?
 
@@ -28,21 +28,21 @@ Then make sure they are fast enough
 And then make them strong
 
 
-Here’s the thing
+Here's the thing
 
 
 Slow tests are weak, or at least they are EVENTUALLY weak.
 
-Let’s say that, as a team, we decided that we are not willing to have tests that run for more than 30 minutes.
+Let's say that, as a team, we decided that we are not willing to have tests that run for more than 30 minutes.
 
-If, at some point the tests reach 30 minutes…
+If, at some point the tests reach 30 minutes...
 
 It becomes very difficult to add more tests.
 
-So after enough time, there will be a lot of code that’s not tested well.
+So after enough time, there will be a lot of code that's not tested well.
 
 And the same thing happens with maintenance.
-It’s more subtle, but if tests are not maintainable, it costs more to have them, and we end up creating fewer tests.
+It's more subtle, but if tests are not maintainable, it costs more to have them, and we end up creating fewer tests.
 So again, they will be eventually weak.
 
 
@@ -58,7 +58,14 @@ Testing a single fact, code design and all the others.
 
 When you have a choice to make - I suggest to go with the most maintainable option almost always.
 Even at the cost of other things.
-Because in the long run, that’s how we get tests that let us move fast, and have confidence in our code.
+Because in the long run, that's how we get tests that let us move fast, and have confidence in our code.
 
 
 ## Conclusion
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/09_slow_tests">&lt;&lt; previous post: Slow Tests</a>
+</div>
+{{< /inline >}}

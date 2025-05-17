@@ -17,7 +17,7 @@ Test doubles can be useful, but…
 
 
 Test doubles are a re-implementation.
-They know the implementation details of the thing they’re replacing.
+They know the implementation details of the thing they're replacing.
 Different types of test doubles do it differently, but this is what they do.
 
 
@@ -36,23 +36,23 @@ And, of course, this can hurt your foot.
 
 This is actually a flavor of the implementation vs. behavior problem.
 
-There are some differences, but essentially, it’s the same category of issues - tests that use test doubles are not as good at catching bugs, and sometimes they fail even though the code is correct, causing all that extra work.
+There are some differences, but essentially, it's the same category of issues - tests that use test doubles are not as good at catching bugs, and sometimes they fail even though the code is correct, causing all that extra work.
 
 So, test doubles - use, with caution.
 
 
 The question is - how do we avoid the pitfalls?
-And I’ll suggest a couple of ideas
+And I'll suggest a couple of ideas
 
 
 First - code design.
 So important.
 
-Try to design so you can test a lot of functionality effectively, with fast unit tests, that don’t need test doubles.
+Try to design so you can test a lot of functionality effectively, with fast unit tests, that don't need test doubles.
 Not ALWAYS possible, but a lot of times it is.
 
 
-Another thing is to choose which test double you’re working with.
+Another thing is to choose which test double you're working with.
 And I suggest to mostly use fakes.
 
 A fake behaves like your dependency, but fast.
@@ -65,20 +65,20 @@ We can make a fake more realiable by writing some tests, not for the code - but 
 
 For example, we can run the same operations against the fake and the real thing and verify we get the same results.
 
-It’ll never be 100% the same - we make tradeoffs in how much we are willing to invest in testing the fake.
+It'll never be 100% the same - we make tradeoffs in how much we are willing to invest in testing the fake.
 
 
 Sometimes, a reliable fake already exists.
-For example, if you’re using SQLite - Python actually has a built-in, in-memory implementation.
+For example, if you're using SQLite - Python actually has a built-in, in-memory implementation.
 
-So google it, maybe you’ll get lucky.
+So google it, maybe you'll get lucky.
 
 
 An interesting thing you can do with fakes, is to run exactly the same test - once with a fake, and once with the real thing.
 
 
 
-For example, maybe we have 10 tests, and that’s too much to run against the real thing.
+For example, maybe we have 10 tests, and that's too much to run against the real thing.
 
 
 So we run all 10 with the fake.
@@ -91,7 +91,7 @@ And this gives us some real world certainty.
 The essence of the idea is to use test doubles, but selectively verify their correctness until we get an acceptable tradeoff.
 
 
-Another way to “use test doubles and verify” is by caching recordings.
+Another way to "use test doubles and verify" is by caching recordings.
 We can record HTTP requests, DB actions, or anything else.
 
 
@@ -114,3 +114,12 @@ In the cloud, we also run the tests against the real thing to make sure they are
 
 
 ## Conclusion
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/07_improper_test_scope">&lt;&lt; previous post: Improper Test Scope</a>
+|
+<a href="/posts/10_footguns/09_slow_tests">next post: Slow Tests &gt;&gt;</a>
+</div>
+{{< /inline >}}

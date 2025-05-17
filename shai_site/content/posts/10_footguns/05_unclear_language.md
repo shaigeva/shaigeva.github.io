@@ -92,3 +92,12 @@ I suggest to aim towards this whenever possible.
 
 ## Conclusion
 When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/04_no_locality_of_behavior">&lt;&lt; previous post: No Locality of Behavior</a>
+|
+<a href="/posts/10_footguns/06_testing_too_many_things">next post: Testing Too Many Things &gt;&gt;</a>
+</div>
+{{< /inline >}}

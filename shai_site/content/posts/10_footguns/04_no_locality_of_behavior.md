@@ -63,3 +63,12 @@ The point is that in production code, the right time to extract functionality is
 
 ## Conclusion
 Be aware that tests which are "non-local" are far more difficult to maintain, and make a conscious effort to find ways to reduce the problem.
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/03_the_tests_are_not_isolated">&lt;&lt; previous post: The Tests Are Not Isolated</a>
+|
+<a href="/posts/10_footguns/05_unclear_language">next post: Unclear Language &gt;&gt;</a>
+</div>
+{{< /inline >}}

@@ -159,3 +159,12 @@ A cohesive whole.
 
 ## Conclusion
 a
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/06_testing_too_many_things">&lt;&lt; previous post: Testing Too Many Things</a>
+|
+<a href="/posts/10_footguns/08_test_doubles_everywhere">next post: Test Doubles Everywhere &gt;&gt;</a>
+</div>
+{{< /inline >}}

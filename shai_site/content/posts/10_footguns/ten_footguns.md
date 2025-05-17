@@ -15,7 +15,7 @@ Starting with simple (but useful!), and moving on to more complex ideas:
 1. [The tests are not isolated]({{< relref "03_the_tests_are_not_isolated" >}})
 1. [No locality of behavior]({{< relref "04_no_locality_of_behavior" >}})
 1. [Unclear language]({{< relref "05_unclear_language" >}})
-1. Testing too many things
+1. [Testing too many things]({{< relref "06_testing_too_many_things" >}})
 1. Improper test scope
 1. Test doubles everywhere
 1. Slow tests
