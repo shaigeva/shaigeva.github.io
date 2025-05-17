@@ -29,14 +29,6 @@ date = 2025-05-16T10:15:56+03:00
 
 (this mini-post is part of a [series]({{< ref "/posts/10_footguns/ten_footguns" >}}) about good testing practices)
 
----
-{{< inline >}}
-<div class="code-example">def test_<span class="highlight-red">edit_book</span>():
-    ...
-</div>
-{{< /inline >}}
-
-
 Just like with product code, if we put too many things in the same place we get a mess.
 
 My rule of thumb is to try hard to test a single fact about the behavior of the code.
@@ -44,29 +36,43 @@ And it helps if I use these specific words mentally.
 
 SINGLE. FACT. About the BEHAVIOR.
 
-Let’s say we have a book store and we’re testing the edit book functionality.
+
+## Example
+Let's continue with our example from the previous post, and say we have a book store and we're testing the edit book functionality.
+
+For example, that's a single fact about the behavior the code:
+{{< inline >}}
+<div class="code-example">test_<span class="highlight-green">user_can_edit_their_own_book</span></div>
+{{< /inline >}}
+
+And, this is not a single fact, it's too general:
+{{< inline >}}
+<div class="code-example">test_<span class="highlight-red">edit_book</span></div>
+{{< /inline >}}
 
 
-For example, that’s a single fact about the behavior the code.
-user_can_edit_their_own_book.
 
-And, this is not a single fact
-test_edit_book
-It’s general
-
-How do they compare?
-
-Single fact test: It’s clear what the test checks. It’s clear that it only checks that.
-
-But, with the general test: we’ll need to read and understand all the test code to know.
-
-If the single-fact test fails, it’s clear what functionality stopped working.
-And because it’s small, it’ll be easy to debug it.
+#### How do they compare?
+- Easy to understand?
+  - Single fact test: It's clear what the test checks. It's clear that it only checks that.
+  - General test: we'll need to read and understand all the test code to know.
+- Easy to debug?
+  - Single fact test: If it fails, it's clear what functionality stopped working. And because it's small, it'll be easy
+  to debug it.
+  - General test: if it fails, anything related to edit book might have failed. We'll need to dig in. And it does a lot
+  of things, so debugging might be a lot of work.
 
 
-If the general test fails, anything related to edit book might have failed. We’ll need to dig in. And it does a lot of things, so debugging might be a lot of work.
-
-
+![Comparison between single fact and general tests](/10_footguns/10_footguns_06_testing_too_many_things_comparison.png)
 
 
 ## Conclusion
+Try to have each test case will test a SINGLE FACT about the BEHAVIOR of the code.
+
+This makes a huge difference and it's worth it to invest a lot into this.
+
+---
+{{% center %}}
+[<< previous post: unclear language]({{< ref "/posts/10_footguns/05_unclear_language" >}}) |
+[next post: improper test scope >>]({{< ref "/posts/10_footguns/07_improper_test_scope" >}})
+{{% /center %}}

@@ -71,3 +71,10 @@ url = "https://x.com/shai_ge"
 name = "Linkedin"
 title = "Linkedin profile"
 url = "https://www.linkedin.com/in/shai-geva-bb51404/"
+
+# Needed to enable markdown in the center shortcode
+# Otherwise we get this in the rendered page: <!-- raw HTML omitted -->
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
