@@ -16,10 +16,10 @@ Starting with simple (but useful!), and moving on to more complex ideas:
 1. [No locality of behavior]({{< relref "04_no_locality_of_behavior" >}})
 1. [Unclear language]({{< relref "05_unclear_language" >}})
 1. [Testing too many things]({{< relref "06_testing_too_many_things" >}})
-1. [Improper test scope]({{< relref "07_improper_test_scope" >}})
-1. [Test doubles everywhere]({{< relref "08_test_doubles_everywhere" >}})
-1. [Slow tests]({{< relref "09_slow_tests" >}})
-1. [Wrong priorities]({{< relref "10_wrong_priorities" >}})
+1. Improper test scope
+1. Test doubles everywhere
+1. Slow tests
+1. Wrong priorities
 
 
 Videos and slide decks from the talks

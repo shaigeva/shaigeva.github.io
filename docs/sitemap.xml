@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</loc>
-    <lastmod>2025-05-16T10:19:56+03:00</lastmod>
+    <loc>https://shaigeva.com/posts/10_footguns/ten_footguns/</loc>
+    <lastmod>2025-05-16T11:19:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/</loc>
-    <lastmod>2025-05-16T10:19:56+03:00</lastmod>
+    <lastmod>2025-05-16T11:19:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/</loc>
+    <lastmod>2025-05-16T11:19:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</loc>
     <lastmod>2025-05-16T10:19:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/09_slow_tests/</loc>
@@ -22,9 +25,6 @@
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</loc>
     <lastmod>2025-05-16T10:15:56+03:00</lastmod>
-  </url><url>
-    <loc>https://shaigeva.com/posts/10_footguns/ten_footguns/</loc>
-    <lastmod>2024-10-19T20:15:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/05_unclear_language/</loc>
     <lastmod>2024-10-18T20:15:56+03:00</lastmod>

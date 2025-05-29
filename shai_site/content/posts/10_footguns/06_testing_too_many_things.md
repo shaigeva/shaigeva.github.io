@@ -76,6 +76,6 @@ This makes a huge difference and it's worth it to invest a lot into this.
 <div style="text-align: center; display: block; width: 100%;">
 <a href="/posts/10_footguns/05_unclear_language">&lt;&lt; previous post: Unclear Language</a>
 |
-<a href="/posts/10_footguns/07_improper_test_scope">next post: Improper Test Scope &gt;&gt;</a>
+(coming soon) next post: Improper Test Scope &gt;&gt;
 </div>
 {{< /inline >}}
