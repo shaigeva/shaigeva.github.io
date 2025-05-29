@@ -1,6 +1,6 @@
 +++
 title = "10 Ways To Shoot Yourself In The Foot With Tests"
-date = 2024-10-19T20:15:56+03:00
+date = 2025-05-16T11:19:56+03:00
 [cover]
   image = "10_footguns/10_footguns_main_post.png"
 +++
@@ -15,7 +15,7 @@ Starting with simple (but useful!), and moving on to more complex ideas:
 1. [The tests are not isolated]({{< relref "03_the_tests_are_not_isolated" >}})
 1. [No locality of behavior]({{< relref "04_no_locality_of_behavior" >}})
 1. [Unclear language]({{< relref "05_unclear_language" >}})
-1. Testing too many things
+1. [Testing too many things]({{< relref "06_testing_too_many_things" >}})
 1. Improper test scope
 1. Test doubles everywhere
 1. Slow tests

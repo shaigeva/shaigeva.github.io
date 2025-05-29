@@ -6,7 +6,7 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.134.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 May 2025 13:01:56 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 11:19:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI-Native Development Frameworks (blog post series)</title>
@@ -22,6 +22,58 @@ would look like.&lt;br&gt;
 Figure out what are the technical &amp;ldquo;bottlenecks&amp;rdquo; and what would move the needle on them.&lt;br&gt;
 Do the LLMs have to be essentially smarter for this to happen? Do we need to create some specific tooling?
 Disallow use of some tooling? Maybe a specific workflow?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
+&lt;p&gt;Starting with simple (but useful!), and moving on to more complex ideas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/02_untested_tests/&#34;&gt;Untested tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/&#34;&gt;The tests are not isolated&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/&#34;&gt;No locality of behavior&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/05_unclear_language/&#34;&gt;Unclear language&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/&#34;&gt;Testing too many things&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Improper test scope&lt;/li&gt;
+&lt;li&gt;Test doubles everywhere&lt;/li&gt;
+&lt;li&gt;Slow tests&lt;/li&gt;
+&lt;li&gt;Wrong priorities&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #6 - Testing Too Many Things</title>
+      <link>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</link>
+      <pubDate>Fri, 16 May 2025 10:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</guid>
+      <description>&lt;style&gt;
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+&lt;/style&gt;
+
+&lt;p&gt;(this mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices)&lt;/p&gt;
+&lt;p&gt;Just like with product code, if we put too many things in the same place we get a mess.&lt;/p&gt;
+&lt;p&gt;My rule of thumb is to try hard to test a single fact about the behavior of the code.
+And it helps if I use these specific words mentally.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why AI frameworks?</title>
@@ -40,28 +92,6 @@ cannot have a feedback loop that&amp;rsquo;s good enough to change code at an ac
 workflow, in order to give AI what it needs so it can do its job.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s dig in.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
-      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
-      <pubDate>Sat, 19 Oct 2024 20:15:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
-      <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
-&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
-&lt;p&gt;Starting with simple (but useful!), and moving on to more complex ideas:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/02_untested_tests/&#34;&gt;Untested tests&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/&#34;&gt;The tests are not isolated&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/&#34;&gt;No locality of behavior&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/05_unclear_language/&#34;&gt;Unclear language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Testing too many things&lt;/li&gt;
-&lt;li&gt;Improper test scope&lt;/li&gt;
-&lt;li&gt;Test doubles everywhere&lt;/li&gt;
-&lt;li&gt;Slow tests&lt;/li&gt;
-&lt;li&gt;Wrong priorities&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
     </item>
     <item>
       <title>Footgun #5 - Unclear Language</title>

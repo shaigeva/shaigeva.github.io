@@ -143,8 +143,8 @@ Let&rsquo;s see some examples of test phrasing:"/>
   "keywords": [
     
   ],
-  "articleBody": " (this mini-post is part of a series about good testing practices)\nAnother problem that makes it more difficult to understand tests is unclear language.\nTwo guidelines that help me deal with this:\nWe want to use decisive language We want the language to be specific and explicit Suppose we have a book store and we’re testing the functionality for editing a book.\nLet’s see some examples of test phrasing:\ndef test_edit_book(): ... This is simply too general.\nThere are so many things that might be tested, and this means almost nothing about what will get tested in practice.\ndef test_edit_book_works_correctly(): ... Adding things like “it works” or “it’s correct” - most of the time, this is just bloat.\nIt only makes the name bigger, but doesn’t give us any extra information.\ndef test_user_should_be_able_to_edit_their_own_book(): ... That’s much better - it’s a lot more specific.\nThe only problem here is the indecisive language.\nWhy “should”?\nWill this ever NOT be correct?\nIt’s both bloated and confusing.\nSo this as well - not optimal.\ndef test_user_can_edit_their_own_book(): ... That’s much better in my opinion.\nIt’s decisive, explicit and specific.\nI suggest to aim towards this whenever possible.\nConclusion When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.\n",
-  "wordCount" : "209",
+  "articleBody": " (this mini-post is part of a series about good testing practices)\nAnother problem that makes it more difficult to understand tests is unclear language.\nTwo guidelines that help me deal with this:\nWe want to use decisive language We want the language to be specific and explicit Suppose we have a book store and we’re testing the functionality for editing a book.\nLet’s see some examples of test phrasing:\ndef test_edit_book(): ... This is simply too general.\nThere are so many things that might be tested, and this means almost nothing about what will get tested in practice.\ndef test_edit_book_works_correctly(): ... Adding things like “it works” or “it’s correct” - most of the time, this is just bloat.\nIt only makes the name bigger, but doesn’t give us any extra information.\ndef test_user_should_be_able_to_edit_their_own_book(): ... That’s much better - it’s a lot more specific.\nThe only problem here is the indecisive language.\nWhy “should”?\nWill this ever NOT be correct?\nIt’s both bloated and confusing.\nSo this as well - not optimal.\ndef test_user_can_edit_their_own_book(): ... That’s much better in my opinion.\nIt’s decisive, explicit and specific.\nI suggest to aim towards this whenever possible.\nConclusion When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.\n\u003c\u003c previous post: No Locality of Behavior | next post: Testing Too Many Things \u003e\u003e ",
+  "wordCount" : "224",
   "inLanguage": "en",
   "image":"https://shaigeva.com/10_footguns/10_footguns_05_unclear_language.png","datePublished": "2024-10-18T20:15:56+03:00",
   "dateModified": "2024-10-18T20:15:56+03:00",
@@ -311,6 +311,14 @@ I suggest to aim towards this whenever possible.</p>
 <hr>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
 <p>When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.</p>
+<hr>
+
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/04_no_locality_of_behavior">&lt;&lt; previous post: No Locality of Behavior</a>
+|
+<a href="/posts/10_footguns/06_testing_too_many_things">next post: Testing Too Many Things &gt;&gt;</a>
+</div>
+
 
 
   </div>

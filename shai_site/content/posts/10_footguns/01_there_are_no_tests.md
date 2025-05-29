@@ -42,3 +42,10 @@ In almost all cases, it did help me improve the code design and prevent bugs.
 
 # Conclusion
 Start with something easy and simple, as long as you start :)
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/02_untested_tests">next post: Untested Tests &gt;&gt;</a>
+</div>
+{{< /inline >}}
