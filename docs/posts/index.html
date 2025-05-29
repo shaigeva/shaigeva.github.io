@@ -180,83 +180,6 @@ There are no tests (warm up) Untested tests The tests are not isolated No locali
 </article>
 
 <article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #10 - Wrong Priorities
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Footgun 10: wrong priorities
-We saw a bunch of different practices, and how they will affect us by changing the properties of our tests.
-The bug funnel is all about performance. “Testing implementation instead of behavior” us about maintainability and strength.
-But how do we prioritize?
-Now, the objective of tests is their strength. We have tests so that they catch bugs.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-05-16 10:19:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;Shai Geva</footer>
-  <a class="entry-link" aria-label="post link to Footgun #10 - Wrong Priorities" href="https://shaigeva.com/posts/10_footguns/10_wrong_priorities/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #9 - Slow Tests
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Footgun 9: Slow tests
-Yeah, slow tests are not fun.
-I’ll talk about two ways in which they are not fun.
-The first way is what I like to think of as the bottleneck and the time bomb.
-The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-05-16 10:18:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;Shai Geva</footer>
-  <a class="entry-link" aria-label="post link to Footgun #9 - Slow Tests" href="https://shaigeva.com/posts/10_footguns/09_slow_tests/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #8 - Test Doubles Everywhere
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Footgun 8 - test doubles everywhere Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.
-These are called test doubles. Things like stubs, mocks and fakes.
-The main reason we use them is performance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-05-16 10:17:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;Shai Geva</footer>
-  <a class="entry-link" aria-label="post link to Footgun #8 - Test Doubles Everywhere" href="https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_07_improper_test_scope.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #7 - Improper Test Scope
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Let’s say our Book Store is a web service, and it uses a DB.
-We’ll think about two alternative test suites - “behavior tests” and “implementation tests” And try to imagine what our life will look like if we would have chosen one test suite or the other.
-We’ll look at an almost identical test in both test suites.
-The test verifies that if we edit the description of a book, then it has really been updated. Pretty simple.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-05-16 10:16:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;Shai Geva</footer>
-  <a class="entry-link" aria-label="post link to Footgun #7 - Improper Test Scope" href="https://shaigeva.com/posts/10_footguns/07_improper_test_scope/"></a>
-</article>
-
-<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_06_testing_too_many_things.png" alt="">
 </figure>
   <header class="entry-header">
@@ -348,12 +271,25 @@ To make sure that if the bug happens, the test does indeed fail.
   <footer class="entry-footer"><span title='2024-10-05 17:15:56 +0300 IDT'>October 5, 2024</span>&nbsp;·&nbsp;Shai Geva</footer>
   <a class="entry-link" aria-label="post link to Footgun #2 - Untested Tests" href="https://shaigeva.com/posts/10_footguns/02_untested_tests/"></a>
 </article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="next" href="https://shaigeva.com/posts/page/2/">Next&nbsp;&nbsp;»
-    </a>
-  </nav>
-</footer>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_01_there_are_no_tests_cover.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Footgun #1 - There Are No Tests
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>(this post is part of a series about good testing practices)
+This is a “warm-up footgun” to the blog post series.
+The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.
+In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.
+There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-04 13:01:56 +0300 IDT'>October 4, 2024</span>&nbsp;·&nbsp;Shai Geva</footer>
+  <a class="entry-link" aria-label="post link to Footgun #1 - There Are No Tests" href="https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/"></a>
+</article>
     </main>
     
 <footer class="footer">

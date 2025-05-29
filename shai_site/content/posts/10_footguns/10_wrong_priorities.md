@@ -1,9 +1,9 @@
 +++
 title = "Footgun #10 - Wrong Priorities"
 date = 2025-05-16T10:19:56+03:00
+draft = true
 [cover]
   image = "10_footguns/10_footguns_10_wrong_priorities.png"
-draft = true
 +++
 (this post is part of a [series]({{< ref "/posts/10_footguns/ten_footguns" >}}) about good testing practices)
 
