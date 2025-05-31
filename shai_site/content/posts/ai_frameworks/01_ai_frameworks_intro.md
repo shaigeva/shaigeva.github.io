@@ -37,23 +37,27 @@ The easiest way to make AI much more productive is to build the software in a wa
 ## A blog series about AI-coding implementation
 In this series of posts, I will try to show in detail why I believe this and what kind of changes I think we can expect.
 
-While this will be mostly a very technical series, the beginning will have a bit of high-level exploration of some limitations that human coding practices have.  
-After that, we'll dive into concrete, low-level examples: showing how some important aspect of software building can be made substantially easier for the AI by enforcing specific solutions.
+While this will be mostly a very technical series, the beginning will have a bit of high-level exploration of some 
+limitations that human coding practices have.  
+After that, we'll dive into concrete, low-level examples: showing how some important aspect of software building can be
+made substantially easier for the AI by enforcing specific solutions.
 
-It's likely that no individual concept will be too exotic - the approaches we'll explore are all existing industry techniques, taken from various fields.  
-The point of the series is to examine the option of applying these ideas in an organized way to the general problem of programming with AI.
+It's likely that no individual concept will be too exotic - the approaches we'll explore are all existing industry 
+techniques, taken from various fields.  
+The point of the series is to examine the option of applying these ideas in an organized way to the general problem of
+programming with AI.
 
-I'll try to set up small POCs to show that things are realistic in places where it's more difficult to see (I'm not planning
-actual implementation of a framework or engine).
+I'll try to set up small POCs to show that things are realistic in places where it's more difficult to see (I'm not 
+planning actual implementation of a framework or engine).
 
 ## TL;DR
 There are a lot of pieces to this, and it'll take many weeks until I manage to release blog posts with details, so it's
 worth it to give a very high level view of the approach here:
 
-Principles:
+### Principles:
 1. Code that AI creates is expected to be different than what a human team would create. AI and human teams have
-different tradeoffs in "what's easy" and "what's hard".
-1. The main "missing piece" in my opinion is the ability to have an internal AI feedback-loop (plan-do-verify) that
+different tradeoffs when it comes to productivity ROI.
+1. The main "missing piece" that I'll discuss is the ability to have an internal AI feedback-loop (plan-do-verify) that
 allows the AI to self-heal most errors.
 1. I will argue that "plan" and "do" can be greatly improved by enforcing some standards - things like "attach English
 documentation to many things" or "use static typing more robustly in specific ways". That is, however, the smaller part
@@ -65,31 +69,55 @@ structures the code base specifically so that AI will be able to verify it.
 1. My hope is that these will help at least a little in adding this critical perspective to the AI-implemetation
 discussion.
 
-Implementation. I'll explore ways that these approaches can be used in a framework:
-1. The main technical requirement is to be able to "rule-out" as many bugs as possible, as quickly as possible. "Quick"
-means that almost all "bugs" can be ruled-out in a few seconds. This has very strong implications on what can
-and can't be done.
-1. The best way to rule out a bug quickly is often to create the code in a way that it's impossible for the bug to
-happen, and so we would not need to run the code (as a test or otherwise).
-  1. Example for intuition - if something is single threaded, you don't need to test for concurrent data races at
-  runtime. It's not a thing.
-  1. Static typing, of course. A very simple example is that in a properly statically-typed language, if a function
-  argument is an int - then it's an int. You don't need to test the case that maybe it's a string. Input to the system
-  from the outside world might be incorrect - but the only place we can have such a bug is the parser, and the rest of
-  the code base doesn't need to be tested for this. This can be taken further than most people are aware.
-  1. Pure functions are another example - if a function has no side effects (depends only on its input and also can't
-  change its input), then it can't have bugs that are related to external state, only in its implementation and in how
-  we call it.
-1. The AI must be able to run the code (either as a test or not) in a way that is safe-enough, reliable-enough and
-fast-enough.
-  1. And we must take into account that a lot of code has side-effects which might be unsafe, unrelieable and slow.
-  1. This really leaves us with only one option, which is to have simulators for almost all side-effects.
+### Implementation.
+I'll explore ways that these approaches can be used in a framework.  
+The main technical requirement is to be able to "rule-out" as many bugs as possible, as quickly as possible. "Quick"
+means that almost all "bugs" can be ruled-out in a few seconds.  
+There will, of course, also be slower verifications like e2e tests - but bugs should almost always be caught earlier in
+the process.
+
+This has very strong implications on what can and can't be done.  
+For instance:
+1. Try to verify code without running it (as a test or otherwise). Examples:
+    1. Static typing, of course. This can be taken further than most people are aware and AI is a good match for this.
+    1. Heavy preference for pure functions where applicable.
+1. Have simulators for almost all side-effects.
+    1. AKA "fakes" in standard test-speak.
+    1. Required because side-effects might be unsafe, unreliable and slow, but we must allow the AI to run code (either
+    as a test or not) in a way that is safe-enough, reliable-enough and fast-enough.
+1. Strong preference towards small building blocks that compose into larger components where possible. This helps to
+have "divide and conquer" of bugs, leaving as few bugs as possible to the more complex, slower tests.
+1. Lastly, of course - we need to actually use all of this to design and create test strategies that have a good ROI for
+the AI. This point is the most vague, the most nuanced, but also possibly the most important. The reason this requires a
+framework, is that this doesn't just "pop-up by itself" on arbitrary code bases.
+
+Consider something like "the web application backend will have a data layer that
+has a thin API which communicates in value-only objects that are not connected to the DB implementation and are unaware
+of it. There is a suite of property-based tests employing stateful testing to verify all data access actions are 
+coherent".
+This is something that I think will be extremely common in robust AI coding. However, most developers are not even
+familiar with a lot of this terminology, and most existing code bases have nothing like that implemented.
+
+
+Frankly speaking, the reason that most code bases are not well tested is that testing is complicated and nuanced, and
+most developers just don't have the knowledge of creating a make-sense testing approach to what they're building.
+
+
+a
+    1. Example: in a web application backend, we would typically want a data access layer that defines a
+    thin-as-possible API, and that API would be brutally tested. SQL / ORM will only be found in that layer.
+    For human teams - this is a well established design pattern, though by no means the common case. For AI, I believe,
+    this should be the default.
 1. Code can often be structured such that static analysis can rule out a lot of bugs. A very simple example is that in a
 properly statically-typed language, if a function argument is an int - then it's an int. You don't need to test the case
 that maybe it's a string. Static analysis (compilers, but not only) can go a long way if it's "baked-in" methodically,
 which AI can do. With a framework that enforces such practices robustly, AI will indeed be able to rule out these kinds
 of bugs in seconds.
-1. There are other ways that bugs can be ruled out without needing to to runtime tests
+levels of testing make a differenc (e.g. have a dedicated test layer for the data access layer and have that be rock-solid)
+
+make things up of small things that are well tested;
+
+1. There are other ways that bugs can be ruled out without needing to do runtime tests
 1. Software design has a strong impact on what kind of bugs are possible and at which areas of the code. If something is
 single threaded, you don't need to test for concurrent data races in runtime. It's not a thing.
 1. 
