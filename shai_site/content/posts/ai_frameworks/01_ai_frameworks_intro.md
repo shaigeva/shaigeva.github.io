@@ -70,7 +70,7 @@ Implementation. I'll explore ways that these approaches can be used in a framewo
 means that almost all "bugs" can be ruled-out in a few seconds. This has very strong implications on what can
 and can't be done.
 1. The best way to rule out a bug quickly is often to create the code in a way that it's impossible for the bug to
-happen, and so we would not need to "write a test and run it".
+happen, and so we would not need to run the code (as a test or otherwise).
   1. Example for intuition - if something is single threaded, you don't need to test for concurrent data races at
   runtime. It's not a thing.
   1. Static typing, of course. A very simple example is that in a properly statically-typed language, if a function
@@ -80,6 +80,10 @@ happen, and so we would not need to "write a test and run it".
   1. Pure functions are another example - if a function has no side effects (depends only on its input and also can't
   change its input), then it can't have bugs that are related to external state, only in its implementation and in how
   we call it.
+1. The AI must be able to run the code (either as a test or not) in a way that is safe-enough, reliable-enough and
+fast-enough.
+  1. And we must take into account that a lot of code has side-effects which might be unsafe, unrelieable and slow.
+  1. This really leaves us with only one option, which is to have simulators for almost all side-effects.
 1. Code can often be structured such that static analysis can rule out a lot of bugs. A very simple example is that in a
 properly statically-typed language, if a function argument is an int - then it's an int. You don't need to test the case
 that maybe it's a string. Static analysis (compilers, but not only) can go a long way if it's "baked-in" methodically,
