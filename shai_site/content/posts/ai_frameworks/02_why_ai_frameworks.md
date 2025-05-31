@@ -1,5 +1,5 @@
 +++
-title = "Why AI frameworks?"
+title = "Why AI Frameworks?"
 date = 2025-05-09T13:01:56+03:00
 # draft = true
 [cover]
@@ -7,14 +7,15 @@ date = 2025-05-09T13:01:56+03:00
 +++
 (this post is part of a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about ai-native frameworks)
 
-In this post I'll focus here on the reason I think frameworks are the direction and what I think they will include,
-where following posts will dive deeper into the technical details.
+In this post I'll focus on the reason I think frameworks are the direction and what I think they will include,
+where following posts will dive deeper into the technical details.  
+The objective here is not to "convince" (that would not fit in a blog post :) ), but to lay out the main points.
 
 At a very high level, the rationale is this:
-1. It makes sense to "aim our code for the AI", because it'll be the new norm.
+1. It makes sense to "aim our coding for the AI", because it'll be the new norm.
 1. With the current way we're making software, it's just not realistic to make a paradigm shift happen, because AI 
 cannot have a feedback loop that's good enough to change code at an acceptable speed and self-heal enough issues.
-1. Therefore, I believe the only way forward is to have frameworks that dictate some important aspects of the code and
+1. Therefore, I believe the best forward is to have frameworks that dictate some important aspects of the code and
 workflow, in order to give AI what it needs so it can do its job.
 
 Let's dig in.
@@ -28,14 +29,14 @@ Given that, it makes sense to think about the common case for software creation,
 process.  
 And as with other automations, the automation might involve a redesign.
 
-The printing press is not a faster pen, and digital photography is not a "better film camera".  
-They work differently, and create something a little different.  
+The printing press is not a faster pen. An assembly line is not a faster human craftsman.
+They create in a different way, and their outcome is a little different.  
 And we should expect the same from automating software creation.
 
 ## A reality of imperfection
 There's a fundamental truth about "making things": it's not going to be perfect.  
-The specification might not be clear, some implicit assumption might be incorrect, or even a simple mistake. Randomness
-will happen.
+The specification might not be clear, some implicit assumption might be incorrect, and of course a simple mistake might
+sneak in. Randomness will happen.
 
 We are imperfect humans in imperfect teams, building imperfect products in an imperfect reality.
 
@@ -44,7 +45,7 @@ So when AI makes a change, sometimes it won't be what we need.
 It's not going to be the same imperfections a human creates, but it'll happen.
 
 ## The almighty feedback loop
-The way to deal with this reality is to iterate. We all know this:
+The way to deal with this reality is to iterate. We all know this, it's our day-to-day.
 1. We plan - decide what to do next.
 1. Then we do the thing.
 1. We verify - get feedback (check if that thing is a step in the right direction).
@@ -68,16 +69,19 @@ This is an essential part of dealing with imperfection or randomness.
 If things sometimes go wrong, we need to know to spot the error and fix it.  
 It's always an auto-correcting feedback loop.
 
-An important note on speed: the shorter a feedback loop is, the better. This matters A LOT. Any mistake can send
-you off in the wrong direction, so you want to get feedback as early as possible.  
-A simple example would be to try to write code for 3 days without ever running it, and then trying to test the whole
-thing.  
-There's no surprise there. It's a random process with some chance of going wrong each step and auto-correction. The
-more iterations you can squeeze in at a given timeframe, the more chance you have at reaching the goal.
+## The size of an iteration
+The shorter a feedback loop is, the better.  
+Any mistake can send you off in the wrong direction, so you want to get feedback as early as possible.
+
+A simple example that can help visualize why this is important would be to imagine writing code for an entire week
+without ever running it, compiling it or getting warnings from the IDE.  
+We all know that the result is going to be pretty nasty. No serious developer will choose to work like this.
+
+This matters A LOT (personally, "iteration size" is the main "metric" I look at for improving productivity).
 
 ## AI and our feedback loops
-Although not always discussed this way, a lot ofwhat we're doing now with AI tools is integrating them into our own feedback
-loop.  
+Although not always discussed this way, a lot of what we're doing now with AI tools is integrating them into our own
+feedback loop.  
 And when you look at it from this angle, you can see that a lot of the techniques we use to improve the performance of
 human+ai are just optimizing some part of our feedback loop - adding steps in the process for detailed planning,
 breaking down to smaller tasks, making sure the correct context gets in so it's easier for the AI to "do" etc.
@@ -86,17 +90,15 @@ breaking down to smaller tasks, making sure the correct context gets in so it's 
 An observation I'm making here is that the AI has (or can have) its own feedback loop before it hands the latest change
 over to us.
 
-My own experience, and I'm sure many others' as well, is that the best outcome I get is if I set up an AI
-assistant for a feedback loop like this:
+My own experience, and I'm sure many others' as well, is that the best outcome I get is if I set up an AI assistant for
+a feedback loop. Each step looks like this:
 1. Understand what to do next
 1. Create something small
-1. Write a new test + Run all relevant tests. If something breaks - the next action would be to fix it.
+1. Verify. For example, write a new test + Run all relevant tests. If something breaks - the next action would be to fix it.
 
-And I let this run automatically in a loop until either all tests are green, it gives up or it starts going crazy.  
-This is possible, for example with Cursor, for some time now. In fact, Cursor will try to self-heal what it can out of the box - stuff like lint errors.
-
-A note here: like with human feedback loops, speed matters. If every small change takes 15 minutes, then it's slow
-enough that the human can't manage it, and it'd often be better for the human to do it themselves.  
+I let this run automatically in a loop until either all tests are green, it gives up or it starts going crazy.  
+This is possible, for example with Cursor, for some time now. In fact, Cursor will try to self-heal what it can out of
+the box - stuff like lint errors.
 
 This works extremely well. The AI having its own internal self-healing feedback loop, backed by the right tests to make
 me feel safe-enough that nothing breaks, is a different category of productivity.  
@@ -106,34 +108,41 @@ same tests if I wrote the code, and find similar bugs.
 When I can set it up, it's just great. But... for most of my work, I can't.
 
 ## AI's internal feedback loop tomorrow
-So when I distill the situation as far as I can, this is what remains.  
-1. AI will statistically make mistakes at any given step it does.  
+When I distill the situation as far as I can, this is what remains.  
+1. An LLM will statistically do the wrong thing sometimes.
 1. Large, standard codebases and systems are FAR too complex for these "imperfections" to be rare.
-1. We must allow the AI to self-correct using a feedback loop, to minimize these.
+1. So if we want to avoid most of these bugs reaching a human - we must allow the AI to self-correct using a feedback loop.
 
-Any coding the AI does and which doesn't have a good feedback loop - a human will have to understand every small part of it and
-test it thoroughly.  
-This has a "glass ceiling" of diminishing returns since even when the AI becomes far better at coding than it is today,
-the changes will be so large that it'll be that much more difficult for a human to reason about them and test them.  
+A feedback loop is therefore sort-of a "constant" in this "movement to AI". A requirement that must be satistified for 
+large, ongoing projects.  
 
-Therefore: any coding that we want AI to do consistently, has to be backed by a strong feedback loop like this, where
-it has the capability to consistently move forward, and it's rare-enough that it makes significant mistakes without us
-knowing.  
-It is also important that it'll be very, very rare that unexpected and unrelated things break. If you add a button and a
-serious security issue appears - that's not an AI workflow that backs a paradigm shift.
+It follows that at least for complex projects (though I would say for almost all projects), our best bet is to adopt
+coding practices that work well with such a feedback loop.
 
-So the feedback loop is sort-of a "constant" in this "movement to AI". A requirement that must be satistified.  
-There's no model strong enough, no shiny agentic workflow that will work without it, no brilliant prompt, no RAG pipeline that will
-get just the right context.  
-If it's too slow, if it can't prevent nasty surprises and can't auto-heal most issues before it hands us a result, there
-are only incremental improvements to be had. Large increments, but still - it's limited.
+These kinds of coding practices are what I call AI-first frameworks.
 
-## What are the limiting factors?
-So, what's preventing such a feedback loop today?
+## What are some limiting factors?
+So, why don't we have such feedback loops for our projects today?  
+Why don't we just tell the AI "here's a project with a million lines of code. Add a small feature", and then it would do
+changes and verify them itself?
 
-Twitter is full of tips and tricks on rule files and project documentation, workflows that break out planning into
-different steps (and also some tools for mananging plan execution, as composed of small steps).  
-These help "plan" and "do", though far from enough.  
+If you're following the trend on social media, you can see that improvements happen all the time, both in tools and how
+to use them.  
+
+But if we look from the perspective of the plan-do-verify stages, we can see that almost everything falls between 
+"plan" and "do".
+
+There are definitely improvements in "verify" (and companies that emphasize quality*), but for the "general project"
+there really is no big news. AI assistants will generate code and if you ask they'll generate some tests. But there's no
+tool that you can throw on your project that would make changes and make sure nothing broke.
+
+So 
+
+
+Twitter is full of tips and tricks on rule files and project documentation, workflows that break down work
+into small steps etc.
+
+
 
 The way I see it, we have two significant bottlenecks:  
 First: understanding complex code well, incl. flow execution. I believe there are codebases where this works
@@ -179,6 +188,17 @@ the series will take a deep-dive into this point.
 For now, let's assume that adding good, fast tests to an arbitrary code base is very hard.  
 Hard enough that to make the paradigm shift it's easier to switch coding styles than it is to create tools that can deal
 with the old code style.
+
+NOTE: maybe say something like
+If you want to make sure that an endpoint is read only, you can do ad-hoc static analysis to try to make sure that there
+is no code path where an sql query that changes data runs, you can write thousands of tests covering many possible
+scenarios for what might have been in the DB to begin with etc.  
+You can also use some permissions framework and only give that endpoint read-only access to the DB. 
+Then, in order to test that "endpoint_x doesn't write to the DB" we just need to make sure that we use the permission
+framework and that the endpoint was indeed assigned read-only permissions.  
+It's not a very common approach today, but it's easy to see how it eliminates categories of bugs very easily and very
+reliably.
+
 
 ## Security
 I'd be remiss if I didn't mention security.  
@@ -237,3 +257,16 @@ And that we must therefore explore frameworks that would allow us to control eno
 that would allow the AI to have an effective internal feedback loop.
 
 In the next post, we'll start exploring an example of what a simple framework might look like.
+
+
+* About companies that emphasize quality - I'm biased, as I worked there in the past, but if you're interested you might
+want to have a look at Qodo.
+
+---
+{{< inline >}}
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/ai_frameworks/01_ai_frameworks_intro">&lt;&lt; previous post: AI-First Development Frameworks (intro)</a>
+|
+next post: (coming soon) &gt;&gt;
+</div>
+{{< /inline >}}
