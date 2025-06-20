@@ -5,7 +5,8 @@ date = 2025-05-09T13:01:56+03:00
 [cover]
   image = "ai_frameworks/ai_feedback_loop_1-min.png"
 +++
-(this post is part of a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about ai-native frameworks)
+(this is the first post in a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about creating
+production-grade maintainable AI-first projects, using AI-first frameworks)
 
 In this post I'll focus on the reason I think frameworks are the direction and what I think they will include,
 where following posts will dive deeper into the technical details.  
