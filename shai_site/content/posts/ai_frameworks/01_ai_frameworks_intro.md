@@ -1,12 +1,13 @@
 +++
-title = "In Search of Production-Grade Maintainable AI-First Development: AI-First frameworks (blog post series)"
+title = "In Search of Production-Grade Maintainable AI-First Development: AI-First Design Patterns and Frameworks (blog post series)"
 date = 2025-05-10T13:01:56+03:00
 weight = 1
 # draft = true
 [cover]
-  image = "ai_frameworks/ai_feedback_loop_1-min.png"
+  image = "ai_frameworks/robot_feedback_loop_matrix.png"
 +++
-(this is the first post in a series about creating production-grade maintainable AI-first projects, using AI-first frameworks)
+(this is the first post in a series about creating production-grade maintainable AI-first projects, using AI-first
+design patterns and frameworks)
 
 Like many others, I spent a lot of time thinking about AI and software development.
 
@@ -25,31 +26,119 @@ I think it's clear by now (2025-06), that coding agents can help us in many ways
 to a level that would seem science fiction just a few years ago.  
 We're seeing fast and significant improvement in many areas of dev work.
 
-One of the main areas that still didn't see a major breakthrough is coding in large codebases, which is the bulk of
-dev work today.  
-I'm sure there are exceptions here and there, but as a general rule, you still can't tell you AI tool to add a feature
-to a million-line code base, and it'll do most of the work.  
-In practice this just doesn't work ATM.
+However, for large code bases (which is the bulk of dev work today), the effect is far less impressive.  
+Don't get me wrong - it's great, it's an amazing productivity boost, but it's not the same categorical change that we're
+seeing on the smaller non-production-grade projects.
 
-## Frameworks are the easy path
-I've come to the conclusion that the way forward goes through something I think of as **AI-first frameworks**, and 
-AI agents that use these frameworks to develop software.  
+We all know that as a general rule, you still can't tell you AI tool to add a feature
+to a real-world non-small code base, and it'll do most of the work.  
+In practice this only works "here and there" ATM.
 
-Very loosely, what I mean by a framework is "definitions that dictate important aspects of the code and workflow".  
-This can include things like tech stack, packages, tooling, coding conventions, code design, testing conventions, etc. etc.  
-The central point here is that we will not continue to write code like we do now. The specifications, design, coding
-practices, testing and workflows will change.  
+## The easy path is to adjust the code to the AI (AI-first / AI-native / AI-driven)
+I believe that huge improvements to productivity on large code bases are possible with the current generation of LLMs.  
+More than 10x.
+
+And I believe that part of what we need to do in order to get there is to build AI compatibility into the code-base from
+the ground up (this approach is usually called AI-first / AI-native / AI-driven development).
+
+The reason is that AI has different trade-offs than human teams in what is easy or hard when creating software.  
+So if we want AI to 10x what it can do (and what we can do), the easiest way is to build the code in a way that fits the
+AI's tradeoffs.
+
+In other words, we need to have definitions that dictate aspects of the code and workflow, that are AI-friendly.
+These can be very general and very simple (like "use meaningful variable names"), or very use-case specific, like how to
+use a specific framework in a specific language.
+So anything might be relevant - tech stack, packages, tooling, coding conventions, code design, testing conventions,
+etc. etc.  
+
+The central point here is that we will not "continue to write code like we do now plus add AI". The specifications,
+design, coding practices, testing and workflows will change in a substantial way.  
+
+
+
+The way a project is written makes a difference to how easy it is for AI to help with it.  
+
+For example:
+- Meaningless variable names are more difficult for an AI agent than clear and precise names.
+- A Function argument that is a statically typed data structures is easier for an AI agent than if that argument has no
+type information and there was no way to know what's in it than running the code.
+
+These are simple examples, but they
+
+
+But for this if we build these code bases from the ground up in a way that takes AI into account.  
+This is 
+
+I've come to the conclusion that the way forward goes through something I think of as **AI-first design patterns** and
+**AI-first frameworks** that will use these patterns in a systematic way.
+
+## Design patterns
+I'll refer to these aspects of the code as "design patterns".  
+Why "design patterns"? Well, there's no real established terminology. Some of the
+things I'll talk about are more "practices", some are more "coding conventions" and some can only be called "design
+patterns". So I'm going with the term that I think is best at conveying "the way we do code is different,
+it's not just how we prompt or the tools we use".
+
+A major part of being productive with AI, I believe, will be mastering these.
+How should we structure the code so AI can work with it well? 
+What abstraction layers? What will the APIs between different components look like?
+Which tests should we have, at which layers?
+
+I'll talk about (and do some POCs) examples of such design in this blog series.
+
+
+
+
+
+
+I do see some discussion about this online - but it's not deep and there's only a bit of it (except for "how to use
+rule files", which is important but it's just one thing).  
+However, I believe that having 
+
+The same functionality can be implemented in ways that make it 
+Any way I look at it, it appears that the current common practices will simply make
+it very hard to implement some of the most important improvements that are coming.  
+
+
+
+## Frameworks
+Individual design patterns are nice, and will be very beneficial.  
+
+I believe, however, that the best way forward is what I think of as **AI-first frameworks**.
+
+Very loosely, what I mean by a framework is a "combo" of these design patterns.  
+It can be something like
+- A Python backend service
+- Enforces type annotations (Python generally allows, but doesn't require, type annotations. So a framework could
+require it).
+- Using a spceific backend library (e.g. Python's FastAPI)
+- Has pre-defined layers of abstraction E.g. there is a DAL (data access layer), all its APIs only receive and return
+immutable data structures.
+- There are pre-defined layers where tests are written, and they have specific technical requirements. E.g. the DAL must
+have a robust test suite for testing every single workflow, that test suite only uses the DAL API (can't use SQL or an
+ORM directly).
+- etc. etc. (there will probably be dozens of these)
+
+These frameworks will create a "cohesive whole" that an AI agent can work with effectively.  
+For example, definitions in the spirit of what I gave above (but, of course, much more robust) would force the AI agent
+to create a well-defined set of all possible interactions with the database and have tests that thoroughly cover them.  
+
+
+The central point here is that we will not "continue to write code like we do now plus add AI". The specifications,
+design, coding practices, testing and workflows will change.  
 And I think that change will be substantial.
 
 The main reason I believe this will happen is that any way I look at it, the current common practices will simply make
 it very hard to implement some of the most important improvements that are coming.  
 The easiest way to make AI much more productive is to build the software in a way that "fits" the AI from the ground up.
 
-Having each team develop their own AI-compatible practices for their code base is kind of like having each backend team
+But why do we need "frameworks"?  
+Well, having each team develop their own AI-compatible practices for their code base is kind of like having each backend team
 develop their own web framework from low-level http libraries.  
-It can be done, but we all understand it's not a good idea. It's very expensive and will likely not turn out well. A
-model where there are common (open source?)
-frameworks / tools, and most teams just use a combination of a few standard options, is probably much better.  
+It can be done, but we all understand it's not a good idea. It's very expensive and the result will suck most of the
+time.  
+I think it'll be much better if the industry will move to a model where there are common (open source?)
+frameworks / tools created by experts, and most teams just use a combination of a few standard options.
 
 ## A blog series about AI-coding implementation
 In this series of posts, I will try to show in detail why I believe this and what kind of changes I think we can expect.
@@ -57,7 +146,7 @@ In this series of posts, I will try to show in detail why I believe this and wha
 There will be a bit of high-level exploration, but mostly - we'll dive into concrete, low-level examples: discussing
 specific ideas / practices that can make AI more productive if they are enforced.
  
-Most (or all) concepts are not going to be too exotic - the approaches we'll explore are all existing industry 
+Most (or all) concepts are not going to be too exotic - the approaches we'll explore are existing industry 
 techniques, taken from various fields.  
 An experienced developer will be familiar with many of them.  
 The point here is not to invent crazy new ideas, but to examine the option of applying what already exists in an
@@ -67,10 +156,10 @@ I'll try to set up small POCs to show that things are realistic in places where 
 planning full implementation of a framework or agent).
 
 ## TL;DR
-There are a lot of pieces to this, and it'll take many weeks until I manage to release blog posts covering everything I
+There are a lot of pieces to this, and it'll take a while until I manage to release blog posts covering everything I
 have in mind, so it's worth it to give a very high level view of the approach here:
 
-### Principles:
+### Principles
 1. Code that AI creates is expected to be different than what a human team would create. AI agents and human teams have
 different tradeoffs when it comes to productivity ROI.
 1. The central notion that I'll discuss is the ability to have an internal AI feedback loop (plan-do-verify) that allows
@@ -79,14 +168,14 @@ the AI to self-heal most errors.
 documentation to many things" or "use static typing more robustly in specific ways". That is, however, the smaller part
 of the series.
 1. The main focus will be on "verify" - allowing the AI to check the changes it makes.
-1. I will argue that "adding on quality" on artibrary code bases is very difficult compared to an approach that
+1. I will argue that "adding on quality" to artibrary code bases is very difficult compared to an approach that
 structures the code base specifically so that AI will be able to verify it.
 1. And I'll give a bunch of examples of practices that make an effective feedback loop far easier, and some arguments to
-show why this is more difficult in arbitrary code bases.
+show why this is more difficult if we don't have these practices.
 1. My hope is that these blog posts will help a little in making this critical perspective a central part of the
 AI-implemetation discussion.
 
-### Implementation.
+### Implementation
 I'll explore ways that these approaches can be used in a framework.  
 The main technical requirement is to be able to "rule-out" as many "bugs" as possible, as quickly as possible. "Quick"
 means that almost all "bugs" can be ruled-out in a few seconds by the AI without human intervention.  
@@ -123,12 +212,9 @@ it's time to share.
 I hope you find this interesting as well and that it'll spark some discussion :)  
 Ping me on social and let me know!
 
-
-**Next post**: [First feedback loop example?]({{< relref "02_first_feedback_loop_example" >}}) (high level)
-
 ---
 {{< inline >}}
 <div style="text-align: center; display: block; width: 100%;">
-<a href="/posts/ai_frameworks/02_first_feedback_loop_example">next post: First feedback loop example &gt;&gt;</a>
+<a href="/posts/ai_frameworks/02_ai_feedback_loop_example">next post: AI feedback loop example &gt;&gt;</a>
 </div>
 {{< /inline >}}

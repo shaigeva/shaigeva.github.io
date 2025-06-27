@@ -1,12 +1,34 @@
 +++
-title = "Why AI Frameworks?"
+title = "AI Feedback Loop Example"
 date = 2025-05-09T13:01:56+03:00
 # draft = true
 [cover]
   image = "ai_frameworks/ai_feedback_loop_1-min.png"
 +++
 (this is the first post in a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about creating
-production-grade maintainable AI-first projects, using AI-first frameworks)
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
+
+Although this might be trivial to some devs that have dived deep into AI-assisted coding, I feel that for many people,
+the concept of an "internal AI feedback loop that auto-heals errors" is pretty abstract.
+So - this post gives an example.  
+It's a small project (python API service) that's set up for a feedback loop (with cursor in this case).
+
+What we want to see here is the feedback loop "in action" - we give a task to the AI agent, and we want to see how it
+validates and auto-corrects itself before proceeding.
+
+We're not looking don't want the task
+
+A note about complexity of the project:  
+This is a small, simple project with fairly simple cursor setup.  
+Existing vibe coding tools already one-off projects which are far more impressive.  
+The objective here is not to show something that's difficult for existing tools, but rather to show what a feedback loop
+when changing existing code might look like.  
+Later posts will have projects which are more complex both logically and technically.
+
+The idea is not to discuss any specific technique, 
+
+I'm giving an example of a project that's very small, 
+
 
 In this post I'll focus on the reason I think frameworks are the direction and what I think they will include,
 where following posts will dive deeper into the technical details.  
