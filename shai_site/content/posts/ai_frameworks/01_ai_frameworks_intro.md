@@ -56,6 +56,11 @@ design, coding practices, testing and workflows will change in a substantial way
 
 
 
+
+The main reason I believe this will happen is that any way I look at it, the current common practices will simply make
+it very hard to implement some of the most important improvements that are coming.  
+The easiest way to make AI much more productive is to build the software in a way that "fits" the AI from the ground up.
+
 The way a project is written makes a difference to how easy it is for AI to help with it.  
 
 For example:
@@ -123,25 +128,18 @@ These frameworks will create a "cohesive whole" that an AI agent can work with e
 For example, definitions in the spirit of what I gave above (but, of course, much more robust) would force the AI agent
 to create a well-defined set of all possible interactions with the database and have tests that thoroughly cover them.  
 
-
-The central point here is that we will not "continue to write code like we do now plus add AI". The specifications,
-design, coding practices, testing and workflows will change.  
-And I think that change will be substantial.
-
-The main reason I believe this will happen is that any way I look at it, the current common practices will simply make
-it very hard to implement some of the most important improvements that are coming.  
-The easiest way to make AI much more productive is to build the software in a way that "fits" the AI from the ground up.
-
-But why do we need "frameworks"?  
-Well, having each team develop their own AI-compatible practices for their code base is kind of like having each backend team
-develop their own web framework from low-level http libraries.  
+But why do we need these "frameworks"?  
+Well, having each team develop their own AI-compatible practices for their code base is kind of like having each backend
+team develop their own web framework from low-level http libraries.  
 It can be done, but we all understand it's not a good idea. It's very expensive and the result will suck most of the
 time.  
-I think it'll be much better if the industry will move to a model where there are common (open source?)
-frameworks / tools created by experts, and most teams just use a combination of a few standard options.
+I think it'll be much better if the industry will "think of it" a little bit like we think of web development today:
+there will be common (open source?) frameworks / tool-sets created by experts, and most teams will just use a
+combination of a few standard options.
 
 ## A blog series about AI-coding implementation
-In this series of posts, I will try to show in detail why I believe this and what kind of changes I think we can expect.
+In this series of posts, I will try to show in detail why I believe all of this and what kind of changes I think we can
+expect.
 
 There will be a bit of high-level exploration, but mostly - we'll dive into concrete, low-level examples: discussing
 specific ideas / practices that can make AI more productive if they are enforced.
@@ -152,8 +150,8 @@ An experienced developer will be familiar with many of them.
 The point here is not to invent crazy new ideas, but to examine the option of applying what already exists in an
 organized way to the general problem of programming with AI.
 
-I'll try to set up small POCs to show that things are realistic in places where it's more difficult to see (I'm not 
-planning full implementation of a framework or agent).
+I'll try to set up small POCs to show that things are realistic in places where it's more difficult to see. These will
+mostly showcase some idea or a design pattern (I'm not planning full implementation of a framework or agent).
 
 ## TL;DR
 There are a lot of pieces to this, and it'll take a while until I manage to release blog posts covering everything I
@@ -176,7 +174,7 @@ show why this is more difficult if we don't have these practices.
 AI-implemetation discussion.
 
 ### Implementation
-I'll explore ways that these approaches can be used in a framework.  
+I'll explore ways that these approaches can be applied using design patterns or a framework.  
 The main technical requirement is to be able to "rule-out" as many "bugs" as possible, as quickly as possible. "Quick"
 means that almost all "bugs" can be ruled-out in a few seconds by the AI without human intervention.  
 There will, of course, also be slower verifications like e2e tests - but most bugs should be caught by the faster tests,
@@ -184,8 +182,8 @@ earlier in the process.
 
 This has very strong implications on what practices are expected to be effective.  
 For instance:
-1. We need a setup where the AI agent can run code to check what it does (sometimes the entire program, sometiems only
-tests). Having an LLM just "review" written code just ain't gonna cut it.
+1. We need a setup that allows the AI agent to run code to check the changes it makes (sometimes the entire program,
+sometiems only tests). Having an LLM just "review" written code just ain't gonna cut it.
 1. But - we should try hard to verify things about the code even without running it (as a test or otherwise). Examples:
     1. Static typing, of course. This can be taken further than most people are aware and AI is a good match for this.
     1. Preference for pure functions where applicable.
@@ -199,7 +197,7 @@ tests). Having an LLM just "review" written code just ain't gonna cut it.
     harder.
     1. I will be talking a lot about this, since bringing this down to reality is expected to be a challenge.
 1. Very strong preference towards small building blocks that compose into larger components where possible (stronger
-than would be appropriated for most human teams). This helps to have "divide and conquer" of bugs, leaving as
+than would be appropriated for many human teams). This helps to have "divide and conquer" of bugs, leaving as
 few bugs as possible to the more complex, slower tests.
 1. Lastly, of course - we need to actually use all of this to design and create coding+testing strategies that have a
 good ROI for the AI. This point is the most vague, the most nuanced, but also probably the most important because it's
@@ -210,7 +208,7 @@ necessary, and I think it's pretty difficult.
 I've had these ideas running around in my head for while and at least for me they are interesting, so I felt like
 it's time to share.  
 I hope you find this interesting as well and that it'll spark some discussion :)  
-Ping me on social and let me know!
+Ping me on social ([twitter / x](https://x.com/shai_ge), [linkedin](https://www.linkedin.com/in/shai-geva-bb51404/)) and let me know!
 
 ---
 {{< inline >}}
