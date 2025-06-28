@@ -30,9 +30,9 @@ However, for large code bases (which is the bulk of dev work today), the effect 
 Don't get me wrong - it's great, it's an amazing productivity boost, but it's not the same categorical change that we're
 seeing on the smaller non-production-grade projects.
 
-We all know that as a general rule, you still can't tell you AI tool to add a feature
-to a real-world non-small code base, and it'll do most of the work.  
-In practice this only works "here and there" ATM.
+We all know that in most real-world non-small code bases, on most changes we make, AI just doesn't speed us up 10x right
+now.  
+In practice, while this does happen sometimes - at the moment it's only "here and there". It's not the general case.
 
 ## The easy path is to adjust the code to the AI (AI-first / AI-native / AI-driven)
 I believe that huge improvements to productivity on large code bases are possible with the current generation of LLMs.  
@@ -51,31 +51,9 @@ use a specific framework in a specific language.
 So anything might be relevant - tech stack, packages, tooling, coding conventions, code design, testing conventions,
 etc. etc.  
 
-The central point here is that we will not "continue to write code like we do now plus add AI". The specifications,
+The central point here is that we will not "continue to write code like we do now plus add AI".  
+The specifications,
 design, coding practices, testing and workflows will change in a substantial way.  
-
-
-
-
-The main reason I believe this will happen is that any way I look at it, the current common practices will simply make
-it very hard to implement some of the most important improvements that are coming.  
-The easiest way to make AI much more productive is to build the software in a way that "fits" the AI from the ground up.
-
-The way a project is written makes a difference to how easy it is for AI to help with it.  
-
-For example:
-- Meaningless variable names are more difficult for an AI agent than clear and precise names.
-- A Function argument that is a statically typed data structures is easier for an AI agent than if that argument has no
-type information and there was no way to know what's in it than running the code.
-
-These are simple examples, but they
-
-
-But for this if we build these code bases from the ground up in a way that takes AI into account.  
-This is 
-
-I've come to the conclusion that the way forward goes through something I think of as **AI-first design patterns** and
-**AI-first frameworks** that will use these patterns in a systematic way.
 
 ## Design patterns
 I'll refer to these aspects of the code as "design patterns".  
@@ -89,40 +67,26 @@ How should we structure the code so AI can work with it well?
 What abstraction layers? What will the APIs between different components look like?
 Which tests should we have, at which layers?
 
-I'll talk about (and do some POCs) examples of such design in this blog series.
-
-
-
-
-
-
-I do see some discussion about this online - but it's not deep and there's only a bit of it (except for "how to use
-rule files", which is important but it's just one thing).  
-However, I believe that having 
-
-The same functionality can be implemented in ways that make it 
-Any way I look at it, it appears that the current common practices will simply make
-it very hard to implement some of the most important improvements that are coming.  
-
-
+I'll talk about examples (and do some POCs) of such design patterns in this blog series.
 
 ## Frameworks
 Individual design patterns are nice, and will be very beneficial.  
 
 I believe, however, that the best way forward is what I think of as **AI-first frameworks**.
 
-Very loosely, what I mean by a framework is a "combo" of these design patterns.  
+Very loosely, what I mean by a framework is a "combo" of these design patterns plus relevant tooling.  
 It can be something like
 - A Python backend service
 - Enforces type annotations (Python generally allows, but doesn't require, type annotations. So a framework could
 require it).
 - Using a spceific backend library (e.g. Python's FastAPI)
-- Has pre-defined layers of abstraction E.g. there is a DAL (data access layer), all its APIs only receive and return
-immutable data structures.
-- There are pre-defined layers where tests are written, and they have specific technical requirements. E.g. the DAL must
-have a robust test suite for testing every single workflow, that test suite only uses the DAL API (can't use SQL or an
-ORM directly).
-- etc. etc. (there will probably be dozens of these)
+- Has pre-defined layers of abstraction E.g. "there is a DAL (data access layer), and all its APIs only receive and
+return immutable data structures".
+- There are pre-defined layers where tests are written, and they have specific technical requirements. E.g. "the DAL
+must have a robust test suite for testing every single workflow. That test suite only uses the DAL API (can't use SQL or
+an ORM directly)".
+- etc. etc. (there will probably be dozens of these, incl. specific commands to how we run some tools, AI agent rule
+files and whatever's needed to enforce the specification)
 
 These frameworks will create a "cohesive whole" that an AI agent can work with effectively.  
 For example, definitions in the spirit of what I gave above (but, of course, much more robust) would force the AI agent
@@ -130,7 +94,8 @@ to create a well-defined set of all possible interactions with the database and 
 
 But why do we need these "frameworks"?  
 Well, having each team develop their own AI-compatible practices for their code base is kind of like having each backend
-team develop their own web framework from low-level http libraries.  
+team develop their own web framework from low-level http libraries, just because "we want it to be tailored to our use
+case".  
 It can be done, but we all understand it's not a good idea. It's very expensive and the result will suck most of the
 time.  
 I think it'll be much better if the industry will "think of it" a little bit like we think of web development today:
@@ -145,10 +110,10 @@ There will be a bit of high-level exploration, but mostly - we'll dive into conc
 specific ideas / practices that can make AI more productive if they are enforced.
  
 Most (or all) concepts are not going to be too exotic - the approaches we'll explore are existing industry 
-techniques, taken from various fields.  
+techniques.  
 An experienced developer will be familiar with many of them.  
-The point here is not to invent crazy new ideas, but to examine the option of applying what already exists in an
-organized way to the general problem of programming with AI.
+The point here is not to invent crazy new ideas, but to examine the option of applying what already exists in a
+systematic way to the general problem of programming with AI.
 
 I'll try to set up small POCs to show that things are realistic in places where it's more difficult to see. These will
 mostly showcase some idea or a design pattern (I'm not planning full implementation of a framework or agent).
@@ -170,12 +135,10 @@ of the series.
 structures the code base specifically so that AI will be able to verify it.
 1. And I'll give a bunch of examples of practices that make an effective feedback loop far easier, and some arguments to
 show why this is more difficult if we don't have these practices.
-1. My hope is that these blog posts will help a little in making this critical perspective a central part of the
-AI-implemetation discussion.
 
 ### Implementation
 I'll explore ways that these approaches can be applied using design patterns or a framework.  
-The main technical requirement is to be able to "rule-out" as many "bugs" as possible, as quickly as possible. "Quick"
+The main technical requirement I'll address is to be able to "rule-out" as many "bugs" as possible, as quickly as possible. "Quick"
 means that almost all "bugs" can be ruled-out in a few seconds by the AI without human intervention.  
 There will, of course, also be slower verifications like e2e tests - but most bugs should be caught by the faster tests,
 earlier in the process.
@@ -188,6 +151,8 @@ sometiems only tests). Having an LLM just "review" written code just ain't gonna
     1. Static typing, of course. This can be taken further than most people are aware and AI is a good match for this.
     1. Preference for pure functions where applicable.
 1. Have simulators for most side-effects, especially those that we don't directly control.
+    1. A simulator is a simplified implementation of some part of a real thing, that has a very similar behavior.
+    For example, a DB table can be a list of in-memory tuples plus some wrappers.
     1. AKA "fakes" in standard test-speak.
     1. Required because side-effects might be unsafe, unreliable, uncontrollable and slow, but we must allow the AI to
     run code (either as a test or not) in a way that is safe-enough, reliable-enough, controllable-enough and
@@ -197,7 +162,7 @@ sometiems only tests). Having an LLM just "review" written code just ain't gonna
     harder.
     1. I will be talking a lot about this, since bringing this down to reality is expected to be a challenge.
 1. Very strong preference towards small building blocks that compose into larger components where possible (stronger
-than would be appropriated for many human teams). This helps to have "divide and conquer" of bugs, leaving as
+than would be appropriate for many human teams). This helps to have "divide and conquer" of bugs, leaving as
 few bugs as possible to the more complex, slower tests.
 1. Lastly, of course - we need to actually use all of this to design and create coding+testing strategies that have a
 good ROI for the AI. This point is the most vague, the most nuanced, but also probably the most important because it's
@@ -207,7 +172,9 @@ necessary, and I think it's pretty difficult.
 
 I've had these ideas running around in my head for while and at least for me they are interesting, so I felt like
 it's time to share.  
-I hope you find this interesting as well and that it'll spark some discussion :)  
+
+I hope you find this interesting as well and that these blog posts will help a little in making this critical
+perspective a central part of the AI-implemetation discussion.
 Ping me on social ([twitter / x](https://x.com/shai_ge), [linkedin](https://www.linkedin.com/in/shai-geva-bb51404/)) and let me know!
 
 ---
