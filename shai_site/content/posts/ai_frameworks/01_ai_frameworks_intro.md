@@ -1,5 +1,5 @@
 +++
-title = "Moving past vibe-coding? In Search of real-world AI-First Development: AI-First Design Patterns and Frameworks (blog post series)"
+title = "Moving past vibe-coding? AI-First Design Patterns and Frameworks (blog post series)"
 date = 2025-06-20T13:01:56+03:00
 weight = 1
 [cover]
@@ -33,7 +33,7 @@ AI coding assistants already help us in many ways, including creating impressive
 to a level that would have seemed like science fiction just a few years ago.  
 We're seeing fast and significant improvement in many areas of dev work.
 
-However, the effect is far less impressive for what is the bulk of dev work today - ongoing work on large codebases.  
+However, the effect is far less impressive for what is the bulk of dev work today - ongoing work on production-grade large codebases.  
 Don't get me wrong - it's great, it's an amazing productivity boost, but it's not the same categorical change that we're
 seeing when vibe coding smaller non-production-grade projects.
 
