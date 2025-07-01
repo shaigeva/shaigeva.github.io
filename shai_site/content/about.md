@@ -20,8 +20,8 @@ I'm mostly a builder, but have also played more "high level roles", like product
 tech-lead at [Sayata](https://www.sayata.com/ "Sayata home page")).
 
 
-I [write about]({{< ref "/posts/" >}}) various topics, focusing on code quality and automated tests, which are 
-a great passion for me.
+I [write about]({{< ref "/posts/" >}}) various topics, focusing on AI, code quality and automated tests - all of which
+I'm very passionate about.
 
 I also [speak at confrences]({{< ref "/talks" >}}), so far exclusively about tests.
 

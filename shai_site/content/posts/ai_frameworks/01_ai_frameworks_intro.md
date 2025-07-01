@@ -1,6 +1,6 @@
 +++
 title = "Moving past vibe-coding? In Search of real-world AI-First Development: AI-First Design Patterns and Frameworks (blog post series)"
-date = 2025-05-10T13:01:56+03:00
+date = 2025-06-20T13:01:56+03:00
 weight = 1
 [cover]
   image = "ai_frameworks/robot_feedback_loop_matrix.png"
@@ -18,13 +18,14 @@ what that change could look like.
 This blog series will dig into this and share my thoughts and conclusions from experimentation.  
 I'll talk about both:
 - What can we already do today? Concrete, pragmatic practices we can use right now to make ourselves faster.
-- What would need to be different in how we work so in the future (few years?), everything will indeed be different and
+- And more theoretically: What would need to be different in how we work so in the future (few years?), everything will indeed be different and
 much more productive?
 
-My hope is that these will help enthusiastic devs boost their productivity, and to contribute to the general
+My hope is that these posts will help enthusiastic devs boost their productivity, and to contribute to the general
 conversation around AI and coding.
 
-In this intro post, I'm describing the general concept, with some high-level examples.
+In this intro post, I'm describing the general concept, with some high-level examples (most of the series will be
+low-level and technical).
 
 ## Creating maintainable software
 By now (2025-06), the term vibe coding has been with us for a few months, and tools / platforms have been here for quite
@@ -54,7 +55,7 @@ Why? Well, AI has different trade-offs than human teams in what is easy or hard 
 So if we want AI to 10x what it can do (and what we can do), the easiest way is to build the code in a way that fits the
 AI's tradeoffs.
 
-In other words, we need to have definitions that dictate aspects of the code and workflow, that are AI-friendly.
+In other words, we need to have definitions that dictate aspects of the code and workflow, which are AI-friendly.  
 These can be very general and very simple (like "use meaningful variable names"), or very use-case specific, like how to
 use a specific framework in a specific language.
 
@@ -65,13 +66,13 @@ substantial changes to all of these.
 
 ## Design patterns
 I'll refer to these aspects of the code and workflow as "design patterns".  
-Why "design patterns"? Well, there's no real established terminology. Some of the
+I'm using this term because there's no real established terminology. Some of the
 things I'll talk about are more "practices", some are more "coding conventions" and some can only be called "design
-patterns". So I'm going with the term that I think is best at conveying
+patterns". So I'm going with the term that I think is best at conveying that: 
 1. The way we do code is different, it's not just how we prompt or the tools we use".
-1. It's a **design** approach. It's part of the design of our code, our workflow, our architecture, our team.
+1. It's a **design** approach. It's part of the design of our code, our architecture, our workflow.
 
-A key part of being productive with AI, I believe, is to master these.
+A key part of being productive with AI, I believe, is to master these.  
 How should we structure the code so AI can work with it well? 
 What abstraction layers? What will the APIs between different components look like?
 Which tests should we have, at which layers?
@@ -79,9 +80,9 @@ Which tests should we have, at which layers?
 I'll talk about examples (and do some POCs) of such design patterns in this series.
 
 It's worth mentioning that most (or all) concepts are not going to be too exotic - the approaches we'll explore are
-variations of existing industry techniques.  
+variations of established industry techniques.  
 An experienced developer will be familiar with many of them.  
-The point here is not to invent new ideas, but more to examine the option of applying what already exists in a
+The point here is less to invent new ideas, and more to examine the option of applying what already exists in a
 systematic way to the general problem of programming with AI.
 
 ## Frameworks
@@ -92,7 +93,7 @@ I believe, however, that the best way forward is what I think of as **AI-first f
 Very loosely, what I mean by a framework is a "combo" of these design patterns plus relevant tooling.  
 It can be something like
 - A Python backend service
-- Enforces type annotations (Python generally allows, but doesn't require, type annotations. So a framework could
+- Enforces type annotations (Python generally allows, but doesn't require, static types. So a framework could
 require it).
 - Using a spceific backend library (e.g. Python's FastAPI)
 - Has pre-defined layers of abstraction. E.g. "there is a DAL (data access layer), and all its APIs only receive and
@@ -104,18 +105,19 @@ an ORM directly)".
 files and whatever's needed to enforce the specification)
 
 These frameworks will create a "cohesive whole" that an AI agent can work with effectively.  
-For example, definitions in the spirit of what I gave above (but, of course, much more robust) would force the AI agent
-to create a well-defined set of all possible interactions with the database and have tests that thoroughly cover them.  
+For example, definitions in the spirit of what I gave above (but, of course, much more explicit and robust) would force
+the AI agent to create a well-defined set of all possible interactions with the database and have tests that thoroughly
+cover them.  
 
 But why do we need these "frameworks"?  
-Well, having each team hand-craft their own AI-compatible practices for their code base is kind of like having each
+I think that having each team hand-craft their own AI-compatible practices for their code base is kind of like having each
 backend team develop their own web framework from low-level http libraries, just because "we want it to be tailored to
 our use case".  
 It can be done, but we all understand it's not a good idea. It's very expensive and the result will suck most of the
 time.  
 I think it'll be much better if the industry will "think of it" a little bit like we think of web development today:
-there will be common (open source?) frameworks / tool-sets created by experts, and most teams will just use a
-combination of a few standard options.
+there will be common (open source?) frameworks / tool-sets created by experts, and most teams will use a
+combination of a few standard options, plus customization where actually needed.
 
 ## TL;DR
 There are a lot of pieces to this, and it'll take a while until I manage to release blog posts covering everything I
@@ -134,10 +136,11 @@ In other words, it's a very good idea to "shift-left" bugs in the bug funnel.
 The feedback loop is what we all know - planning, doing, verifying and then doing it again and again until we're done.  
 A fast and effective feedback loop has always been one of the most significant things in the process of creating
 software, and AI assistants will magnify that by orders of magnitude.  
-Our main objective is to make the human feedback loop "better" (faster, easier, more effective), and the main way that
-we'll try to achieve this is by working very hard so that the AI agents will have their own internal feedback loop.  
-Meaning - the agent will plan, make changes and then verify them itself and auto-heal them, and only after it's done -
-it'll give the result to a human.
+Our main objective is to make the human feedback loop "better" (faster, easier, more effective).  
+And the main way that we'll help the human feedback loop is by giving the AI agents their own internal feedback loop.
+We'll work very hard to enable the agent to plan, make changes and then verify them itself and auto-heal them. So that
+it'll give the result to a human only after it's done and "filtered out" all the bugs it can.
+
 
 In other words, the "star of the show" is going to be the ability to create fast feedback loops that are effective at
 both creating new things and shifting-left bugs in the bug funnel.
