@@ -1,29 +1,156 @@
 +++
-title = "AI Feedback Loop Example"
+title = "AI Feedback Loop, With an Example"
 date = 2025-05-09T13:01:56+03:00
-# draft = true
+draft = true
 [cover]
   image = "ai_frameworks/ai_feedback_loop_1-min.png"
 +++
 (this is the first post in a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about creating
 production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
 
-Although this might be trivial to some devs that have dived deep into AI-assisted coding, I feel that for many people,
-the concept of an "internal AI feedback loop that auto-heals errors" is pretty abstract.
-So - this post gives an example.  
-It's a small project (python API service) that's set up for a feedback loop (with cursor in this case).
+In this post we'll discuss why an internal AI feedback loop is a good idea, and give a simple example for what it might
+look like.
+
+## A reality of imperfection
+
+There's a fundamental truth about "making things": it's not going to be perfect.  
+The specification might not be clear, some implicit assumption might be incorrect, and of course a simple mistake might
+sneak in. Randomness will happen.
+
+A more concrete way to think about it is that when a change to the code is made (either by a human or by an AI agent),
+there's some chance that a mistake will happen. Let's use the term "bug rate".
+
+Noting - I'll call all this randomness "mistakes", "bugs" or "errors", because for our purpose it usually doesn't matter
+if the incorrectness is the result of an unclear requirement or a bug etc.
+
+Humans have a non-zero bug rate, and so does AI.
+When AI makes a change, sometimes it won't be what we need.  
+What we want, is to improve productivity given that fact.
+
+
+## The feedback loop
+The way we generally deal with this "reality of imperfection" (regardless of AI) is to iterate. We all know this,
+it's our day-to-day.
+1. We plan - decide what to do next.
+1. Then we do the thing.
+1. We verify - get feedback (check if that thing is a step in the right direction).
+
+Then we repeat until done.
+
+When we use AI agents, it's the same thing: we ask the agent to do something and it returns a result. We verify that
+result and move on to the next iteration - whether it's fixing the results or doing something new.
+
+If the agent has a high bug rate (==its output has a lot of mistakes), we have more work to do.  
+So we want to find a way to reduce the AI agent bug rate, given that LLMs have a non-zero bug rate.
+
+The way to do that, is to give agents their own internal feedback loops.  
+We want to give the agent ways to do some verifications on their output and auto-fix bugs before returning their output
+to us.  
+We don't expect bug rate to go to zero (== agent finds ALL mistakes) - but maybe it's possible to find MOST mistakes.
+
+This idea is not news (agents today already do some verifications - they'll use a linter if available, run tests in
+some cases).  
+What I'm saying is that we want to make this one of the "stars of the show".
+
+## Smaller is better
+An important consideration, is that as a rule of thumb, smaller "things" tend to work better here.
+
+- Changes in small code bases have lower bug rates than changes in large code bases.
+- Small changes have lower bug rates than large changes.
+- A feedback loop with wany small iterations with some verification after each, works much better than few very large
+iterations (you wouldn't write code for 5 days without ever running it or even getting IDE warnings, right?).
+
+Intuitively, we should be aiming for the same thing with AI - small, contained changes with good verification after
+each iteration.
+
+## A feedback loop example
+When I'm able to set up an effective internal AI feedback loop (which is not often unfortunately) - that's when I'm
+able to get the most of AI agents.
+
+Now, although this might be trivial to some devs that have dived deep into AI-assisted coding, I feel that for many
+people, the concept of an "internal AI feedback loop that auto-heals errors" is pretty abstract.
+So - let's look at an example.  
+It's a small project (python API service) that's set up for a feedback loop (I went with Cursor, since it's the most
+common ATM).
 
 What we want to see here is the feedback loop "in action" - we give a task to the AI agent, and we want to see how it
 validates and auto-corrects itself before proceeding.
 
-We're not looking don't want the task
-
-A note about complexity of the project:  
-This is a small, simple project with fairly simple cursor setup.  
+### A note about complexity of the project:  
+I think of it as simple, but not trivial.
+This is a small project with fairly simple (and un-optimized) Cursor setup.  
 Existing vibe coding tools already one-off projects which are far more impressive.  
 The objective here is not to show something that's difficult for existing tools, but rather to show what a feedback loop
 when changing existing code might look like.  
 Later posts will have projects which are more complex both logically and technically.
+
+### What's the project?
+I initially wanted to go with a super-trivial example like a simple todo list, but with current AI models, I was
+concerned they just won't make enough mistakes with something so simple, and without mistakes you can't show a feedback
+loop.  
+
+So I went with a "bigger todo list" - a backend API for a task management service, where we have tasks and projects with
+filtering etc.  
+I also created a frontend so it's easier to play with the backend, but we'll focus on the backend for now.
+
+The project is set up with technical layers and test suites that are enough to make this size of project fairly stable.  
+The AI agent has configuration (Cursor rules) that allow it to maintain these: it knows the archituctural layers, it 
+knows which tests suites are the most important, it understands it must run tests and other validations like linting
+and type checking after each code change.  
+There is also a "taskmaster" setup so the agent can break down tasks into smaller tasks and work on them one by one,
+which restricts task size (and hence makes us have less blundering).
+
+I'm providing some details about the service here. These are useful
+
+The repository can be found at:
+
+A few details about the service:  
+Domain:
+- We have projects.
+- Project contain tasks (each task always has a single project associated with it).
+- Tasks can be completed or deleted.
+- Projects can be archived or deleted (if they are empty).
+- Tasks can be filtered.
+
+Technical:
+This is a rough diagram of the application layers and the layers that the central test suites target:
+
+
+ (if you're not a Python person - no problem. Understanding all the details is not the main thing here. Read
+through, you'll get the gist):
+- Python
+- FastAPI framework
+- DB is locally running SQLite (this is only a demo project)
+- No auth (again, just a simple demo)
+- Code design:
+  - There are fairly standard app layers:
+    - Top-level application object
+    - API handlers
+    - DAL (data access layer)
+  - Interfaces:
+    - HTTP API structure is defined using data structures (pydantic data models).
+    - The interface to the DAL also works only with data structures (no ORM / SQL happens outside the DAL).
+- Test design:
+  - The DAL has tests: `/tests/dal`. Mostly `/tests/dal/repository.py`.
+    - These tests only use the DAL interface, meaning they only create and access data through the DAL, they
+    don't directly touch the DB.
+  - There are service-level tests: `/tests/api`.
+    - They test the HTTP API using a "TestClient", which is a utility provided by the
+  web framework we're using to allow us to simulate http requests to the service - so we "send http requests" to a
+  "running server" inside a test process, but there's no actual server running and the requsets are really just function
+  calls. This is a fairly standard utility in many backend frameworks.
+    - These tests only operate at the HTTP API level - data is created by calling HTTP endpoints, for example, it's not
+    directly inserted into the DB.
+  - There are a bunch of other tests, but they're less interesting ATM and the feedback loop will actually be just fine
+  without most of them.
+
+Here's a rough
+
+
+
+Here's a short video (no sound) to show what 
+
+
 
 The idea is not to discuss any specific technique, 
 
@@ -56,41 +183,9 @@ The printing press is not a faster pen. An assembly line is not a faster human c
 They create in a different way, and their outcome is a little different.  
 And we should expect the same from automating software creation.
 
-## A reality of imperfection
-There's a fundamental truth about "making things": it's not going to be perfect.  
-The specification might not be clear, some implicit assumption might be incorrect, and of course a simple mistake might
-sneak in. Randomness will happen.
 
-We are imperfect humans in imperfect teams, building imperfect products in an imperfect reality.
 
-And it is the same with AI. LLMs have limits, and they have randomness built in.  
-So when AI makes a change, sometimes it won't be what we need.  
-It's not going to be the same imperfections a human creates, but it'll happen.
 
-## The almighty feedback loop
-The way to deal with this reality is to iterate. We all know this, it's our day-to-day.
-1. We plan - decide what to do next.
-1. Then we do the thing.
-1. We verify - get feedback (check if that thing is a step in the right direction).
-
-Then, given that new information from the feedback - we go back to the beginning.
-1. Plan
-1. Do
-1. Verify
-
-And again and again...
-
-For me, this feedback loop is the main mental model for thinking about software development processes.
-
-Product might iterate on UX details, a complex project would be built in iterations.  
-And so would an individual development task.  
-
-You write some code, then you test and fix and test again. Deploy to staging and test some more, fixing again if you
-find a new bug etc. etc.
-
-This is an essential part of dealing with imperfection or randomness.  
-If things sometimes go wrong, we need to know to spot the error and fix it.  
-It's always an auto-correcting feedback loop.
 
 ## The size of an iteration
 The shorter a feedback loop is, the better.  
