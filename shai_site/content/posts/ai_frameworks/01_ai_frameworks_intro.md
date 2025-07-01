@@ -20,34 +20,34 @@ I'll talk about both:
 - And more theoretically: What would need to be different in how we work so in the future (few years?), everything will indeed be different and
 much more productive?
 
-My hope is that these posts will help enthusiastic devs boost their productivity, and to contribute to the general
+My hope is that these posts will help enthusiastic devs boost their productivity and contribute to the general
 conversation around AI and coding.
 
 In this intro post, I'm describing the general concept, with some high-level examples (most of the series will be
 low-level and technical).
 
 ## Creating maintainable software
-By now (2025-06), the term vibe coding has been with us for a few months, and tools / platforms have been here for quite
-a bit more.  
+By now (2025-06), the term vibe coding has been with us for a few months, and tools / platforms have been around for
+quite a bit longer.  
 AI coding assistants already help us in many ways, including creating impressive projects
-to a level that would seem science fiction just a few years ago.  
+to a level that would have seemed like science fiction just a few years ago.  
 We're seeing fast and significant improvement in many areas of dev work.
 
-However, the effect is far less impressive for what is the bulk of dev work today - ongoing work on large code bases.  
+However, the effect is far less impressive for what is the bulk of dev work today - ongoing work on large codebases.  
 Don't get me wrong - it's great, it's an amazing productivity boost, but it's not the same categorical change that we're
 seeing when vibe coding smaller non-production-grade projects.
 
-We all know that in most real-world non-small code bases, on most changes we make, AI just doesn't speed us up 10x right
+We all know that in most real-world non-small codebases, on most changes we make, AI just doesn't speed us up 10x right
 now.  
 In practice, while this does happen sometimes - at the moment it's only "here and there". It's not the general case.
 
 ## The easy path is to adjust the code to the AI (AI-first / AI-native / AI-driven)
-I believe that huge improvements to productivity on large code bases are possible with the current generation of LLMs.  
+I believe that huge improvements to productivity on large codebases are possible with the current generation of LLMs.  
 More than 10x.
 
 And I believe that part of what we need to do in order to get there in the long run is to build AI compatibility into
-the code-base from the ground up (this approach is usually called AI-first / AI-native / AI-driven development).  
-For the shorter-term, this can be "done in pieces" - make a certain part, or certain aspect of the code base be
+the codebase from the ground up (this approach is usually called AI-first / AI-native / AI-driven development).  
+For the shorter-term, this can be "done in pieces" - make a certain part, or certain aspect of the codebase be
 "AI-friendly".
 
 Why? Well, AI has different trade-offs than human teams in what is easy or hard when creating software.  
@@ -59,7 +59,7 @@ These can be very general and very simple (like "use meaningful variable names")
 use a specific framework in a specific language.
 
 So anything might be relevant - workflow, specifications, tech stack, packages, tooling, coding conventions,
-code design, testing techniques, etc. etc.  
+code design, testing techniques, etc.  
 The central point here is that we will not "continue to write code like we do now plus add AI", but that we'll see
 substantial changes to all of these.
 
@@ -68,7 +68,7 @@ I'll refer to these aspects of the code and workflow as "design patterns".
 I'm using this term because there's no real established terminology. Some of the
 things I'll talk about are more "practices", some are more "coding conventions" and some can only be called "design
 patterns". So I'm going with the term that I think is best at conveying that: 
-1. The way we do code is different, it's not just how we prompt or the tools we use".
+1. The way we do code is different, it's not just how we prompt or the tools we use.
 1. It's a **design** approach. It's part of the design of our code, our architecture, our workflow.
 
 A key part of being productive with AI, I believe, is to master these.  
@@ -76,7 +76,7 @@ How should we structure the code so AI can work with it well?
 What abstraction layers? What will the APIs between different components look like?
 Which tests should we have, at which layers?
 
-I'll talk about examples (and do some POCs) of such design patterns in this series.
+I'll talk about examples (and do some POCs) of such design patterns.
 
 It's worth mentioning that most (or all) concepts are not going to be too exotic - the approaches we'll explore are
 variations of established industry techniques.  
@@ -94,13 +94,13 @@ It can be something like
 - A Python backend service
 - Enforces type annotations (Python generally allows, but doesn't require, static types. So a framework could
 require it).
-- Using a spceific backend library (e.g. Python's FastAPI)
+- Using a specific backend library (e.g. Python's FastAPI)
 - Has pre-defined layers of abstraction. E.g. "there is a DAL (data access layer), and all its APIs only receive and
 return immutable data structures".
 - There are pre-defined layers where tests are written, and they have specific technical requirements. E.g. "the DAL
 must have a robust test suite for testing every single workflow. That test suite only uses the DAL API (can't use SQL or
 an ORM directly)".
-- etc. etc. (there will probably be dozens of these, incl. specific commands to how we run some tools, AI agent rule
+- etc. (there will probably be dozens of these, incl. specific commands for how we run some tools, AI agent rule
 files and whatever's needed to enforce the specification)
 
 These frameworks will create a "cohesive whole" that an AI agent can work with effectively.  
@@ -109,13 +109,13 @@ the AI agent to create a well-defined set of all possible interactions with the 
 cover them.  
 
 But why do we need these "frameworks"?  
-I think that having each team hand-craft their own AI-compatible practices for their code base is kind of like having each
-backend team develop their own web framework from low-level http libraries, just because "we want it to be tailored to
+I think that having each team hand-craft their own AI-compatible practices for their codebase is kind of like having each
+backend team develop their own web framework from low-level HTTP libraries, just because "we want it to be tailored to
 our use case".  
 It can be done, but we all understand it's not a good idea. It's very expensive and the result will suck most of the
 time.  
 I think it'll be much better if the industry will "think of it" a little bit like we think of web development today:
-there will be common (open source?) frameworks / tool-sets created by experts, and most teams will use a
+there will be common (open source?) frameworks / toolsets created by experts, and most teams will use a
 combination of a few standard options, plus customization where actually needed.
 
 ## TL;DR
@@ -127,7 +127,7 @@ The most significant mental models here are the feedback loop and the bug funnel
 
 The bug funnel (it's not really just bugs - also features etc., but "bug funnel" is easy to think about) is the concept
 that when code is written (by a human or AI), it sometimes contains things that are not desirable.  
-As that code "moves forward in the software lifecycle" (compilers, linters, various tests, review, etc. etc.), some of
+As that code "moves forward in the software lifecycle" (compilers, linters, various tests, review, etc.), some of
 these bugs are discovered at every step and get filtered out.  
 Bugs that are discovered earlier in the "funnel" are cheaper than bugs found later.  
 In other words, it's a very good idea to "shift-left" bugs in the bug funnel.
@@ -149,7 +149,7 @@ We'll explore a bunch of directions like linting, static typing approaches, idea
 automatic screenshots and LLM automatic reviews. And mostly - A LOT of code design and testing techniques.
 
 ### Practices / techniques
-As mentioned, our main technical objective will be a fast AI-internal feedback loop that "rule-out" as many "bugs" as 
+As mentioned, our main technical objective will be a fast AI-internal feedback loop that "rules out" as many "bugs" as 
 possible, as quickly as possible.  
 "Quick" means that almost all "bugs" can be ruled-out in a few seconds by the AI without human intervention.  
 There will, of course, also be slower verifications like e2e tests - but most bugs should be caught by the faster tests,
@@ -158,7 +158,7 @@ earlier in the process.
 This has very strong implications on what practices are expected to be effective.  
 For instance:
 1. We need a setup that allows the AI agent to run code to check the changes it makes (sometimes the entire program,
-sometiems only tests). Having an LLM just "review" written code just ain't gonna cut it.
+sometimes only tests). Having an LLM just "review" written code just ain't gonna cut it.
 1. But - we should try hard to verify things about the code even without running it (as a test or otherwise). Examples:
     1. Static typing, of course. This can be taken further than most people are aware and AI is a good match for this.
     1. Preference for pure functions where applicable.
@@ -182,7 +182,7 @@ necessary, and I think it's pretty difficult.
 
 ---
 
-I've had these ideas running around in my head for while and at least for me they are interesting, so I felt like
+I've had these ideas running around in my head for a while and at least for me they are interesting, so I felt like
 it's time to share.  
 
 I hope you find this useful, or at least interesting.  
