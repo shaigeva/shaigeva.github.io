@@ -5,8 +5,7 @@ weight = 1
 [cover]
   image = "ai_frameworks/robot_feedback_loop_matrix.png"
 +++
-(this is the first post in a series about creating production-grade maintainable AI-first projects, using
-AI-first design patterns and frameworks)
+(first post in a series)
 
 Like many others, I spent a lot of time thinking about AI and software development.
 

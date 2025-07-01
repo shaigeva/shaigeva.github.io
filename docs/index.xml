@@ -13,11 +13,14 @@
       <link>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</link>
       <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</guid>
-      <description>&lt;p&gt;(this is the first post in a series about creating production-grade maintainable AI-first projects, using
-AI-first design patterns and frameworks)&lt;/p&gt;
+      <description>&lt;p&gt;(first post in a series)&lt;/p&gt;
 &lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
 &lt;p&gt;I belong to the camp that believes that AI is a total paradigm shift - it&amp;rsquo;ll redefine the ecosystem and what it means to
-create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;</description>
+create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;
+&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering / implementation&lt;/strong&gt; perspective, to understand
+what that change could look like.&lt;br&gt;
+This blog series will dig into this and share my thoughts and conclusions from experimentation.&lt;br&gt;
+I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
     </item>
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
