@@ -72,17 +72,6 @@ create software, and it&amp;rsquo;ll be the deepest change we have seen to date.
 And it helps if I use these specific words mentally.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Why AI Frameworks?</title>
-      <link>https://shaigeva.com/posts/ai_frameworks/03_why_ai_frameworks/</link>
-      <pubDate>Fri, 09 May 2025 13:01:56 +0300</pubDate>
-      <guid>https://shaigeva.com/posts/ai_frameworks/03_why_ai_frameworks/</guid>
-      <description>&lt;p&gt;(this is the first post in a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/&#34;&gt;series&lt;/a&gt; about creating
-production-grade maintainable AI-first projects, using AI-first frameworks)&lt;/p&gt;
-&lt;p&gt;In this post I&amp;rsquo;ll focus on the reason I think frameworks are the direction and what I think they will include,
-where following posts will dive deeper into the technical details.&lt;br&gt;
-The objective here is not to &amp;ldquo;convince&amp;rdquo; (that would not fit in a blog post :) ), but to lay out the main points.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Footgun #5 - Unclear Language</title>
       <link>https://shaigeva.com/posts/10_footguns/05_unclear_language/</link>
       <pubDate>Fri, 18 Oct 2024 20:15:56 +0300</pubDate>
