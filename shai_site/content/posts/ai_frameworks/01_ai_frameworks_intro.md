@@ -95,18 +95,19 @@ It can be something like
 - Enforces type annotations (Python generally allows, but doesn't require, static types. So a framework could
 require it).
 - Using a specific backend library (e.g. Python's FastAPI)
-- Has pre-defined layers of abstraction. E.g. "there is a DAL (data access layer), and all its APIs only receive and
-return immutable data structures".
+- Has pre-defined layers of abstraction. E.g. one such layer can be "there is a DAL (data access layer), and all its
+APIs only receive and return immutable data structures".
 - There are pre-defined layers where tests are written, and they have specific technical requirements. E.g. "the DAL
 must have a robust test suite for testing every single workflow. That test suite only uses the DAL API (can't use SQL or
 an ORM directly)".
 - etc. (there will probably be dozens of these, incl. specific commands for how we run some tools, AI agent rule
 files and whatever's needed to enforce the specification)
 
-These frameworks will create a "cohesive whole" that an AI agent can work with effectively.  
+These frameworks will create a "cohesive whole", where the different techniques complement one another so that all
+important concerns are handled by an AI agent that uses the framework.  
 For example, definitions in the spirit of what I gave above (but, of course, much more explicit and robust) would force
 the AI agent to create a well-defined set of all possible interactions with the database and have tests that thoroughly
-cover them.  
+cover them. Other similar layers will cover different concerns so together most code will be easily testable.
 
 But why do we need these "frameworks"?  
 I think that having each team hand-craft their own AI-compatible practices for their codebase is kind of like having each
