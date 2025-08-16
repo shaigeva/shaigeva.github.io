@@ -1,35 +1,30 @@
 +++
 title = "AI Feedback Loop, With an Example"
-date = 2025-05-09T13:01:56+03:00
-draft = true
+date = 2025-07-03T13:01:56+03:00
+# draft = true
 [cover]
-  image = "ai_frameworks/ai_feedback_loop_1-min.png"
+  image = "ai_frameworks/ai_feedback_loop_ascii_art.png"
 +++
-(this is the first post in a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about creating
-production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
+*(this post is part of a [series]({{< ref "/posts/ai_frameworks/01_ai_frameworks_intro.md" >}}) about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)*
 
-In this post we'll discuss why an internal AI feedback loop is a good idea, and give a simple example for what it might
-look like.
+In the previous post we mentioned that an internal AI feedback loop will be central to all our design patterns.  
+In this post, we'll talk a bit about why, and give a simple example for what it might look like, to get us going.
 
 ## A reality of imperfection
+A fundamental truth about creating code (and doing things in general) is that sometimes it's not perfect.
 
-There's a fundamental truth about "making things": it's not going to be perfect.  
-The specification might not be clear, some implicit assumption might be incorrect, and of course a simple mistake might
-sneak in. Randomness will happen.
-
-A more concrete way to think about it is that when a change to the code is made (either by a human or by an AI agent),
-there's some chance that a mistake will happen. Let's use the term "bug rate".
-
-Noting - I'll call all this randomness "mistakes", "bugs" or "errors", because for our purpose it usually doesn't matter
-if the incorrectness is the result of an unclear requirement or a bug etc.
+It can be unclear specs, incorrect implicit assumptions or just mistakes.  
+Either way - when a change to the code is made (either by a human or by an AI agent),
+there's some chance that it won't be what we need.  
+Let's call this chance "bug rate".
 
 Humans have a non-zero bug rate, and so does AI.
-When AI makes a change, sometimes it won't be what we need.  
 What we want, is to improve productivity given that fact.
 
 
 ## The feedback loop
-The way we generally deal with this "reality of imperfection" (regardless of AI) is to iterate. We all know this,
+The way we generally deal with this reality (regardless of AI) is by iterating. We all know this,
 it's our day-to-day.
 1. We plan - decide what to do next.
 1. Then we do the thing.
@@ -40,7 +35,7 @@ Then we repeat until done.
 When we use AI agents, it's the same thing: we ask the agent to do something and it returns a result. We verify that
 result and move on to the next iteration - whether it's fixing the results or doing something new.
 
-If the agent has a high bug rate (==its output has a lot of mistakes), we have more work to do.  
+If the agent has a high bug rate (==its output has a lot of mistakes), we humans have more work to do.  
 So we want to find a way to reduce the AI agent bug rate, given that LLMs have a non-zero bug rate.
 
 The way to do that, is to give agents their own internal feedback loops.  
