@@ -1,9 +1,0 @@
-<div style="display: flex; align-items: flex-start; margin-bottom: 20px; gap:10px;">
-  {{- $columns := split .Inner "<--->" }} <!-- Split content into columns -->
-  {{- range $columns }}
-    <div>
-      <!-- {{ . }} -->
-      {{ . | $.Page.RenderString }} <!-- Render each column content individually -->
-    </div>
-  {{- end }}
-</div>
