@@ -24,16 +24,15 @@ What we want, is to improve productivity given that fact.
 
 
 ## The feedback loop
-The way we generally deal with this reality (regardless of AI) is by iterating. We all know this,
-it's our day-to-day.
+As we all know (it's our day to day, after all), the way we generally deal with this reality (regardless of AI) is by
+iterating.
 1. We plan - decide what to do next.
 1. Then we do the thing.
-1. We verify - get feedback (check if that thing is a step in the right direction).
+1. We verify - get feedback (check if that thing is a step in the right direction, so we can course-correct if not). 
 
-Then we repeat until done.
+Then we repeat until done.  
 
-When we use AI agents, it's the same thing: we ask the agent to do something and it returns a result. We verify that
-result and move on to the next iteration - whether it's fixing the results or doing something new.
+When we use AI agents, we incorporate them into our feedback loop - they can help plan / do or verify.
 
 If the agent has a high bug rate (==its output has a lot of mistakes), we humans have more work to do.  
 So we want to find a way to reduce the AI agent bug rate, given that LLMs have a non-zero bug rate.
