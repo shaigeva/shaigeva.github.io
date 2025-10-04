@@ -4,9 +4,9 @@
     <title>Shai Geva</title>
     <link>https://shaigeva.com/</link>
     <description>Recent content on Shai Geva</description>
-    <generator>Hugo -- 0.134.3</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jun 2025 13:01:56 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 03 Jul 2025 13:01:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Moving past vibe-coding? AI-First Design Patterns and Frameworks (blog post series)</title>
@@ -21,6 +21,18 @@ create software, and it&amp;rsquo;ll be the deepest change we have seen to date.
 what that change could look like.&lt;br&gt;
 This blog series will dig into this and share my thoughts and conclusions from experimentation.&lt;br&gt;
 I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AI Feedback Loop, With an Example</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</link>
+      <pubDate>Thu, 03 Jul 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</guid>
+      <description>&lt;p&gt;&lt;em&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/&#34;&gt;series&lt;/a&gt; about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the previous post we mentioned that an internal AI feedback loop will be central to all our design patterns.&lt;br&gt;
+In this post, we&amp;rsquo;ll talk a bit about why, and give a simple example for what it might look like, to get us going.&lt;/p&gt;
+&lt;h2 id=&#34;a-reality-of-imperfection&#34;&gt;A reality of imperfection&lt;/h2&gt;
+&lt;p&gt;A fundamental truth about creating code (and doing things in general) is that sometimes it&amp;rsquo;s not perfect.&lt;/p&gt;</description>
     </item>
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
@@ -182,12 +194,8 @@ tech-lead at &lt;a href=&#34;https://www.sayata.com/&#34; target=&#34;_blank&#34
 &lt;p&gt;(English version below)&lt;/p&gt;
 &lt;p&gt;The talk shares hard-learned advice about how to avoid getting yourself in trouble with tests.&lt;/p&gt;
 &lt;p&gt;Slides: &lt;a href=&#34;https://bit.ly/testing_footguns_pycon_il_2024&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Slideshare PyCon IL 2024&lt;/a&gt;&lt;/p&gt;
-
-
-    
-    &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/k-vDmoPT84g?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;
-      &gt;&lt;/iframe&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/k-vDmoPT84g?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
     &lt;/div&gt;
 
 &lt;hr&gt;
