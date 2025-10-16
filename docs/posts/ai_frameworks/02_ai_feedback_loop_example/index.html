@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>What an AI Feedback Loop Looks Like | Shai Geva</title>
+<meta name="keywords" content="">
+<meta name="description" content="(this post is part of a series about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
+In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.
+But &ldquo;AI feedback loop&rdquo; might mean different things to different people - so this lightweight post focuses on
+giving an example to make it concrete.
+We will implement a small (but realistic) project.
+The project is set up so the agent has an internal feedback loop - it has instructions that tell
+it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates,
+type-checking, linter).
+We&rsquo;ll see how it makes mistakes, finds them and self-heals.">
+<meta name="author" content="Shai Geva">
+<link rel="canonical" href="https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css" integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn&#43;yY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shaigeva.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shaigeva.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:url" content="https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/">
+  <meta property="og:site_name" content="Shai Geva">
+  <meta property="og:title" content="What an AI Feedback Loop Looks Like">
+  <meta property="og:description" content="(this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
+In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.
+But “AI feedback loop” might mean different things to different people - so this lightweight post focuses on giving an example to make it concrete.
+We will implement a small (but realistic) project.
+The project is set up so the agent has an internal feedback loop - it has instructions that tell it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates, type-checking, linter).
+We’ll see how it makes mistakes, finds them and self-heals.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-04T13:01:56+03:00">
+    <meta property="article:modified_time" content="2025-10-04T13:01:56+03:00">
+    <meta property="og:image" content="https://shaigeva.com/ai_frameworks/ai_feedback_loop_ascii_art.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shaigeva.com/ai_frameworks/ai_feedback_loop_ascii_art.png">
+<meta name="twitter:title" content="What an AI Feedback Loop Looks Like">
+<meta name="twitter:description" content="(this post is part of a series about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)
+In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.
+But &ldquo;AI feedback loop&rdquo; might mean different things to different people - so this lightweight post focuses on
+giving an example to make it concrete.
+We will implement a small (but realistic) project.
+The project is set up so the agent has an internal feedback loop - it has instructions that tell
+it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates,
+type-checking, linter).
+We&rsquo;ll see how it makes mistakes, finds them and self-heals.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shaigeva.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "What an AI Feedback Loop Looks Like",
+      "item": "https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What an AI Feedback Loop Looks Like",
+  "name": "What an AI Feedback Loop Looks Like",
+  "description": "(this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)\nIn the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.\nBut \u0026ldquo;AI feedback loop\u0026rdquo; might mean different things to different people - so this lightweight post focuses on giving an example to make it concrete.\nWe will implement a small (but realistic) project.\nThe project is set up so the agent has an internal feedback loop - it has instructions that tell it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates, type-checking, linter).\nWe\u0026rsquo;ll see how it makes mistakes, finds them and self-heals.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "(this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)\nIn the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.\nBut “AI feedback loop” might mean different things to different people - so this lightweight post focuses on giving an example to make it concrete.\nWe will implement a small (but realistic) project.\nThe project is set up so the agent has an internal feedback loop - it has instructions that tell it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates, type-checking, linter).\nWe’ll see how it makes mistakes, finds them and self-heals.\nWe’ll finish by discussing some conclusions that can be drawn from this example, small as it is.\nA couple of notes:\nThe point is to show what a feedback loop looks like - this is why the project is intentionally small. The same principles apply at larger scale (and I’ve been using them in parts of my work on production code) - we’ll see this in later posts. The beginning of the post has fewer details to make it more readable. For those who want to dig in more - there’s a “more details” section at the end discussing caveats and considerations. What are we building? I wanted something small but realistic, with enough complexity that the AI agent would make mistakes here and there (otherwise there would be nothing to self-heal).\nI went with a utility similar to something we had at a previous job - a Python two-tier cache consisting of an in-memory object dictionary backed by a local SQLite db.\n┌─────────────────────────────────────────┐ │ APPLICATION │ └───────────────────┬─────────────────────┘ │ ▼ ┌───────────────────────────┐ │ IN-MEMORY CACHE │ │ ─────────────────── │ │ Fast, small, volatile │ │ │ │ • Python dict │ │ • Live Pydantic objects │ └───────────┬───────────────┘ │ │ ▼ ┌───────────────────────────┐ │ DISK CACHE │ │ ────────────── │ │ Slow, large, persistent │ │ │ │ • SQLite database │ │ • Serialized JSON │ └───────────────────────────┘ Some of its features:\nIn-memory cache points to objects, disk cache contains the objects serialized to strings. The cache supports Pydantic objects (a popular data modeling library in Python) - each instance handles a specific Pydantic class (data format). Schema versioning with validation. Multiple cache eviction policies - LRU supporting size, object count, TTL (time to live). etc. etc. In practice this is complex enough that Claude code (the AI agent used) makes mistakes sometimes.\nWhat’s our starting point? Claude and I created a small repo containing project scaffolding, a plan, and AI agent instructions (including the setup to run formatting, linting, type-checking and testing).\nThe repo: The “before” state.\nThe code starts as a basic stub of the cache:\nclass DiskBackedCache: def get(self, key: str, timestamp: Optional[float] = None) -\u003e Optional[CacheableModel]: raise NotImplementedError() def put(self, key: str, value: CacheableModel, timestamp: Optional[float] = None) -\u003e None: raise NotImplementedError() def delete(self, key: str) -\u003e None: raise NotImplementedError() ... There is a single test example that serves as a guide for the test structure. This example tests the cache “externally” (black-box style) - the testing instructions tell the agent to prefer that style.\ndef test_disk_backed_cache_init() -\u003e None: try: cache = DiskBackedCache( db_path=\":memory:\", model=CacheableModel, max_memory_items=10, max_memory_size_bytes=1024 * 1024, max_disk_items=100, max_disk_size_bytes=10 * 1024 * 1024, memory_ttl_seconds=60.0, disk_ttl_seconds=3600.0, max_item_size_bytes=10 * 1024, ) assert cache is not None cache.close() except NotImplementedError: pass Our plan, auto-derived from the spec using AI, contains ~40 steps:\n# Progress Tracking - [ ] Step 1: In-Memory Cache - Basic Put/Get - [ ] Step 2: Key Validation - [ ] Step 3: Model Type Validation ... Our AI instructions cover a variety of aspects - most are not project-specific and are reusable. For example, this is how we set up the feedback loop (in this case the instructions are literally “plan → do → verify”):\n## **How to implement each step** **Work through these 3 sub-steps sequentially:** 1. **Plan** - Read `spec.md` for this step's requirements. Describe the behavior to implement in detail. Design tests for the new behavior. Identify if any existing tests need updates to cover modified functionality. 2. **Implement** - Write the code and all tests together. Include updates to existing tests if identified in planning. 3. **Validate and commit** - Run `./devtools/run_all_agent_validations.sh` and fix any failures. Repeat until all validations pass (zero errors, zero warnings). Once passing, commit the work and update `IMPLEMENTATION_PLAN.md`. Running the agent This amounts to firing up a new Claude code session and telling it to implement the plan - which it did.\nIn the session, we can see the feedback loop working.\nEvery change includes both code and tests, then the agent runs the validation script and tries to correct failures. It won’t continue until everything passes (if it fails, it alerts the user).\nHere’s what a single iteration (the auto-fix part) looks like: After writing TTL cache eviction logic and tests, one test failed:\n\u003e assert retrieved == TTLModel(value=1) E AssertionError: assert None == TTLModel(schema_version='1.0.0', value=1) The agent sees this and starts reasoning to understand what happened. After some thinking, the agent diagnosed the issue as a fairly subtle bug:\nThe key issue emerges in the memory cache retrieval logic: when an item is returned from memory, only the memory timestamp gets updated. This means the disk timestamp remains static, which breaks the expected caching behavior. This gets fixed:\n⏺ Update(/Users/shai/proj/shaig/learn/ai_framework_posts/disk_backed_cache_example/disk_backed_cache_example/disk_backed_cache.py) ... 284 self._memory_timestamps[key] = timestamp 285 + # Also update disk timestamp to keep them in sync 286 + self._conn.execute( 287 + \"UPDATE cache SET timestamp = ? WHERE key = ?\", 288 + (timestamp, key), 289 + ) 290 + self._conn.commit() The tests then pass:\n⏺ Bash(./devtools/run_all_agent_validations.sh) ⎿ ✅ All validations passed (lint, format, type check, tests) The agent then moves on to the next step in the plan.\nThere are several such examples in the session, and they look just like what I see whenever I have an effective feedback loop - tests are created that have fairly tight coverage, and they keep the agent from drifting away from the path.\n(if you want to see the kinds of issues that came up, search the session for “failed:”, which is what the validation script prints when there are errors)\nHere’s an export of the session (I did several of these to verify consistency): Claude code session export.\nEnd result Here’s the finished project:\nThe “after” state.\nThe result is a working implementation of the spec with a fairly comprehensive test suite (you’re welcome to try it out).\nIn terms of quality - it’s not bad, but not perfect.\nThere are some issues with design, code quality, and test quality - these will be part of what we address in later posts.\nSome observations First - I hope this gives some intuition about what an internal AI feedback loop might look like.\nWe used some basic ideas here:\nIt’s not just telling the agent to create the project: We have instructions telling the agent how to do things. We have a spec. We have a plan (which is less important). Scaffolding: There’s a starting point showing the structure of the code and the tests. Validations: We have a setup for easily running linting, formatting, type-checking (not obvious for Python, though not rare), and tests after every change. The agent has access to the validation results, including which errors or warnings occurred. Step size the agent can handle: The plan breaks the work into steps that are mostly very easy for the agent. Tests for each step are part of the loop: The agent is instructed to create tests for every new feature or change. These are very important - and are also pretty common in AI-dev discussion today (2025-10). We see most of them in twitter posts, youtube videos, etc.\nOne thing that’s maybe less obvious is the effectiveness of the tests.\nThe tests are black-box style, testing the public interface of the entire cache utility.\nFor this project, this is a very solid choice - the tests verify the actual behavior of the code, but are still easy to run and very fast.\nWhile in many larger projects you can’t “test the whole thing” like this, sometimes it’s possible to “isolate some aspect of the work” and test that aspect this way.\nIt’s a simple idea, but if you keep it in mind, you can use it effectively in your real-life projects with minimal overhead.\nA simple example would be turning a bunch of API input/output JSON examples into data class definitions (e.g. Python’s Pydantic, Typescript’s Zod) that handle these JSONs. Let’s say you have a few dozen JSON examples from an API (including all errors and edge cases). Maybe one of them looks like this:\n{ \"some_field\": 123, \"another_field\": \"hello\", \"optional_field\": [\"a\", \"b\", \"c\"], \"sub_model\": { \"sub_field_1\": \"value1\", \"sub_field_2\": 456 } } You want to end up with this:\nclass SubModel(BaseModel): sub_field_1: str sub_field_2: int class MyModel(BaseModel): some_field: int another_field: str optional_field: Optional[List[str]] = None sub_model: Optional[SubModel] = None You create a stub for a single test:\ndef test_serialization_example_1() -\u003e None: example_json = # ... read the example file model_from_json = MyModel.model_validate_json(example_json) # this is how you deserialize in Pydantic manual_model == MyModel( some_field=123, another_field=\"hello\", optional_field=[\"a\", \"b\", \"c\"], sub_model=SubModel( sub_field_1=\"value1\", sub_field_2=456 ) ) assert model_from_json == manual_model Then you tell the agent to create the data classes and tests for all other examples, using this test as a guide.\nAt a previous job, we had many API integrations with semi-documented APIs, and I created thousands of lines of code like this. Very stable, almost zero work.\nNow, it’s true that historically, a comprehensive test suite for serializing data structures would often be considered a waste of time - but now that we’re working with AI agents, the tradeoffs are different, and this approach is what allowed us to save quite a bit of work for every API integration.\nMore details Some more details that might be interesting but aren’t critical to the main point.\nOne-shotting the project When running the example, the project is almost a one-shot - I told the agent to implement the plan, and the only other interactions needed were to tell it “continue” when it stopped before finishing the entire plan.\nThis is both not important and not realistic - in any real project, we would have a lot of back-and-forth with the agent, certainly at the initial stages of figuring out the fundamentals of the project like fleshing out the core requirements, and finding good design principles if needed.\nWe can also expect a lot of refactoring and creating utilities as the project grows, just like any human-driven project. This project is really not like that:\nThe agent didn’t do an obvious refactor which simplifies creating a cache in the tests (the constructor with all parameters is always called) I have created a small test harness for the DB before starting the plan. But, of course, in a real project we wouldn’t have this prior to starting - it would emerge as the project gets created. Tests to code ratio A rough count of LOC (lines of code) gives\nCode: 753 Tests: 5874 Which is a bit less than 8:1 ratio. While I wouldn’t say any specific number is “correct”, I think this does point at a reasonable expectation that the heavy part of AI-native codebases will not be the code, but the specifications and tests.\nThe “workflow implementation” screams for better tooling Many of the agent’s instructions in our example are dedicated to workflow management - here’s a task list, take a task, do a step, if it fails stop, if it succeeds move to the next step, etc.\nTextual instructions in markdown, that an LLM needs to follow.\nThis is the standard way to manage coding agents ATM (things like MCPs or hooks can improve this - but they don’t solve the problem).\nWe’re taking something that’s supposed to be a deterministic workflow process and trying to force a probabilistic LLM model to do it.\nBut if we take a step back and think about it, it’s clearly not the best approach.\nForget for a second that it’s a coding workflow and think about any other agentic workflow - would you always use an LLM as the “logical router” for every part of the workflow?\nOf course not - we have workflow management tools of various abstraction levels.\nThe coding agents themselves are, of course, also implemented using standard logical code (I hope most of them are, at least) - but it’s “claude code, the platform” that’s implemented this way, not “the workflow that I’m using claude code to execute”.\nEven with our little example we can see it’s problematic. Consider this part of the “feedback loop”:\n3. **Validate and commit** - Run `./devtools/run_all_agent_validations.sh` and fix any failures. Repeat until all validations pass (zero errors, zero warnings). Once passing, commit the work and update `IMPLEMENTATION_PLAN.md`. That’s a “sub-step”, containing an internal loop with multiple action items and conditions plus actions after the loop finishes.\nIt wasn’t like that initially - I started with many more smaller sub-steps, but faced issues like hitting limits (leading to “session compacting”), sub-step-skipping and others. Even something like using Claude’s TODO feature proved very expensive when you have 40 steps and each has 7-8 sub-steps. That’s why I ended up “squashing” multiple action items into each sub-step.\nMore generally, we can say that some of the issues that this brings are:\nExpressing a logical process in English reliably is more difficult than it is with code, of course. It takes away “focus” from the instructions that the agent needs when performing actual work like writing code or planning tests. But despite that - it’s still unreliable. In reality, it still makes mistakes even though this is both pretty simple and critical to the process. The LLM misbehaves FAR too much (e.g. “forgetting to plan tests” sometimes even though explicitly instructed). It takes more time It costs more tokens / money. An effective coding agent would need a reasonable way to set up deterministic workflows. It doesn’t have to be as flexible as a general-purpose workflow engine, but it needs to be strong enough to create a workflow like we had here.\nSumming up This was a simple project that demonstrated a specific concept (the feedback loop).\nThe techniques we saw here work well for simple cases.\nBut we want to make things that are complex and still have a solid workflow with “10x productivity”.\nFor that, we’ll need to maintain these principles (and others) as things get more interesting than a utility that’s a single file with a simple API.\nIn the following posts, we’ll look at some scenarios like that and explore ideas that can help us.\n\u003c\u003c previous post: AI-First Development Frameworks (intro) | next post: (coming soon) \u003e\u003e ",
+  "wordCount" : "2489",
+  "inLanguage": "en",
+  "image":"https://shaigeva.com/ai_frameworks/ai_feedback_loop_ascii_art.png","datePublished": "2025-10-04T13:01:56+03:00",
+  "dateModified": "2025-10-04T13:01:56+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Shai Geva"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shai Geva",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shaigeva.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shaigeva.com/" accesskey="h" title="Shai Geva (Alt + H)">Shai Geva</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shaigeva.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/talks" title="Talks">
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      What an AI Feedback Loop Looks Like
+    </h1>
+    <div class="post-meta"><span title='2025-10-04 13:01:56 +0300 IDT'>October 4, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://shaigeva.com/ai_frameworks/ai_feedback_loop_ascii_art.png" alt="">
+        
+</figure>
+  <div class="post-content"><p><em>(this post is part of a <a href="https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/">series</a> about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)</em></p>
+<p>In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.</p>
+<p>But &ldquo;AI feedback loop&rdquo; might mean different things to different people - so this lightweight post focuses on
+giving an example to make it concrete.</p>
+<p>We will implement a small (but realistic) project.<br>
+The project is set up so the agent has an internal feedback loop - it has instructions that tell
+it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates,
+type-checking, linter).<br>
+We&rsquo;ll see how it makes mistakes, finds them and self-heals.</p>
+<p>We&rsquo;ll finish by discussing some conclusions that can be drawn from this example, small as it is.</p>
+<p>A couple of notes:</p>
+<ul>
+<li>The point is to show what a feedback loop looks like - this is why the project is intentionally small.
+The same principles apply at larger scale (and I&rsquo;ve been using them in parts of my work on production code) - we&rsquo;ll
+see this in later posts.</li>
+<li>The beginning of the post has fewer details to make it more readable. For those who want to dig
+in more - there&rsquo;s a &ldquo;more details&rdquo; section at the end discussing caveats and considerations.</li>
+</ul>
+<h1 id="what-are-we-building">What are we building?<a hidden class="anchor" aria-hidden="true" href="#what-are-we-building">#</a></h1>
+<p>I wanted something small but realistic, with enough complexity that the AI agent would make
+mistakes here and there (otherwise there would be nothing to self-heal).</p>
+<p>I went with a utility similar to something we had at a previous job - a Python two-tier
+cache consisting of an in-memory object dictionary backed by a local SQLite db.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────┐
+│              APPLICATION                │
+└───────────────────┬─────────────────────┘
+                    │
+                    ▼
+        ┌───────────────────────────┐
+        │   IN-MEMORY CACHE         │
+        │   ───────────────────     │
+        │   Fast, small, volatile   │
+        │                           │
+        │   • Python dict           │
+        │   • Live Pydantic objects │
+        └───────────┬───────────────┘
+                    │
+                    │
+                    ▼
+        ┌───────────────────────────┐
+        │   DISK CACHE              │
+        │   ──────────────          │
+        │   Slow, large, persistent │ 
+        │                           │
+        │   • SQLite database       │
+        │   • Serialized JSON       │
+        └───────────────────────────┘
+</code></pre><p>Some of its features:</p>
+<ul>
+<li>In-memory cache points to objects, disk cache contains the objects serialized to strings.</li>
+<li>The cache supports Pydantic objects (a popular data modeling library in Python) - each instance handles a specific
+Pydantic class (data format).</li>
+<li>Schema versioning with validation.</li>
+<li>Multiple cache eviction policies - LRU supporting size, object count, TTL (time to live).</li>
+<li>etc. etc.</li>
+</ul>
+<p>In practice this is complex enough that Claude code (the AI agent used) makes mistakes sometimes.</p>
+<h1 id="whats-our-starting-point">What&rsquo;s our starting point?<a hidden class="anchor" aria-hidden="true" href="#whats-our-starting-point">#</a></h1>
+<p>Claude and I created a small repo containing project scaffolding, a plan, and AI agent instructions
+(including the setup to run formatting, linting, type-checking and testing).</p>
+<p>The repo: <a href="https://github.com/shaigeva/disk_backed_cache_example_before" target="_blank" rel="noopener noreferrer">The &ldquo;before&rdquo; state</a>.</p>
+<p>The code starts as a basic stub of the cache:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DiskBackedCache</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, key: str, timestamp: Optional[float] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> Optional[CacheableModel]:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">put</span>(self, key: str, value: CacheableModel, timestamp: Optional[float] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">delete</span>(self, key: str) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NotImplementedError</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>There is a single test example that serves as a guide for the test structure.
+This example tests the cache &ldquo;externally&rdquo; (black-box style) - the testing instructions tell the agent to
+prefer that style.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_disk_backed_cache_init</span>() <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>        cache <span style="color:#f92672">=</span> DiskBackedCache(
+</span></span><span style="display:flex;"><span>            db_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;:memory:&#34;</span>,
+</span></span><span style="display:flex;"><span>            model<span style="color:#f92672">=</span>CacheableModel,
+</span></span><span style="display:flex;"><span>            max_memory_items<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>            max_memory_size_bytes<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>            max_disk_items<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>            max_disk_size_bytes<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>            memory_ttl_seconds<span style="color:#f92672">=</span><span style="color:#ae81ff">60.0</span>,
+</span></span><span style="display:flex;"><span>            disk_ttl_seconds<span style="color:#f92672">=</span><span style="color:#ae81ff">3600.0</span>,
+</span></span><span style="display:flex;"><span>            max_item_size_bytes<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> cache <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        cache<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">NotImplementedError</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p>Our plan, auto-derived from the spec using AI, contains ~40 steps:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span># Progress Tracking
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Step 1: In-Memory Cache - Basic Put/Get
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Step 2: Key Validation
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">- [ ]</span> Step 3: Model Type Validation
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>Our AI instructions cover a variety of aspects - most are not project-specific and are reusable.
+For example, this is how we set up the feedback loop (in this case the instructions are literally
+&ldquo;plan → do → verify&rdquo;):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span><span style="color:#75715e">## **How to implement each step**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Work through these 3 sub-steps sequentially:**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> <span style="font-weight:bold">**Plan**</span> - Read <span style="color:#e6db74">`spec.md`</span> for this step&#39;s requirements. Describe the behavior
+</span></span><span style="display:flex;"><span>to implement in detail. Design tests for the new behavior. Identify if any
+</span></span><span style="display:flex;"><span>existing tests need updates to cover modified functionality.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> <span style="font-weight:bold">**Implement**</span> - Write the code and all tests together. Include updates
+</span></span><span style="display:flex;"><span>to existing tests if identified in planning.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> <span style="font-weight:bold">**Validate and commit**</span> - Run <span style="color:#e6db74">`./devtools/run_all_agent_validations.sh`</span> 
+</span></span><span style="display:flex;"><span>and fix any failures. Repeat until all validations pass (zero errors, zero 
+</span></span><span style="display:flex;"><span>warnings). Once passing, commit the work and update <span style="color:#e6db74">`IMPLEMENTATION_PLAN.md`</span>.
+</span></span></code></pre></div><h1 id="running-the-agent">Running the agent<a hidden class="anchor" aria-hidden="true" href="#running-the-agent">#</a></h1>
+<p>This amounts to firing up a new Claude code session and telling it to implement the plan - which it did.</p>
+<p>In the session, we can see the feedback loop working.</p>
+<p>Every change includes both code and tests, then the agent runs the validation script and tries to correct failures.
+It won&rsquo;t continue until everything passes (if it fails, it alerts the user).</p>
+<p>Here&rsquo;s what a single iteration (the auto-fix part) looks like:
+After writing TTL cache eviction logic and tests, one test failed:</p>
+<pre tabindex="0"><code>&gt;       assert retrieved == TTLModel(value=1)
+E       AssertionError: assert None == TTLModel(schema_version=&#39;1.0.0&#39;, value=1)
+</code></pre><p>The agent sees this and starts reasoning to understand what happened.
+After some thinking, the agent diagnosed the issue as a fairly subtle bug:</p>
+<pre tabindex="0"><code>The key issue emerges in the memory cache retrieval logic:
+when an item is returned from memory, only the memory timestamp gets 
+updated. This means the disk timestamp remains static, which breaks
+the expected caching behavior.
+</code></pre><p>This gets fixed:</p>
+<pre tabindex="0"><code>⏺ Update(/Users/shai/proj/shaig/learn/ai_framework_posts/disk_backed_cache_example/disk_backed_cache_example/disk_backed_cache.py)
+...
+284                    self._memory_timestamps[key] = timestamp
+285 +                  # Also update disk timestamp to keep them in sync
+286 +                  self._conn.execute(
+287 +                      &#34;UPDATE cache SET timestamp = ? WHERE key = ?&#34;,
+288 +                      (timestamp, key),
+289 +                  )
+290 +                  self._conn.commit()
+</code></pre><p>The tests then pass:</p>
+<pre tabindex="0"><code>⏺ Bash(./devtools/run_all_agent_validations.sh)
+  ⎿  ✅ All validations passed (lint, format, type check, tests) 
+</code></pre><p>The agent then moves on to the next step in the plan.</p>
+<p>There are several such examples in the session, and they look just like what I see whenever I have an effective feedback
+loop - tests are created that have fairly tight coverage, and they keep the agent from drifting away from the path.<br>
+(if you want to see the kinds of issues that came up,
+search the session for &ldquo;failed:&rdquo;, which is what the validation script prints when there are errors)</p>
+<p>Here&rsquo;s an export of the session (I did several of these to verify consistency):
+<a href="https://github.com/shaigeva/disk_backed_cache_example_after/blob/main/claude_session_export_full_attempt_6.txt" target="_blank" rel="noopener noreferrer">Claude code session export</a>.</p>
+<h1 id="end-result">End result<a hidden class="anchor" aria-hidden="true" href="#end-result">#</a></h1>
+<p>Here&rsquo;s the finished project:<br>
+<a href="https://github.com/shaigeva/disk_backed_cache_example_after/" target="_blank" rel="noopener noreferrer">The &ldquo;after&rdquo; state</a>.</p>
+<p>The result is a working implementation of the spec with a fairly comprehensive test suite (you&rsquo;re welcome to try it out).</p>
+<p>In terms of quality - it&rsquo;s not bad, but not perfect.<br>
+There are some issues with design, code quality, and test quality - these will be part of what we address in later
+posts.</p>
+<h1 id="some-observations">Some observations<a hidden class="anchor" aria-hidden="true" href="#some-observations">#</a></h1>
+<p>First - I hope this gives some intuition about what an internal AI feedback loop might look like.</p>
+<p>We used some basic ideas here:</p>
+<ul>
+<li><strong>It&rsquo;s not just telling the agent to create the project:</strong> We have instructions telling the agent how
+to do things. We have a spec. We have a plan (which is less important).</li>
+<li><strong>Scaffolding:</strong> There&rsquo;s a starting point showing the structure of the code and the tests.</li>
+<li><strong>Validations:</strong> We have a setup for easily running linting, formatting, type-checking (not obvious for Python, though
+not rare), and tests after every change. The agent has access to the validation results, including which errors
+or warnings occurred.</li>
+<li><strong>Step size the agent can handle:</strong> The plan breaks the work into steps that are mostly very easy for the agent.</li>
+<li><strong>Tests for each step are part of the loop:</strong> The agent is instructed to create tests for every new feature or change.</li>
+</ul>
+<p>These are very important - and are also pretty common in AI-dev discussion today (2025-10). We see most of them in twitter posts,
+youtube videos, etc.</p>
+<p>One thing that&rsquo;s maybe less obvious is the effectiveness of the tests.<br>
+The tests are black-box style, testing the public interface of the entire cache utility.<br>
+For this project, this is a very solid choice - the tests verify the actual behavior of the code, but are still easy to
+run and very fast.</p>
+<p>While in many larger projects you can&rsquo;t &ldquo;test the whole thing&rdquo; like this, sometimes it&rsquo;s possible to
+&ldquo;isolate some aspect of the work&rdquo; and test that aspect this way.<br>
+It&rsquo;s a simple idea, but if you keep it in mind, you can use it effectively in your real-life
+projects with minimal overhead.</p>
+<p>A simple example would be turning a bunch of API input/output JSON examples into data class definitions (e.g. Python&rsquo;s
+Pydantic, Typescript&rsquo;s Zod) that handle these JSONs.
+Let&rsquo;s say you have a few dozen JSON examples from an API (including all errors and edge cases).
+Maybe one of them looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;some_field&#34;</span>: <span style="color:#ae81ff">123</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;another_field&#34;</span>: <span style="color:#e6db74">&#34;hello&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;optional_field&#34;</span>: [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;sub_model&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sub_field_1&#34;</span>: <span style="color:#e6db74">&#34;value1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sub_field_2&#34;</span>: <span style="color:#ae81ff">456</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You want to end up with this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SubModel</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    sub_field_1: str
+</span></span><span style="display:flex;"><span>    sub_field_2: int
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyModel</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    some_field: int
+</span></span><span style="display:flex;"><span>    another_field: str
+</span></span><span style="display:flex;"><span>    optional_field: Optional[List[str]] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    sub_model: Optional[SubModel] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><p>You create a stub for a single test:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_serialization_example_1</span>() <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    example_json <span style="color:#f92672">=</span> <span style="color:#75715e"># ... read the example file</span>
+</span></span><span style="display:flex;"><span>    model_from_json <span style="color:#f92672">=</span> MyModel<span style="color:#f92672">.</span>model_validate_json(example_json) <span style="color:#75715e"># this is how you deserialize in Pydantic</span>
+</span></span><span style="display:flex;"><span>    manual_model <span style="color:#f92672">==</span> MyModel(
+</span></span><span style="display:flex;"><span>        some_field<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>,
+</span></span><span style="display:flex;"><span>        another_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hello&#34;</span>,
+</span></span><span style="display:flex;"><span>        optional_field<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>],
+</span></span><span style="display:flex;"><span>        sub_model<span style="color:#f92672">=</span>SubModel(
+</span></span><span style="display:flex;"><span>            sub_field_1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;value1&#34;</span>,
+</span></span><span style="display:flex;"><span>            sub_field_2<span style="color:#f92672">=</span><span style="color:#ae81ff">456</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> model_from_json <span style="color:#f92672">==</span> manual_model
+</span></span></code></pre></div><p>Then you tell the agent to create the data classes and tests for all other examples, using this test as a guide.</p>
+<p>At a previous job, we had many API integrations with semi-documented APIs, and I created thousands of lines of code
+like this. Very stable, almost zero work.<br>
+Now, it&rsquo;s true that historically, a comprehensive test suite for serializing data structures would often be considered
+a waste of time - but now that we&rsquo;re working with AI agents, the tradeoffs are different, and this approach is what
+allowed us to save quite a bit of work for every API integration.</p>
+<h1 id="more-details">More details<a hidden class="anchor" aria-hidden="true" href="#more-details">#</a></h1>
+<p>Some more details that might be interesting but aren&rsquo;t critical to the main point.</p>
+<h2 id="one-shotting-the-project">One-shotting the project<a hidden class="anchor" aria-hidden="true" href="#one-shotting-the-project">#</a></h2>
+<p>When running the example, the project is almost a one-shot - I told the agent to implement the plan, and the only other interactions needed were to tell it &ldquo;continue&rdquo; when it stopped before finishing the entire plan.</p>
+<p>This is both not important and not realistic - in any real project, we would have a lot of back-and-forth with the agent, certainly at the initial stages of figuring out the fundamentals of the project like fleshing out the core requirements, and finding good design principles if needed.</p>
+<p>We can also expect a lot of refactoring and creating utilities as the project grows, just like any human-driven project.
+This project is really not like that:</p>
+<ul>
+<li>The agent didn&rsquo;t do an obvious refactor which simplifies creating a cache in the tests (the constructor with all parameters is always called)</li>
+<li>I have created a small <a href="https://github.com/shaigeva/disk_backed_cache_example_before/blob/main/tests/conftest.py" target="_blank" rel="noopener noreferrer">test harness</a> for the DB before starting the plan. But, of course, in a real project we wouldn&rsquo;t have this prior to starting - it would emerge as the project gets created.</li>
+</ul>
+<h2 id="tests-to-code-ratio">Tests to code ratio<a hidden class="anchor" aria-hidden="true" href="#tests-to-code-ratio">#</a></h2>
+<p>A rough count of LOC (lines of code) gives</p>
+<ul>
+<li>Code: 753</li>
+<li>Tests: 5874
+Which is a bit less than 8:1 ratio.</li>
+</ul>
+<p>While I wouldn&rsquo;t say any specific number is &ldquo;correct&rdquo;, I think this does
+point at a reasonable expectation that the heavy part of AI-native
+codebases will not be the code, but the specifications and tests.</p>
+<h2 id="the-workflow-implementation-screams-for-better-tooling">The &ldquo;workflow implementation&rdquo; screams for better tooling<a hidden class="anchor" aria-hidden="true" href="#the-workflow-implementation-screams-for-better-tooling">#</a></h2>
+<p>Many of the agent&rsquo;s instructions in our example are dedicated to workflow management - here&rsquo;s a task list, take a task,
+do a step, if it fails stop, if it succeeds move to the next step, etc.<br>
+Textual instructions in markdown, that an LLM needs to follow.</p>
+<p>This is the standard way to manage coding agents ATM (things like MCPs or hooks can improve this - but they don&rsquo;t solve
+the problem).</p>
+<p>We&rsquo;re taking something that&rsquo;s supposed to be a deterministic workflow process and trying to force a probabilistic LLM
+model to do it.<br>
+But if we take a step back and think about it, it&rsquo;s clearly not the best approach.<br>
+Forget for a second that it&rsquo;s a <strong>coding</strong> workflow and think about any other agentic workflow - would you always use an
+LLM as the &ldquo;logical router&rdquo; for every part of the workflow?<br>
+Of course not - we have workflow management tools of various abstraction levels.<br>
+The coding agents themselves are, of course, also implemented using standard logical code (I hope most of them are,
+at least) - but it&rsquo;s &ldquo;claude code, the platform&rdquo; that&rsquo;s implemented this way, not &ldquo;the workflow that I&rsquo;m using claude
+code to execute&rdquo;.</p>
+<p>Even with our little example we can see it&rsquo;s problematic. Consider this part of the &ldquo;feedback loop&rdquo;:</p>
+<pre tabindex="0"><code>3. **Validate and commit** - Run `./devtools/run_all_agent_validations.sh` 
+and fix any failures. Repeat until all validations pass (zero errors, zero 
+warnings). Once passing, commit the work and update `IMPLEMENTATION_PLAN.md`.
+</code></pre><p>That&rsquo;s a &ldquo;sub-step&rdquo;, containing an internal loop with multiple action items and conditions plus actions after the loop
+finishes.<br>
+It wasn&rsquo;t like that initially - I started with many more smaller sub-steps, but faced issues like hitting limits
+(leading to &ldquo;session compacting&rdquo;), sub-step-skipping and others. Even something like using Claude&rsquo;s TODO feature proved
+very expensive when you have 40 steps and each has 7-8 sub-steps.
+That&rsquo;s why I ended up &ldquo;squashing&rdquo; multiple action items into each sub-step.</p>
+<p>More generally, we can say that some of the issues that this brings are:</p>
+<ul>
+<li>Expressing a logical process in English reliably is more difficult than it is with code, of course.</li>
+<li>It takes away &ldquo;focus&rdquo; from the instructions that the agent needs when performing actual work like writing code or
+planning tests.</li>
+<li>But despite that - it&rsquo;s still unreliable. In reality, it still makes mistakes even though this is both pretty
+simple and critical to the process. The LLM misbehaves FAR too much (e.g. &ldquo;forgetting to plan tests&rdquo; sometimes even
+though explicitly instructed).</li>
+<li>It takes more time</li>
+<li>It costs more tokens / money.</li>
+</ul>
+<p>An effective coding agent would need a reasonable way to set up deterministic workflows.
+It doesn&rsquo;t have to be as flexible as a general-purpose workflow engine, but it needs to be strong enough to create
+a workflow like we had here.</p>
+<h1 id="summing-up">Summing up<a hidden class="anchor" aria-hidden="true" href="#summing-up">#</a></h1>
+<p>This was a simple project that demonstrated a specific concept (the feedback loop).</p>
+<p>The techniques we saw here work well for simple cases.<br>
+But we want to make things that are complex and still have a solid workflow with &ldquo;10x productivity&rdquo;.<br>
+For that, we&rsquo;ll need to maintain these principles (and others) as things get more interesting than a utility
+that&rsquo;s a single file with a simple API.<br>
+In the following posts, we&rsquo;ll look at some scenarios like that and explore ideas that can help us.</p>
+<hr>
+
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/ai_frameworks/01_ai_frameworks_intro">&lt;&lt; previous post: AI-First Development Frameworks (intro)</a>
+|
+next post: (coming soon) &gt;&gt;
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shaigeva.com/">Shai Geva</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

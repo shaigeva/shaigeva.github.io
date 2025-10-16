@@ -6,7 +6,7 @@
     <description>Recent content on Shai Geva</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jun 2025 13:01:56 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 04 Oct 2025 13:01:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Moving past vibe-coding? AI-First Design Patterns and Frameworks (blog post series)</title>
@@ -21,6 +21,22 @@ create software, and it&amp;rsquo;ll be the deepest change we have seen to date.
 what that change could look like.&lt;br&gt;
 This blog series will dig into this and share my thoughts and conclusions from experimentation.&lt;br&gt;
 I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What an AI Feedback Loop Looks Like</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</guid>
+      <description>&lt;p&gt;&lt;em&gt;(this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/&#34;&gt;series&lt;/a&gt; about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.&lt;/p&gt;
+&lt;p&gt;But &amp;ldquo;AI feedback loop&amp;rdquo; might mean different things to different people - so this lightweight post focuses on
+giving an example to make it concrete.&lt;/p&gt;
+&lt;p&gt;We will implement a small (but realistic) project.&lt;br&gt;
+The project is set up so the agent has an internal feedback loop - it has instructions that tell
+it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates,
+type-checking, linter).&lt;br&gt;
+We&amp;rsquo;ll see how it makes mistakes, finds them and self-heals.&lt;/p&gt;</description>
     </item>
     <item>
       <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
