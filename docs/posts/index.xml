@@ -151,10 +151,12 @@ As long as it&amp;rsquo;s something self-contained - something whole, it might b
 }
 &lt;/style&gt;
 
-&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt;
-&lt;em&gt;This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices, which
-I also presented at a couple of conferences.&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=177&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;PyCon US 2023&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=177&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
 &lt;p&gt;Just like with product code, if we put too many things in the same place we get a mess.&lt;/p&gt;</description>
     </item>
     <item>
@@ -182,11 +184,14 @@ I also presented at a couple of conferences.&lt;/em&gt;&lt;br&gt;
 }
 &lt;/style&gt;
 
-&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt;
-&lt;em&gt;This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns/&#34;&gt;series&lt;/a&gt; about good testing practices, which
-I also presented at a couple of conferences.&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=255&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;PyCon US 2023&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Another problem that makes it more difficult to understand tests is unclear language.&lt;/p&gt;</description>
+&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=255&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Another problem that makes it more difficult to understand tests is unclear language.&lt;/p&gt;
+&lt;p&gt;Two guidelines that help me deal with this:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Footgun #4 - No Locality of Behavior</title>
