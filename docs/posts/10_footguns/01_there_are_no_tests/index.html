@@ -7,14 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>Footgun #1 - There Are No Tests | Shai Geva</title>
 <meta name="keywords" content="">
-<meta name="description" content="(this post is part of a series about good testing practices)
+<meta name="description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 This is a &ldquo;warm-up footgun&rdquo; to the blog post series.
 The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.
-In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&rsquo;re just a drop in the sea.
-There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.">
+In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&rsquo;re just a drop in the sea.">
 <meta name="author" content="Shai Geva">
 <link rel="canonical" href="https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css" integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn&#43;yY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
@@ -76,11 +80,9 @@ There are a few reasons I noticed, why moving from no tests at all to even one t
       </script><meta property="og:url" content="https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/">
   <meta property="og:site_name" content="Shai Geva">
   <meta property="og:title" content="Footgun #1 - There Are No Tests">
-  <meta property="og:description" content="(this post is part of a series about good testing practices)
-This is a “warm-up footgun” to the blog post series.
+  <meta property="og:description" content=" This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 This is a “warm-up footgun” to the blog post series.
 The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.
-In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.
-There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.">
+In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -90,11 +92,15 @@ There are a few reasons I noticed, why moving from no tests at all to even one t
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_01_there_are_no_tests_cover.png">
 <meta name="twitter:title" content="Footgun #1 - There Are No Tests">
-<meta name="twitter:description" content="(this post is part of a series about good testing practices)
+<meta name="twitter:description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 This is a &ldquo;warm-up footgun&rdquo; to the blog post series.
 The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.
-In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&rsquo;re just a drop in the sea.
-There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.">
+In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&rsquo;re just a drop in the sea.">
 
 
 <script type="application/ld+json">
@@ -123,12 +129,12 @@ There are a few reasons I noticed, why moving from no tests at all to even one t
   "@type": "BlogPosting",
   "headline": "Footgun #1 - There Are No Tests",
   "name": "Footgun #1 - There Are No Tests",
-  "description": "(this post is part of a series about good testing practices)\nThis is a \u0026ldquo;warm-up footgun\u0026rdquo; to the blog post series.\nThe easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.\nIn my experience, writing any tests often helps us - even if these tests are not well-written, and even if they\u0026rsquo;re just a drop in the sea.\nThere are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.\n",
+  "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 This is a \u0026ldquo;warm-up footgun\u0026rdquo; to the blog post series.\nThe easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.\nIn my experience, writing any tests often helps us - even if these tests are not well-written, and even if they\u0026rsquo;re just a drop in the sea.\n",
   "keywords": [
     
   ],
-  "articleBody": "(this post is part of a series about good testing practices)\nThis is a “warm-up footgun” to the blog post series.\nThe easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.\nIn my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.\nThere are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.\nCode changes around hotspots Code changes are not uniformly distributed.\nIf we have a signifcantly-sized code base and we look 6 months to the past, we will see that changes tend to happen in the same places. We don’t change all types of features all the time and all types of infrastructure all the time.\nFeatures tend to evolve iteratively, and bugs that are introduced are statistically fixed in the following weeks or months.\nSo chances are - if you’ve changed an area of the code today, you will change it again in the next month.\nFor automated tests, what this means is that adding tests for the code we’re working on now tends to have a much larger impact than we might assume, because they are likely to protect us in the next few weeks.\nZero to one As with many, many considerations in any kind of project - making the first move is an uncomfortable “awkwardness” - we don’t exactly know how to do it.\nBut once we have a single test, we have an initial “paved road”, and we can keep improving in iterative steps, which is far easier.\nIf you never start, it’s 100% you’ll stay at zero Maybe the first test you’re writing will be the last.\nBut maybe it won’t, and it’ll lead to way to having a much better developer experience.\nIf you never write the first test, you will definitely not write tests number 2, 3 and 20.\nMy own experience I can’t back this up with anything besides “I’ve seen this enough, that’s the way it is” - but I can tell you that I almost never regretted writing the first few tests for a piece of code.\nIn almost all cases, it did help me improve the code design and prevent bugs.\nConclusion Start with something easy and simple, as long as you start :)\nnext post: Untested Tests \u003e\u003e ",
-  "wordCount" : "411",
+  "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 This is a “warm-up footgun” to the blog post series.\nThe easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.\nIn my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.\nThere are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.\nCode changes around hotspots Code changes are not uniformly distributed.\nIf we have a signifcantly-sized code base and we look 6 months to the past, we will see that changes tend to happen in the same places. We don’t change all types of features all the time and all types of infrastructure all the time.\nFeatures tend to evolve iteratively, and bugs that are introduced are statistically fixed in the following weeks or months.\nSo chances are - if you’ve changed an area of the code today, you will change it again in the next month.\nFor automated tests, what this means is that adding tests for the code we’re working on now tends to have a much larger impact than we might assume, because they are likely to protect us in the next few weeks.\nZero to one As with many, many considerations in any kind of project - making the first move is an uncomfortable “awkwardness” - we don’t exactly know how to do it.\nBut once we have a single test, we have an initial “paved road”, and we can keep improving in iterative steps, which is far easier.\nIf you never start, it’s 100% you’ll stay at zero Maybe the first test you’re writing will be the last.\nBut maybe it won’t, and it’ll lead to way to having a much better developer experience.\nIf you never write the first test, you will definitely not write tests number 2, 3 and 20.\nMy own experience I can’t back this up with anything besides “I’ve seen this enough, that’s the way it is” - but I can tell you that I almost never regretted writing the first few tests for a piece of code.\nIn almost all cases, it did help me improve the code design and prevent bugs.\nConclusion Start with something easy and simple, as long as you start :)\nnext post: Untested Tests \u003e\u003e ",
+  "wordCount" : "427",
   "inLanguage": "en",
   "image":"https://shaigeva.com/10_footguns/10_footguns_01_there_are_no_tests_cover.png","datePublished": "2024-10-04T13:01:56+03:00",
   "dateModified": "2024-10-04T13:01:56+03:00",
@@ -226,7 +232,12 @@ There are a few reasons I noticed, why moving from no tests at all to even one t
         <img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_01_there_are_no_tests_cover.png" alt="">
         
 </figure>
-  <div class="post-content"><p>(this post is part of a <a href="https://shaigeva.com/posts/10_footguns/ten_footguns/">series</a> about good testing practices)</p>
+  <div class="post-content"><span class="aside">
+This mini-post is part of a <a href="/posts/10_footguns/ten_footguns" target="_blank">series</a> about good testing practices, which I also presented at a couple of conferences.
+<br>
+Here it is in <a href="https://youtu.be/Ub31Ae6S1BY?t=111" target="_blank">PyCon US 2023</a>
+</span>
+
 <p>This is a &ldquo;warm-up footgun&rdquo; to the blog post series.</p>
 <p>The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.</p>
 <p>In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&rsquo;re just a drop in the sea.</p>

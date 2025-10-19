@@ -7,15 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>Footgun #3 - The Tests Are Not Isolated | Shai Geva</title>
 <meta name="keywords" content="">
-<meta name="description" content="(this post is part of a series about good testing practices)
+<meta name="description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
 By &ldquo;tests that are not isolated&rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
-only a subset of them, if we run them in a different order or if we run them in parallel.
-Why is this a problem?
-Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.">
+only a subset of them, if we run them in a different order or if we run them in parallel.">
 <meta name="author" content="Shai Geva">
 <link rel="canonical" href="https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css" integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn&#43;yY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
@@ -77,10 +80,8 @@ Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually b
       </script><meta property="og:url" content="https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/">
   <meta property="og:site_name" content="Shai Geva">
   <meta property="og:title" content="Footgun #3 - The Tests Are Not Isolated">
-  <meta property="og:description" content="(this post is part of a series about good testing practices)
-Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
-By “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.
-Why is this a problem? Let’s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.">
+  <meta property="og:description" content=" This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
+By “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -90,12 +91,15 @@ Why is this a problem? Let’s say we have 30 tests, and test 24 passes if we ru
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_03_the_tests_are_not_isolated.png">
 <meta name="twitter:title" content="Footgun #3 - The Tests Are Not Isolated">
-<meta name="twitter:description" content="(this post is part of a series about good testing practices)
+<meta name="twitter:description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
 By &ldquo;tests that are not isolated&rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
-only a subset of them, if we run them in a different order or if we run them in parallel.
-Why is this a problem?
-Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.">
+only a subset of them, if we run them in a different order or if we run them in parallel.">
 
 
 <script type="application/ld+json">
@@ -124,12 +128,12 @@ Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually b
   "@type": "BlogPosting",
   "headline": "Footgun #3 - The Tests Are Not Isolated",
   "name": "Footgun #3 - The Tests Are Not Isolated",
-  "description": "(this post is part of a series about good testing practices)\nWriting tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy \u0026ldquo;tests that are not isolated\u0026rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\nWhy is this a problem? Let\u0026rsquo;s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.\n",
+  "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy \u0026ldquo;tests that are not isolated\u0026rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\n",
   "keywords": [
     
   ],
-  "articleBody": "(this post is part of a series about good testing practices)\nWriting tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\nWhy is this a problem? Let’s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.\nIf the test was isolated, then there are only a limited number of things that can go wrong. The things that the test actually executes will almost certainly be the cause of the failure.\nBut now, of course, the reason for failure is not what test 24 checks, and not what any of the other tests checks either. The failure is caused by an implicit interaction between test 24 and, say, test 8.\nThis is difficult to debug, of course, because we would first need to play detective and find that it’s test 8 that’s causing the problem (which might take a LOT of effort, especially if the tests are e2e tests that run slowly or only in CI), and then track the combined flow of the tests to find the problematic interaction.\nBut it’s worse than this - what often happens is that we run the entire test suite, either locally or in CI, and test 24 fails - so we start analyzing it as if test 24 fails individually. We don’t even consider that it’s a combined failure, and sometimes we waste hours chasing irrelevant clues, just to get to the point that we notice the test passes if its executed separately.\nSo the fact that we have “individual tests” is actually a misleading illusion that only distracts us from the unfortunate truth - we have one gigantic test with inter-connected sub-sections.\nIf e2e tests run in parallel and sometimes run in different order, which makes this cross-test-failure flaky, we get the perfect storm and we might spend days of work on this.\nAnd, lastly, the situation could actually be worse - it might be that test 24 SHOULD fail, but it passes because of test 8, hiding a bug.\nWhat are the causes behind this? There are rare cases like technical limitations (e.g. external service rate limits), but in the vast majority of cases - it’s shared mutable state.\nA typical scenario for unit tests would be a global in-memory object, and for end-to-end tests maybe a row in a database.\nTest 8 would change that shared thing, and test 24 would therefore have a different state when it starts to execute, leading to the failure.\nSharing a resource that’s immutable (or never changes in practice) is not a problem - if it never changes, then it’s the same whether or not it’s accessed by multiple “consumers”.\nI’ve also seen more subtle cases of shared mutable state, for example tests that would rely on an email being sent through an actual email-sending service, and multiple tests checked for the same email.\nWhat can we do? First of all, because in my experience this is so often a very painful problem - I suggest to avoid this from the start, even if it means extra work or delaying writing some tests if can’t make them isolated at the moment.\nDO NOT create a suite of non-isolated e2e tests that use long-living mutating database entities. This is very very likely to cause a crisis down the road.\nBecause the problem is usually shared mutable state, we mostly just need to avoid that specific issue.\nUnit tests can use the same in-memory objects, but they have to be immutable, or at least never changed by convention.\nIf this is not an option - either create the object in every test or have some original which you clone at the beginning of the tests.\nThe trickier part are higher-level tests that use expensive resources like a database, where full initializations might cause the tests to be too slow.\nIf it’s not too expensive - initialize the entire thing, of course.\nOtherwise - make sure to clean up - delete created resources and revert the database / file system / etc. to its original state before continuing.\n\u003c\u003c previous post: Untested Tests | next post: No Locality of Behavior \u003e\u003e ",
-  "wordCount" : "745",
+  "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\nWhy is this a problem? Let’s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.\nIf the test was isolated, then there are only a limited number of things that can go wrong. The things that the test actually executes will almost certainly be the cause of the failure.\nBut now, of course, the reason for failure is not what test 24 checks, and not what any of the other tests checks either. The failure is caused by an implicit interaction between test 24 and, say, test 8.\nThis is difficult to debug, of course, because we would first need to play detective and find that it’s test 8 that’s causing the problem (which might take a LOT of effort, especially if the tests are e2e tests that run slowly or only in CI), and then track the combined flow of the tests to find the problematic interaction.\nBut it’s worse than this - what often happens is that we run the entire test suite, either locally or in CI, and test 24 fails - so we start analyzing it as if test 24 fails individually. We don’t even consider that it’s a combined failure, and sometimes we waste hours chasing irrelevant clues, just to get to the point that we notice the test passes if its executed separately.\nSo the fact that we have “individual tests” is actually a misleading illusion that only distracts us from the unfortunate truth - we have one gigantic test with inter-connected sub-sections.\nIf e2e tests run in parallel and sometimes run in different order, which makes this cross-test-failure flaky, we get the perfect storm and we might spend days of work on this.\nAnd, lastly, the situation could actually be worse - it might be that test 24 SHOULD fail, but it passes because of test 8, hiding a bug.\nWhat are the causes behind this? There are rare cases like technical limitations (e.g. external service rate limits), but in the vast majority of cases - it’s shared mutable state.\nA typical scenario for unit tests would be a global in-memory object, and for end-to-end tests maybe a row in a database.\nTest 8 would change that shared thing, and test 24 would therefore have a different state when it starts to execute, leading to the failure.\nSharing a resource that’s immutable (or never changes in practice) is not a problem - if it never changes, then it’s the same whether or not it’s accessed by multiple “consumers”.\nI’ve also seen more subtle cases of shared mutable state, for example tests that would rely on an email being sent through an actual email-sending service, and multiple tests checked for the same email.\nWhat can we do? First of all, because in my experience this is so often a very painful problem - I suggest to avoid this from the start, even if it means extra work or delaying writing some tests if can’t make them isolated at the moment.\nDO NOT create a suite of non-isolated e2e tests that use long-living mutating database entities. This is very very likely to cause a crisis down the road.\nBecause the problem is usually shared mutable state, we mostly just need to avoid that specific issue.\nUnit tests can use the same in-memory objects, but they have to be immutable, or at least never changed by convention.\nIf this is not an option - either create the object in every test or have some original which you clone at the beginning of the tests.\nThe trickier part are higher-level tests that use expensive resources like a database, where full initializations might cause the tests to be too slow.\nIf it’s not too expensive - initialize the entire thing, of course.\nOtherwise - make sure to clean up - delete created resources and revert the database / file system / etc. to its original state before continuing.\n\u003c\u003c previous post: Untested Tests | next post: No Locality of Behavior \u003e\u003e ",
+  "wordCount" : "761",
   "inLanguage": "en",
   "image":"https://shaigeva.com/10_footguns/10_footguns_03_the_tests_are_not_isolated.png","datePublished": "2024-10-08T20:15:56+03:00",
   "dateModified": "2024-10-08T20:15:56+03:00",
@@ -227,7 +231,12 @@ Let&rsquo;s say we have 30 tests, and test 24 passes if we run it individually b
         <img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_03_the_tests_are_not_isolated.png" alt="">
         
 </figure>
-  <div class="post-content"><p>(this post is part of a <a href="https://shaigeva.com/posts/10_footguns/ten_footguns/">series</a> about good testing practices)</p>
+  <div class="post-content"><span class="aside">
+This mini-post is part of a <a href="/posts/10_footguns/ten_footguns" target="_blank">series</a> about good testing practices, which I also presented at a couple of conferences.
+<br>
+Here it is in <a href="https://youtu.be/Ub31Ae6S1BY?t=412" target="_blank">PyCon US 2023</a>
+</span>
+
 <p>Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.</p>
 <p>By &ldquo;tests that are not isolated&rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
 only a subset of them, if we run them in a different order or if we run them in parallel.</p>

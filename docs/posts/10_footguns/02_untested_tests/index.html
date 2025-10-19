@@ -7,15 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>Footgun #2 - Untested Tests | Shai Geva</title>
 <meta name="keywords" content="">
-<meta name="description" content="(this post is part of a series about good testing practices)
+<meta name="description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 Sometimes our tests lie to us.
 We have a test that was supposed to protect us from some bug, but that bug happened after all.
-Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.
-As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.
-To make sure that if the bug happens, the test does indeed fail.">
+Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.">
 <meta name="author" content="Shai Geva">
 <link rel="canonical" href="https://shaigeva.com/posts/10_footguns/02_untested_tests/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css" integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn&#43;yY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
@@ -77,12 +80,9 @@ To make sure that if the bug happens, the test does indeed fail.">
       </script><meta property="og:url" content="https://shaigeva.com/posts/10_footguns/02_untested_tests/">
   <meta property="og:site_name" content="Shai Geva">
   <meta property="og:title" content="Footgun #2 - Untested Tests">
-  <meta property="og:description" content="(this post is part of a series about good testing practices)
-Sometimes our tests lie to us.
+  <meta property="og:description" content=" This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes our tests lie to us.
 We have a test that was supposed to protect us from some bug, but that bug happened after all.
-Of course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.
-As it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.
-To make sure that if the bug happens, the test does indeed fail.">
+Of course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -92,12 +92,15 @@ To make sure that if the bug happens, the test does indeed fail.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png">
 <meta name="twitter:title" content="Footgun #2 - Untested Tests">
-<meta name="twitter:description" content="(this post is part of a series about good testing practices)
+<meta name="twitter:description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
 Sometimes our tests lie to us.
 We have a test that was supposed to protect us from some bug, but that bug happened after all.
-Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.
-As it turns out - when we write a test, it&rsquo;s a good idea to spend a little effort to verify the test actually works.
-To make sure that if the bug happens, the test does indeed fail.">
+Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.">
 
 
 <script type="application/ld+json">
@@ -126,12 +129,12 @@ To make sure that if the bug happens, the test does indeed fail.">
   "@type": "BlogPosting",
   "headline": "Footgun #2 - Untested Tests",
   "name": "Footgun #2 - Untested Tests",
-  "description": "(this post is part of a series about good testing practices)\nSometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn\u0026rsquo;t really verify what we thought it does.\nAs it turns out - when we write a test, it\u0026rsquo;s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\n",
+  "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn\u0026rsquo;t really verify what we thought it does.\n",
   "keywords": [
     
   ],
-  "articleBody": "(this post is part of a series about good testing practices)\nSometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.\nAs it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\nHow to avoid this My suggestion -\nWhen you write a test, for every assertion you write, make a small change:\nEither change the code a little and introduce the bug. Or change the test a little bit, so it verifies something a little different. This way you will be able to see if the test would have failed in the way you expect it to, and you’ll be able to count on it.\n\u003c\u003c previous post: There Are No Tests | next post: The Tests Are Not Isolated \u003e\u003e ",
-  "wordCount" : "185",
+  "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.\nAs it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\nHow to avoid this My suggestion -\nWhen you write a test, for every assertion you write, make a small change:\nEither change the code a little and introduce the bug. Or change the test a little bit, so it verifies something a little different. This way you will be able to see if the test would have failed in the way you expect it to, and you’ll be able to count on it.\n\u003c\u003c previous post: There Are No Tests | next post: The Tests Are Not Isolated \u003e\u003e ",
+  "wordCount" : "201",
   "inLanguage": "en",
   "image":"https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png","datePublished": "2024-10-05T17:15:56+03:00",
   "dateModified": "2024-10-05T17:15:56+03:00",
@@ -229,7 +232,12 @@ To make sure that if the bug happens, the test does indeed fail.">
         <img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png" alt="">
         
 </figure>
-  <div class="post-content"><p>(this post is part of a <a href="https://shaigeva.com/posts/10_footguns/ten_footguns/">series</a> about good testing practices)</p>
+  <div class="post-content"><span class="aside">
+This mini-post is part of a <a href="/posts/10_footguns/ten_footguns" target="_blank">series</a> about good testing practices, which I also presented at a couple of conferences.
+<br>
+Here it is in <a href="https://youtu.be/Ub31Ae6S1BY?t=135" target="_blank">PyCon US 2023</a>
+</span>
+
 <p>Sometimes our tests lie to us.</p>
 <p>We have a test that was supposed to protect us from some bug, but that bug happened after all.</p>
 <p>Of course, what happened was that we made a mistake, and the test didn&rsquo;t really verify what we thought it does.</p>

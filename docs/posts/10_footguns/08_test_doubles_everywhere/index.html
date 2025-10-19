@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Footgun #8 - Test Doubles Everywhere | Shai Geva</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
+Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.
+These are called test doubles. Things like stubs, mocks and fakes.
+A few of the central reasons for doing this are:
+
+Performance - if the real thing is too slow to run a lot of tests, we switch it with a
+fast test double.
+Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a
+certain way.  Maybe it&rsquo;s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests
+doubles are under our full control and won&rsquo;t create side effects we don&rsquo;t want.
+
+The problem with test doubles
+Test doubles can be useful, but they are a re-implementation.
+They know the implementation details of the thing they&rsquo;re replacing.
+Different types of test doubles do it differently, but this is what they do.">
+<meta name="author" content="Shai Geva">
+<link rel="canonical" href="https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shaigeva.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shaigeva.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:url" content="https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/">
+  <meta property="og:site_name" content="Shai Geva">
+  <meta property="og:title" content="Footgun #8 - Test Doubles Everywhere">
+  <meta property="og:description" content=" This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.
+These are called test doubles. Things like stubs, mocks and fakes.
+A few of the central reasons for doing this are:
+Performance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double. Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a certain way. Maybe it’s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests doubles are under our full control and won’t create side effects we don’t want. The problem with test doubles Test doubles can be useful, but they are a re-implementation.
+They know the implementation details of the thing they’re replacing.
+Different types of test doubles do it differently, but this is what they do.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-16T10:17:56+03:00">
+    <meta property="article:modified_time" content="2025-05-16T10:17:56+03:00">
+    <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png">
+<meta name="twitter:title" content="Footgun #8 - Test Doubles Everywhere">
+<meta name="twitter:description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
+Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.
+These are called test doubles. Things like stubs, mocks and fakes.
+A few of the central reasons for doing this are:
+
+Performance - if the real thing is too slow to run a lot of tests, we switch it with a
+fast test double.
+Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a
+certain way.  Maybe it&rsquo;s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests
+doubles are under our full control and won&rsquo;t create side effects we don&rsquo;t want.
+
+The problem with test doubles
+Test doubles can be useful, but they are a re-implementation.
+They know the implementation details of the thing they&rsquo;re replacing.
+Different types of test doubles do it differently, but this is what they do.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shaigeva.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Footgun #8 - Test Doubles Everywhere",
+      "item": "https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Footgun #8 - Test Doubles Everywhere",
+  "name": "Footgun #8 - Test Doubles Everywhere",
+  "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.\nThese are called test doubles. Things like stubs, mocks and fakes.\nA few of the central reasons for doing this are:\nPerformance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double. Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a certain way. Maybe it\u0026rsquo;s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests doubles are under our full control and won\u0026rsquo;t create side effects we don\u0026rsquo;t want. The problem with test doubles Test doubles can be useful, but they are a re-implementation.\nThey know the implementation details of the thing they\u0026rsquo;re replacing.\nDifferent types of test doubles do it differently, but this is what they do.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.\nThese are called test doubles. Things like stubs, mocks and fakes.\nA few of the central reasons for doing this are:\nPerformance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double. Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a certain way. Maybe it’s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests doubles are under our full control and won’t create side effects we don’t want. The problem with test doubles Test doubles can be useful, but they are a re-implementation.\nThey know the implementation details of the thing they’re replacing.\nDifferent types of test doubles do it differently, but this is what they do.\nThe main problem this causes is correctness.\nThe test double might not behave exactly like the real thing, and that makes the tests less accurate, less correct.\nAnd as time goes by, the real thing might be slowly changed, but the test double would stay the same.\nSo it would drift further and further from reality.\nAnd, of course, this can hurt your foot.\nThis is actually a flavor of the implementation vs. behavior problem.\nThere are some differences, but essentially, it’s the same category of issues - tests that use test doubles are not as good at catching bugs, and sometimes they fail even though the code is correct, causing all that extra work.\nBut the problem is that they’re necessary - the problems they solve are real.\nWhat can we do? The question is - how do we use test doubles and avoid the pitfalls?\nI’ll suggest a couple of ideas.\nCode design Code design is so important.\nTry to design so you can test a lot of functionality effectively, with fast unit tests, that don’t need test doubles.\nIf that’s not possible, design so you can choose test doubles with good ROI (see below).\nI would argue that this is one of the most important considerations in code design.\nNot ALWAYS possible, but a lot of times it is.\nWhat type of test double? Another thing is to choose which type of test double you’re working with.\nAnd I suggest to mostly use fakes.\nA fake behaves like your dependency, but fast.\nIt’s essentially a simulator for a specific aspect of your dependency.\nFor example, a fake database table can be an in-memory list of tuples, where each tuple is a row.\nIn tests - it behaves the same way.\nOne of the nice things about fakes is that they can be made more reliable.\nTest the fake itself We can make a fake more reliable by writing some tests, not for the code - but for the fake itself.\nFor example, we can run the same operations against the fake and the real thing and verify we get the same results.\nIt’ll never be 100% the same - we make tradeoffs in how much we are willing to invest in testing the fake.\nMaybe there’s already a good fake? Sometimes, a reliable fake already exists.\nFor example, if you’re using SQLite - an in-memory option is built-in.\nSQLite can actually be used as a fake for many other SQL databases (though you would need adapters to handle some differences, of course).\nSo google it, maybe you’ll get lucky.\nRun the same test with the fake and the real thing An interesting thing you can do with fakes, is to run exactly the same test - once with a fake, and once with the real thing.\nFor example, maybe we have 10 tests, and that’s too much to run against the real thing.\nSo we run all 10 with the fake.\nAnd then, we choose the 2 most important ones, and we run them ALSO with the real thing - maybe every time, maybe just in the nightly.\nAnd this gives us some real world certainty.\nConclusion The essence here is to use test doubles, while investing some effort to verify their reliability, until we get an acceptable tradeoff.\n\u003c\u003c previous post: Improper Test Scope | next post: Slow Tests \u003e\u003e ",
+  "wordCount" : "747",
+  "inLanguage": "en",
+  "image":"https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png","datePublished": "2025-05-16T10:17:56+03:00",
+  "dateModified": "2025-05-16T10:17:56+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Shai Geva"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shai Geva",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shaigeva.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shaigeva.com/" accesskey="h" title="Shai Geva (Alt + H)">Shai Geva</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shaigeva.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/talks" title="Talks">
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Footgun #8 - Test Doubles Everywhere
+    </h1>
+    <div class="post-meta"><span title='2025-05-16 10:17:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png" alt="">
+        
+</figure>
+  <div class="post-content"><span class="aside">
+This mini-post is part of a <a href="/posts/10_footguns/ten_footguns" target="_blank">series</a> about good testing practices, which I also presented at a couple of conferences.
+<br>
+Here it is in <a href="https://youtu.be/Ub31Ae6S1BY?t=837" target="_blank">PyCon US 2023</a>
+</span>
+
+<p>Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.<br>
+These are called test doubles. Things like stubs, mocks and fakes.</p>
+<p>A few of the central reasons for doing this are:</p>
+<ul>
+<li>Performance - if the real thing is too slow to run a lot of tests, we switch it with a
+fast test double.</li>
+<li>Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a
+certain way.  Maybe it&rsquo;s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests
+doubles are under our full control and won&rsquo;t create side effects we don&rsquo;t want.</li>
+</ul>
+<h1 id="the-problem-with-test-doubles">The problem with test doubles<a hidden class="anchor" aria-hidden="true" href="#the-problem-with-test-doubles">#</a></h1>
+<p>Test doubles can be useful, but they are a re-implementation.<br>
+They know the implementation details of the thing they&rsquo;re replacing.<br>
+Different types of test doubles do it differently, but this is what they do.</p>
+<p>The main problem this causes is correctness.<br>
+The test double might not behave exactly like the real thing, and that makes the tests less accurate, less correct.</p>
+<p>And as time goes by, the real thing might be slowly changed, but the test double would stay the same.<br>
+So it would drift further and further from reality.</p>
+<p><img alt="Test double drift" loading="lazy" src="/10_footguns/10_footguns_test_double_drift.png"></p>
+<p>And, of course, this can hurt your foot.</p>
+<p>This is actually a flavor of the implementation vs. behavior problem.</p>
+<p>There are some differences, but essentially, it&rsquo;s the same category of issues - tests that use test doubles are not as good at catching bugs, and sometimes they fail even though the code is correct, causing all that extra work.</p>
+<p>But the problem is that they&rsquo;re necessary - the problems they solve are real.</p>
+<h1 id="what-can-we-do">What can we do?<a hidden class="anchor" aria-hidden="true" href="#what-can-we-do">#</a></h1>
+<p>The question is - how do we use test doubles and avoid the pitfalls?<br>
+I&rsquo;ll suggest a couple of ideas.</p>
+<h2 id="code-design">Code design<a hidden class="anchor" aria-hidden="true" href="#code-design">#</a></h2>
+<p>Code design is so important.</p>
+<p>Try to design so you can test a lot of functionality effectively, with fast unit tests, that don&rsquo;t need test doubles.<br>
+If that&rsquo;s not possible, design so you can choose test doubles with good ROI (see below).<br>
+I would argue that this is one of the most important considerations in code design.<br>
+Not ALWAYS possible, but a lot of times it is.</p>
+<h2 id="what-type-of-test-double">What type of test double?<a hidden class="anchor" aria-hidden="true" href="#what-type-of-test-double">#</a></h2>
+<p>Another thing is to choose which type of test double you&rsquo;re working with.<br>
+And I suggest to mostly use fakes.</p>
+<p>A fake behaves like your dependency, but fast.<br>
+It&rsquo;s essentially a simulator for a specific aspect of your dependency.</p>
+<p>For example, a fake database table can be an in-memory list of tuples, where each tuple is a row.<br>
+In tests - it behaves the same way.</p>
+<p>One of the nice things about fakes is that they can be made more reliable.</p>
+<h3 id="test-the-fake-itself">Test the fake itself<a hidden class="anchor" aria-hidden="true" href="#test-the-fake-itself">#</a></h3>
+<p>We can make a fake more reliable by writing some tests, not for the code - but for the fake itself.<br>
+For example, we can run the same operations against the fake and the real thing and verify we get the same results.<br>
+It&rsquo;ll never be 100% the same - we make tradeoffs in how much we are willing to invest in testing the fake.</p>
+<h3 id="maybe-theres-already-a-good-fake">Maybe there&rsquo;s already a good fake?<a hidden class="anchor" aria-hidden="true" href="#maybe-theres-already-a-good-fake">#</a></h3>
+<p>Sometimes, a reliable fake already exists.<br>
+For example, if you&rsquo;re using SQLite - an in-memory option is built-in.<br>
+SQLite can actually be used as a fake for many other SQL databases (though you would need adapters to handle some differences, of course).</p>
+<p>So google it, maybe you&rsquo;ll get lucky.</p>
+<h3 id="run-the-same-test-with-the-fake-and-the-real-thing">Run the same test with the fake and the real thing<a hidden class="anchor" aria-hidden="true" href="#run-the-same-test-with-the-fake-and-the-real-thing">#</a></h3>
+<p>An interesting thing you can do with fakes, is to run exactly the same test - once with a fake, and once with the real thing.</p>
+<p>For example, maybe we have 10 tests, and that&rsquo;s too much to run against the real thing.</p>
+<p>So we run all 10 with the fake.<br>
+And then, we choose the 2 most important ones, and we run them ALSO with the real thing - maybe every time, maybe just in the nightly.<br>
+And this gives us some real world certainty.</p>
+<p><img alt="Test both fake and real" loading="lazy" src="/10_footguns/10_footguns_test_fake_and_real.png"></p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>The essence here is to use test doubles, while investing some effort to verify their reliability, until we get an acceptable tradeoff.</p>
+<hr>
+
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/07_improper_test_scope">&lt;&lt; previous post: Improper Test Scope</a>
+|
+<a href="/posts/10_footguns/09_slow_tests">next post: Slow Tests &gt;&gt;</a>
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shaigeva.com/">Shai Geva</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

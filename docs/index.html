@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="Shai Geva">
 <link rel="canonical" href="https://shaigeva.com/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css" integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn&#43;yY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://shaigeva.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
@@ -262,11 +262,70 @@ We’ll see how it makes mistakes, finds them and self-heals.
     <p>This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.
 The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.
 Starting with simple (but useful!), and moving on to more complex ideas:
-There are no tests (warm up) Untested tests The tests are not isolated No locality of behavior Unclear language Testing too many things Improper test scope Test doubles everywhere Slow tests Wrong priorities Videos and slide decks from the talks
+There are no tests (warm up) Untested tests The tests are not isolated No locality of behavior Unclear language Testing too many things Improper test scope Test doubles everywhere Slow tests Wrong priorities (coming soon) Videos and slide decks from the talks
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-05-16 11:19:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
   <a class="entry-link" aria-label="post link to 10 Ways To Shoot Yourself In The Foot With Tests" href="https://shaigeva.com/posts/10_footguns/ten_footguns/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_09_slow_tests.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Footgun #9 - Slow Tests
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Slow tests are not fun.
+In this post, I’ll talk about two ways in which they are not fun
+The bottleneck and the time bomb The feedback loop and the bug funnel The bottleneck and the time bomb The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.
+(this assumes we’re merging tasks to the main branch one-by-one, and only after the tests pass. Other branching models have similar issues, but this is the simplest to explain)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-16 10:18:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
+  <a class="entry-link" aria-label="post link to Footgun #9 - Slow Tests" href="https://shaigeva.com/posts/10_footguns/09_slow_tests/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_08_test_doubles_everywhere.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Footgun #8 - Test Doubles Everywhere
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.
+These are called test doubles. Things like stubs, mocks and fakes.
+A few of the central reasons for doing this are:
+Performance - if the real thing is too slow to run a lot of tests, we switch it with a fast test double. Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a certain way. Maybe it’s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests doubles are under our full control and won’t create side effects we don’t want. The problem with test doubles Test doubles can be useful, but they are a re-implementation.
+They know the implementation details of the thing they’re replacing.
+Different types of test doubles do it differently, but this is what they do.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-16 10:17:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
+  <a class="entry-link" aria-label="post link to Footgun #8 - Test Doubles Everywhere" href="https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_07_improper_test_scope.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Footgun #7 - Improper Test Scope
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 The root cause of many testing problems is improper test scope, i.e. that their boundaries aren’t appropriate.
+Test a cohesive whole - complete story My approach here is that a test should verify a cohesive whole, a “complete story”.
+It can be a large story like an e2e test or a small story that’s part of a bigger story, like a custom sorting function that something else uses.
+As long as it’s something self-contained - something whole, it might be worth testing.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-16 10:16:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
+  <a class="entry-link" aria-label="post link to Footgun #7 - Improper Test Scope" href="https://shaigeva.com/posts/10_footguns/07_improper_test_scope/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -278,9 +337,9 @@ There are no tests (warm up) Untested tests The tests are not isolated No locali
     </h2>
   </header>
   <div class="entry-content">
-    <p> (this mini-post is part of a series about good testing practices)
+    <p> Note: This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+Here it is in PyCon US 2023
 Just like with product code, if we put too many things in the same place we get a mess.
-My rule of thumb is to try hard to test a single fact about the behavior of the code. And it helps if I use these specific words mentally.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-05-16 10:15:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
@@ -296,11 +355,9 @@ My rule of thumb is to try hard to test a single fact about the behavior of the 
     </h2>
   </header>
   <div class="entry-content">
-    <p> (this mini-post is part of a series about good testing practices)
+    <p> Note: This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+Here it is in PyCon US 2023
 Another problem that makes it more difficult to understand tests is unclear language.
-Two guidelines that help me deal with this:
-We want to use decisive language We want the language to be specific and explicit Suppose we have a book store and we’re testing the functionality for editing a book.
-Let’s see some examples of test phrasing:
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-10-18 20:15:56 +0300 IDT'>October 18, 2024</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
@@ -316,11 +373,9 @@ Let’s see some examples of test phrasing:
     </h2>
   </header>
   <div class="entry-content">
-    <p>(this mini-post is part of a series about good testing practices)
-One testing problem that doesn’t get enough attention in my opinion is tests that don’t have locality of behavior.
+    <p> This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 One testing problem that doesn’t get enough attention in my opinion is tests that don’t have locality of behavior.
 By that I mean cases where a test is broken down into different parts in a way that makes understanding more difficult.
 This is important in every type of code, and tests are no exception.
-Example: non-local data Consider this test:
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-10-16 20:15:56 +0300 IDT'>October 16, 2024</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
@@ -336,56 +391,19 @@ Example: non-local data Consider this test:
     </h2>
   </header>
   <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
+    <p> This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.
 By “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.
-Why is this a problem? Let’s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-10-08 20:15:56 +0300 IDT'>October 8, 2024</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
   <a class="entry-link" aria-label="post link to Footgun #3 - The Tests Are Not Isolated" href="https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #2 - Untested Tests
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-Sometimes our tests lie to us.
-We have a test that was supposed to protect us from some bug, but that bug happened after all.
-Of course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.
-As it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.
-To make sure that if the bug happens, the test does indeed fail.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-10-05 17:15:56 +0300 IDT'>October 5, 2024</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
-  <a class="entry-link" aria-label="post link to Footgun #2 - Untested Tests" href="https://shaigeva.com/posts/10_footguns/02_untested_tests/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://shaigeva.com/10_footguns/10_footguns_01_there_are_no_tests_cover.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Footgun #1 - There Are No Tests
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>(this post is part of a series about good testing practices)
-This is a “warm-up footgun” to the blog post series.
-The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.
-In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they’re just a drop in the sea.
-There are a few reasons I noticed, why moving from no tests at all to even one test for some area of the code is useful.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-10-04 13:01:56 +0300 IDT'>October 4, 2024</span>&nbsp;·&nbsp;<span>Shai Geva</span></footer>
-  <a class="entry-link" aria-label="post link to Footgun #1 - There Are No Tests" href="https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://shaigeva.com/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
     </main>
     
 <footer class="footer">
