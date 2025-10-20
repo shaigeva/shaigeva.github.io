@@ -45,20 +45,30 @@ We&amp;rsquo;ll see how it makes mistakes, finds them and self-heals.&lt;/p&gt;<
       <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
       <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
 &lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
-&lt;p&gt;Starting with simple (but useful!), and moving on to more complex ideas:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/&#34;&gt;There are no tests&lt;/a&gt; (warm up)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/02_untested_tests/&#34;&gt;Untested tests&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/&#34;&gt;The tests are not isolated&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/&#34;&gt;No locality of behavior&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/05_unclear_language/&#34;&gt;Unclear language&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/&#34;&gt;Testing too many things&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/07_improper_test_scope/&#34;&gt;Improper test scope&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/&#34;&gt;Test doubles everywhere&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/09_slow_tests/&#34;&gt;Slow tests&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Wrong priorities (coming soon)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Videos and slide decks from the talks&lt;/p&gt;</description>
+&lt;p&gt;The main objective of the post series is to help you write tests that have a better ROI.&lt;br&gt;
+I&amp;rsquo;ll discuss different practices, different ways that we can work.&lt;br&gt;
+These practices affect us by changing the properties of our tests:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #10 - Wrong Priorities</title>
+      <link>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=1511&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Strength - how well they catch bugs&lt;/li&gt;
+&lt;li&gt;Maintainability - how easy it is to work with them&lt;/li&gt;
+&lt;li&gt;Performance - how fast they run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/09_slow_tests/#the-feedback-loop-and-the-bug-funnel&#34;&gt;The bug funnel&lt;/a&gt; is all about performance.&lt;br&gt;
+&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/07_improper_test_scope/&#34;&gt;Testing a cohesive whole&lt;/a&gt; (implementation vs behavior) is about maintainability and strength.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Footgun #9 - Slow Tests</title>

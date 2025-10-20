@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Footgun #10 - Wrong Priorities | Shai Geva</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
+In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:
+
+Strength - how well they catch bugs
+Maintainability - how easy it is to work with them
+Performance - how fast they run
+
+The bug funnel is all about performance.
+Testing a cohesive whole (implementation vs behavior) is about maintainability and strength.">
+<meta name="author" content="Shai Geva">
+<link rel="canonical" href="https://shaigeva.com/posts/10_footguns/10_wrong_priorities/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shaigeva.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shaigeva.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/10_footguns/10_wrong_priorities/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:url" content="https://shaigeva.com/posts/10_footguns/10_wrong_priorities/">
+  <meta property="og:site_name" content="Shai Geva">
+  <meta property="og:title" content="Footgun #10 - Wrong Priorities">
+  <meta property="og:description" content=" This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing the properties of our tests:
+Strength - how well they catch bugs Maintainability - how easy it is to work with them Performance - how fast they run The bug funnel is all about performance.
+Testing a cohesive whole (implementation vs behavior) is about maintainability and strength.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-16T10:19:56+03:00">
+    <meta property="article:modified_time" content="2025-05-16T10:19:56+03:00">
+    <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png">
+<meta name="twitter:title" content="Footgun #10 - Wrong Priorities">
+<meta name="twitter:description" content="
+This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
+
+Here it is in PyCon US 2023
+
+
+In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:
+
+Strength - how well they catch bugs
+Maintainability - how easy it is to work with them
+Performance - how fast they run
+
+The bug funnel is all about performance.
+Testing a cohesive whole (implementation vs behavior) is about maintainability and strength.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shaigeva.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Footgun #10 - Wrong Priorities",
+      "item": "https://shaigeva.com/posts/10_footguns/10_wrong_priorities/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Footgun #10 - Wrong Priorities",
+  "name": "Footgun #10 - Wrong Priorities",
+  "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing the properties of our tests:\nStrength - how well they catch bugs Maintainability - how easy it is to work with them Performance - how fast they run The bug funnel is all about performance.\nTesting a cohesive whole (implementation vs behavior) is about maintainability and strength.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing the properties of our tests:\nStrength - how well they catch bugs Maintainability - how easy it is to work with them Performance - how fast they run The bug funnel is all about performance.\nTesting a cohesive whole (implementation vs behavior) is about maintainability and strength.\nPriorities are counter-intuitive But how do we prioritize what we want to invest in?\nFirst and foremost - the objective of tests is their strength.\nWe have tests so that they catch bugs.\nThe unintuitive thing is that this is not what we should prioritize when we work:\nStart with making them maintainable, Then make sure they are fast enough And then make them strong.\nWhy? Here’s the thing.\nSlow tests are weak, or at least they are EVENTUALLY weak.\nLet’s say that, as a team, we decided that we are not willing to have tests that run for more than 30 minutes.\nIf, at some point the tests reach 30 minutes…\nIt becomes very difficult to add more tests.\nSo after enough time, there will be a lot of code that’s not tested well.\nAnd the same thing happens with maintenance.\nIt’s more subtle, but if tests are not maintainable, it costs more to have them, and we end up creating fewer tests.\nSo again, they will be eventually weak.\nAnd, maintainability issues can also make it difficult to handle performance.\nAn example we saw is test isolation and parallelization.\nIn other words:\nMaintainability is a necessary condition for performance, and both are necessary conditions for strength.\nConclusion So make maintainability the priority.\nTesting a single fact, code design and all the other practices we covered.\nWhen you have a choice to make - I suggest to go with the most maintainable option almost always.\nEven at the cost of other things.\nBecause in the long run, that’s how we get tests that let us move fast, and have confidence in our code.\n\u003c\u003c previous post: Slow Tests ",
+  "wordCount" : "375",
+  "inLanguage": "en",
+  "image":"https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png","datePublished": "2025-05-16T10:19:56+03:00",
+  "dateModified": "2025-05-16T10:19:56+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Shai Geva"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shaigeva.com/posts/10_footguns/10_wrong_priorities/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shai Geva",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shaigeva.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shaigeva.com/" accesskey="h" title="Shai Geva (Alt + H)">Shai Geva</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shaigeva.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/talks" title="Talks">
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Footgun #10 - Wrong Priorities
+    </h1>
+    <div class="post-meta"><span title='2025-05-16 10:19:56 +0300 IDT'>May 16, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png" alt="">
+        
+</figure>
+  <div class="post-content"><span class="aside">
+This mini-post is part of a <a href="/posts/10_footguns/ten_footguns" target="_blank">series</a> about good testing practices, which I also presented at a couple of conferences.
+<br>
+Here it is in <a href="https://youtu.be/Ub31Ae6S1BY?t=1511" target="_blank">PyCon US 2023</a>
+</span>
+
+<p>In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:</p>
+<ul>
+<li>Strength - how well they catch bugs</li>
+<li>Maintainability - how easy it is to work with them</li>
+<li>Performance - how fast they run</li>
+</ul>
+<p><a href="/posts/10_footguns/09_slow_tests/#the-feedback-loop-and-the-bug-funnel">The bug funnel</a> is all about performance.<br>
+<a href="/posts/10_footguns/07_improper_test_scope/">Testing a cohesive whole</a> (implementation vs behavior) is about maintainability and strength.</p>
+<h1 id="priorities-are-counter-intuitive">Priorities are counter-intuitive<a hidden class="anchor" aria-hidden="true" href="#priorities-are-counter-intuitive">#</a></h1>
+<p>But how do we prioritize what we want to invest in?</p>
+<p>First and foremost - the objective of tests is their strength.<br>
+We have tests so that they catch bugs.</p>
+<p>The unintuitive thing is that this is not what we should prioritize when we work:<br>
+Start with making them maintainable, Then make sure they are fast enough
+And then make them strong.</p>
+<h1 id="why">Why?<a hidden class="anchor" aria-hidden="true" href="#why">#</a></h1>
+<p>Here&rsquo;s the thing.<br>
+Slow tests are weak, or at least they are EVENTUALLY weak.</p>
+<p>Let&rsquo;s say that, as a team, we decided that we are not willing to have tests that run for more than 30 minutes.</p>
+<p>If, at some point the tests reach 30 minutes&hellip;<br>
+It becomes very difficult to add more tests.<br>
+So after enough time, there will be a lot of code that&rsquo;s not tested well.</p>
+<p><img alt="Slow tests are weak" loading="lazy" src="/10_footguns/10_footguns_slow_tests_are_weak.png"></p>
+<p>And the same thing happens with maintenance.<br>
+It&rsquo;s more subtle, but if tests are not maintainable, it costs more to have them, and we end up creating fewer tests.<br>
+So again, they will be eventually weak.</p>
+<p>And, maintainability issues can also make it difficult to handle performance.<br>
+An example we saw is test isolation and parallelization.</p>
+<p>In other words:<br>
+Maintainability is a necessary condition for performance, and both are necessary conditions for strength.</p>
+<h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
+<p>So make maintainability the priority.<br>
+<a href="/posts/10_footguns/06_testing_too_many_things/">Testing a single fact</a>, <a href="/posts/10_footguns/08_test_doubles_everywhere/#code-design">code design</a> and all the other practices we covered.</p>
+<p>When you have a choice to make - I suggest to go with the most maintainable option almost always.<br>
+Even at the cost of other things.<br>
+Because in the long run, that&rsquo;s how we get tests that let us move fast, and have confidence in our code.</p>
+<p><img alt="Testing priorities: Maintainability -&gt; Performance -&gt; Strength" loading="lazy" src="/10_footguns/10_footguns_testing_priorities.png"></p>
+<hr>
+
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/10_footguns/09_slow_tests">&lt;&lt; previous post: Slow Tests</a>
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shaigeva.com/">Shai Geva</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
