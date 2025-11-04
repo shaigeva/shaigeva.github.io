@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI-Driven on Shai Geva</title>
+    <link>https://shaigeva.com/tags/ai-driven/</link>
+    <description>Recent content in AI-Driven on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 13:01:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/ai-driven/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI-first design patterns - CRUD backend fundamentals</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aside&#34;&gt;
+this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
+&lt;/span&gt;
+
+One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
+it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; by itself (that&amp;rsquo;s the base for this post. see earlier posts in the series for more about
+that).&lt;/p&gt;
+&lt;p&gt;Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.&lt;br&gt;
+And we don&amp;rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
+ones that fit.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

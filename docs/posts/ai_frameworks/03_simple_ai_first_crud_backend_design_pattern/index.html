@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI-first design patterns - CRUD backend fundamentals | Shai Geva</title>
+<meta name="keywords" content="AI, AI-first, AI-driven, AI-first design-patterns, design-patterns, testing, backend, API, DAL">
+<meta name="description" content="
+this post is part of a series about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
+
+
+One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
+it can &ldquo;plan -&gt; do -&gt; verify&rdquo; by itself (that&rsquo;s the base for this post. see earlier posts in the series for more about
+that).
+Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.
+And we don&rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
+ones that fit.">
+<meta name="author" content="Shai Geva">
+<link rel="canonical" href="https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ad7e9ed672bfa63aa62f2a9523f793e89f751a105296a152608bd1ccabf63b08.css" integrity="sha256-rX6e1nK/pjqmLyqVI/eT6J91GhBSlqFSYIvRzKv2Owg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shaigeva.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shaigeva.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shaigeva.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shaigeva.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shaigeva.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWC9X8YE9C"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YWC9X8YE9C');
+        }
+      </script><meta property="og:url" content="https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/">
+  <meta property="og:site_name" content="Shai Geva">
+  <meta property="og:title" content="AI-first design patterns - CRUD backend fundamentals">
+  <meta property="og:description" content=" this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks. One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so it can “plan -&gt; do -&gt; verify” by itself (that’s the base for this post. see earlier posts in the series for more about that).
+Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.
+And we don’t need to invent anything new - there are well-known, established options; we just need to pick ones that fit.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-11-01T13:01:56+03:00">
+    <meta property="article:modified_time" content="2025-11-01T13:01:56+03:00">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="AI-First">
+    <meta property="article:tag" content="AI-Driven">
+    <meta property="article:tag" content="AI-First Design-Patterns">
+    <meta property="article:tag" content="Design-Patterns">
+    <meta property="article:tag" content="Testing">
+    <meta property="og:image" content="https://shaigeva.com/ai_frameworks/robot_thinking_crud.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shaigeva.com/ai_frameworks/robot_thinking_crud.jpg">
+<meta name="twitter:title" content="AI-first design patterns - CRUD backend fundamentals">
+<meta name="twitter:description" content="
+this post is part of a series about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
+
+
+One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
+it can &ldquo;plan -&gt; do -&gt; verify&rdquo; by itself (that&rsquo;s the base for this post. see earlier posts in the series for more about
+that).
+Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.
+And we don&rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
+ones that fit.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shaigeva.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI-first design patterns - CRUD backend fundamentals",
+      "item": "https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI-first design patterns - CRUD backend fundamentals",
+  "name": "AI-first design patterns - CRUD backend fundamentals",
+  "description": " this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks. One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so it can \u0026ldquo;plan -\u0026gt; do -\u0026gt; verify\u0026rdquo; by itself (that\u0026rsquo;s the base for this post. see earlier posts in the series for more about that).\nTurns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.\nAnd we don\u0026rsquo;t need to invent anything new - there are well-known, established options; we just need to pick ones that fit.\n",
+  "keywords": [
+    "AI", "AI-first", "AI-driven", "AI-first design-patterns", "design-patterns", "testing", "backend", "API", "DAL"
+  ],
+  "articleBody": " this post is part of a series about creating production-grade maintainable AI-first projects, using AI-first design patterns and frameworks. One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so it can “plan -\u003e do -\u003e verify” by itself (that’s the base for this post. see earlier posts in the series for more about that).\nTurns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.\nAnd we don’t need to invent anything new - there are well-known, established options; we just need to pick ones that fit.\nIn this post we’ll take a look at two classic approaches that work really well.\nYou probably already know them, but there are important nuances for how to use them effectively with AI agents, and we’ll look into them, incl. discussing some low-level technical details to make it concrete-enough to hopefully help with implementation.\nAfter discussing the patterns, we’ll take a look at an example CRUD backend project that uses them, and finish with some conclusions from the experience of building this service.\ntl;dr For those in a hurry - this is the very short version:\nOur basis is to heavily rely on HTTP-API-level tests - all possible functionality will be covered by them. Nuances:\nAPI-level means API-level - everything is done through the HTTP interface, incl. creating test-data. We’ll make the DB fast enough for testing (in-memory, fakes, local DB etc.) We’ll try to use an in-process TestClient if possible. We also (optional, but highly recommended) have a DAL, and we’ll have thorough tests for it as well. Nuances:\nDAL-level means DAL-level - everything is done through the DAL interface, incl. creating test-data. DB has the same considerations as with API tests. In this post we’re only dealing with a local CRUD backend service - other concerns like external dependencies are obviously important, but there’s only so much we can cover in one post, and what we’re showing here are the fundamentals that form the base that we can build on.\nWhat’s the basic goal? To enable a feedback loop that’s actually effective, we need the agent to be able to check itself well.\nFor that, we need the tests to be “good” in specific ways:\nClose enough to the truth: “passing or failing” should mostly mean “there’s no bug or there is a bug” in some area. Extensive enough: cover the vast majority of the service’s behavior. Fast enough: so the agent can run them after small changes. I’d like to stress that all these have the word “enough” in them.\nIt has to be good, but it doesn’t need to be perfect - if the agent catches most bugs easily and quickly, we’ll get a 10x boost.\nHow is this different from normal testing? On one hand, it’s not very different - these same considerations are important in normal testing as well.\nBut agents make them more important, because getting the tests right can be the difference between the agent having a decent feedback loop and not having it.\nThe agent relies on the tests for its quick feedback.\nIf they’re not reliable, not extensive or take too long to actually run on small changes - the agent won’t get the feedback it needs. It’ll go off in the wrong direction without any way to notice, and a lot of the verification work will fall back on us humans, which defeats the purpose.\nAgents also have different tradeoffs.\nThe act of writing code and tests is much cheaper now. We can easily have a thousand tests where we earlier had ten.\nIt’s the quality that’s tricky - are these tests actually testing something real?\nThis means that investing in a setup that makes the tests better by default, will now have a much higher ROI.\nAPI tests - the bread and butter This is the most important and also the most obvious idea.\nIt works with every code design, as long as you have a way to handle the DB.\nThe “truth” about how an API service behaves is its HTTP interface.\nIf it receives HTTP requests and returns the right responses, it works.\nSo obviously, this is the most reliable way to test it - tests that interact with the service as if they are an external client.\nThese are sometimes referred to as integration tests, but that's a fairly vague term so I'll stick with the more explicit \"API tests\". This means that in many cases, the basic strategy for testing a service is to heavily rely on API tests:\nHave a good setup for the API tests. Have the agent write thorough tests for all possible functionality through these API tests. True, it doesn’t work for everything, but if this is your starting point, you’re already in a pretty good place.\nThe tricky thing here is how to create a “good setup” for the tests.\nThere are various options for how to write API tests, and we need to choose the right ones, in order to avoid some pitfalls.\nPerformance pitfalls The best option is to have the API tests run as in-process unit-tests, with the DB being in-memory.\nHow can HTTP API tests be in-process? Many web frameworks have a “TestClient” that allows simulating HTTP requests.\nYou get the exact same interface as a real HTTP client, and the framework sets it up to be functionally identical (or close-enough).\nExample (Python - FastAPI + pytest):\ndef test_create_user_as_super_admin(self, client: TestClient) -\u003e None: response = client.post( \"/api/users\", params={\"organization_id\": org_id, \"role\": \"admin\"}, json={\"username\": \"newuser\", \"email\": \"new@example.com\", \"full_name\": \"New User\"}, headers=auth_headers(super_admin_token), ) assert response.status_code == 201 ... The Pythonists among you may notice that client.post looks exactly like the popular requests.post function.\nSo we stay within the same process and use simple function calls instead of having a separate process with an actual HTTP server.\nVery fast and still reliable-enough.\nWhat about the DB? The thing we can’t compromise about is “the tests must be fast-enough and reliable-enough most of the time”.\nSo yes - it’s a non-trivial challenge, but there’s a lot of wiggle room.\nHere are some options for things we can do at the DB front:\nIn-memory mode: if your DB supports it. Use a fake DB: a “fake” is a “simulator”: it behaves similarly to the real thing WRT tests. For example, an in-memory DB (e.g. SQLite) can simulate Postgres (might need a small adapter). Set up your DB so it’s local and fast enough. E.g. local Postgres instance running on the dev machine. Might need utilities to help make the DB faster. E.g. local postgres: a docker image can contain everything incl. test-data, and each test suite spins up a new container get a clean, instantly-available DB. Caching, pre-calculation, parallelization etc. are all options to explore. Set up the agent so most of the time, it only runs a small subset of the tests that are related to the changed code. Fake the DAL: if the other solutions don’t cut it, then your only option might be to use a DAL (Data Access Layer - which is a good idea anyway, see below) and create an alternative DAL implementation that doesn’t use your DB. For example, it can have simple data structures that just behave like the DB in the tests. This takes more work (though the agent will be the one doing that work) and is less reliable - but if that’s the only option, then that’s life. Have “fast mode” (e.g. in-memory SQLite) and “reliable mode” (real Postgres), and only run the reliable mode infrequently. The core idea is to be pragmatic - be good-enough most of the time.\nThat’s enough for a decent feedback loop.\nCorrectness pitfalls While performance is obvious, battling correctness is more difficult because there are practices that just don’t work but are extremely common and are often considered “good”.\nBecause the only real dependency in a CRUD is the DB, the main correctness issue is how we create and access the thing that lives in the DB: the test data.\nI spent many years thinking a lot about testing, and I suggest very strongly:\nCreate and access the test data using the interface being tested.\nFor API tests, this means they should behave as if they are an external client:\nGenerate all test data through the layer that we’re testing - in this case the HTTP interface itself. Verify the results - again, though the same interface. Don’t use the ORM (implementation detail), the DAL (implementation detail), mocks, stubs or any other thing that’s not the real API.\nIf you do, the data might be different than it is in the actual system, and this will make the tests unreliable.\nSubtle bugs can creep in.\nFor example, a test might assert a value in the DB, assuming that this value has a certain meaning on the system, but in reality the system might combine that value with others in some cases.\nAnd since the tests are the only way the agent can verify itself, it’ll have no way of knowing that it’s creating bugs.\nMake the effort needed to get this to work, it’s the best investment you can make.\nIf you’d like a more concrete look at this -\nA couple of years ago, I mentioned this at a PyCon US talk (in a non-AI context, but everything still applies), and following that talk wrote a blog post about it.\nDAL layer and its tests A common design choice for working with DBs is to have a DAL (Data Access Layer, sometimes called repository), which abstracts access to the DB.\nCode outside the DAL doesn’t have access the DB or the ORM, it only knows the domain-model objects (immutable data structures, like User, Project, Ticket) and the DAL handles the DB itself.\nFor example, creating a User might look like this:\ndef update_user( self, user_id: str, update_command: UserUpdateCommand, # INPUT - simple data structure, not connected to DB ) -\u003e Optional[User]: # DB ACCESS is here: orm_user = self.session.query(UserORM).filter(UserORM.id == user_id).first() # ... # Where the UserUpdateCommand is just a data structure: class UserUpdateCommand(BaseModel): email: Optional[EmailStr] = Field(None, description=\"User email address\") full_name: Optional[str] = Field(None, min_length=1, max_length=255, description=\"User full name\") role: Optional[UserRole] = Field(None, description=\"User role\") is_active: Optional[bool] = Field(None, description=\"Whether user is active\") While this has downsides (like code bloat), in real projects I usually prefer to have this layer, and agents only make that preference stronger.\nWhat’s important for us here is that this layer defines the “full set of every interaction with our persistent state - both the ways we can change it and the ways we can query it”. Useful because:\nIf we test the DAL well, then we’ve tested our state well. The DAL is much smaller than “everything that can be done through the ORM”, making it realistic to test it well. If we don’t have a DAL, a full test suite for the state would be huge. There will be aspects of the code that are simpler to test at this level than through the API. An AI-specific consideration is that the context is much clearer with a DAL, making it easier for the agent to focus: When working outside the DAL, the only context the agent usually needs about the DB is the limited DAL interface. If we don’t have a DAL, DB access is typically distributed through many files, in many variants. It’s far more difficult to find “just the right thing the agent needs to notice”. And when working inside the DAL, the agent’s context usually doesn’t need to be much more than the rest of the DAL interface and the DB access itself (which is contained in the DAL). Another AI-related consideration: as mentioned above, if you don’t have a fast-enough DB setup, you might have to have a DAL and create a fake (simulator) for it. BUT, even if you do have a fast DB setup today - in 6 months you might need to change the DB for some of your data. And the new DB might not have a fast-enough setup. If you have a DAL, you’ll have a solution. If you don’t, you’ll have hundreds or thousands of lines of code that access the DB directly, and that will be game over for your agent’s feedback loop. Don’t risk it. So we want to have a DAL, and we want to have our agent write thorough tests for it.\nBut, like with the API tests, we need to be careful about how we set up these tests to avoid pitfalls.\nAnd these pitfalls are similar to the ones we had with the API tests. We want to\nDo all interactions through the external interface of the DAL (i.e. the repository interface that uses domain models), and not through the ORM or any internal APIs. Make sure the tests are fast enough. We have the same considerations WRT DB setup etc. as with the API tests. Summing up our patterns Because API-level tests are the “truth”, if we have a reliable and fast DB setup, these tests alone give us a solid feedback loop for our AI agent.\nFrom my recent experience, this works so well that I suggest to never bother writing a new service without them.\nFor a small CRUD, the API tests might actually be enough.\nBut I do recommend to have a DAL and to have thorough tests for it as well.\nIt’s true that we pay with code bloat, an extra abstraction layer and tests that have some overlap with the API tests.\nBut the agent doesn’t care (it’s actually easier for it because of context considerations), and it makes everything more solid and maintainable.\nExample project To avoid a situation where I’m recommending something but many devs don’t have an example of what this looks like, I created a small-ish CRUD backend project , that uses the design patterns we talked about.\nIf you’d like to get a feel of how this looks in practice, you can have a look at the code (links to specific parts below).\nIt’s a Python backend for a basic project management app. Basic features of our service:\nOrganizations (tenants) with isolated data Role-based access control (Admin, Project Manager, Write Access, Read Access) Projects containing tickets with configurable workflows Epics that span multiple projects Comments on tickets Activity logs and audit trails with permission-based access It has a rough UI covering part of the functionality, but it’s not really tested and not part of the organized workflow I’m talking about in this post - I just created it to get a feel that the API is usable:\nProject structure This project was created pretty much completely by an AI agent (Claude Code, with guidance of course) - I set up an initial scaffolding and agent rules that define coding conventions and how the feedback loop works, and the rest was generated by the agent in several sessions.\nThe tech stack contains common Python tools - FastAPI, SQLAlchemy.\nIt’s a local-only dev setup (SQLite DB) - a few thousand lines of code, just enough to show designs on a service that’s not a trivial “Hello, World”.\nThe basic structure is exactly what’s described above. You can have a look at the code to see how it looks in practice:\nOne of the API routers: https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/routers/ticket_api.py DAL: https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/dal/sqlite/repository.py Tests: One of the API tests: https://github.com/shaigeva/project_management_crud_example/blob/main/tests/api/test_ticket_api.py One of the DAL tests: https://github.com/shaigeva/project_management_crud_example/blob/main/tests/dal/test_ticket_repository.py In addition to the API and DAL tests, there are some unit tests for specific modules, in cases that a module can be tested in isolation without mocks etc. Tests: some extra details In this setup, creating a new DB and test data is actually pretty fast.\nSo I went with a setup that a clean physical SQLite db (which is just a file) is created for each test (in a temp directory), is then initialized with test data, and the directory is discarded when the test finishes.\nThe full test suite takes ~20 sec to run.\nIt’s fine for this example project, but in a larger project this would take longer.\nI’d set it up so tests usually run in-memory, and also cache some of the setup. In a real project, I’d also set up the agent to usually only run a small subset of the tests that are related to the changed code, so that the agent would typically only wait a couple of seconds.\nHonorary mention: Spec-driven development The focus of this post is on code \u0026 tests design, so I won’t get into the details here, but it’s worth a mention that workflow-wise, the project is spec-driven in spirit.\nIt has a ~consistent pattern to move from high-level spec to low-level implementation, and this has been a major part in getting the agent to do consistent, focused work.\n┌──────────────────────────────────┐ │ High-Level Spec │ (main features) └────────────────┬─────────────────┘ │ ▼ ┌──────────────────────────────────┐ │ Detailed Specs │ (persistent - requirements \u0026 acceptance └────────────────┬─────────────────┘ criteria for specific features) │ ▼ ┌──────────────────────────────────┐ │ Current Feature Implementation │ (ephemeral - archived when done) │ Plan │ └────────────────┬─────────────────┘ │ ▼ ┌──────────────────────────────────┐ │ Code and Tests │ └──────────────────────────────────┘ Summing up My objective with this post was to highlight some basic design/testing patterns for API services, and show why they are better than others for AI-first development.\nI shared quite a bit of detail, in the hope that it would make things concrete and explicit enough to both convince other devs to give these ideas a shot, and help them implement.\nIf the rationale didn’t convince you, I can only say that in my experiments so far, these work very well.\nI hope you found this post useful, and would love to hear your thoughts on social (twitter / x, linkedin)!\n\u003c\u003c previous post: What an AI Feedback Loop Looks Like | next post: (coming soon) \u003e\u003e ",
+  "wordCount" : "2993",
+  "inLanguage": "en",
+  "image":"https://shaigeva.com/ai_frameworks/robot_thinking_crud.jpg","datePublished": "2025-11-01T13:01:56+03:00",
+  "dateModified": "2025-11-01T13:01:56+03:00",
+  "author":{
+    "@type": "Person",
+    "name": "Shai Geva"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shai Geva",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shaigeva.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shaigeva.com/" accesskey="h" title="Shai Geva (Alt + H)">Shai Geva</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shaigeva.com/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/talks" title="Talks">
+                    <span>Talks</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shaigeva.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      AI-first design patterns - CRUD backend fundamentals
+    </h1>
+    <div class="post-meta"><span title='2025-11-01 13:01:56 +0300 +0300'>November 1, 2025</span>&nbsp;·&nbsp;<span>Shai Geva</span>
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://shaigeva.com/ai_frameworks/robot_thinking_crud.jpg" alt="">
+        
+</figure>
+  <div class="post-content"><p><span class="aside">
+this post is part of a <a href="/posts/ai_frameworks/01_ai_frameworks_intro" target="_blank">series</a> about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
+</span>
+
+One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
+it can &ldquo;plan -&gt; do -&gt; verify&rdquo; by itself (that&rsquo;s the base for this post. see earlier posts in the series for more about
+that).</p>
+<p>Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.<br>
+And we don&rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
+ones that fit.</p>
+<p>In this post we&rsquo;ll take a look at two classic approaches that work really well.<br>
+You probably already know them, but there are important nuances for how to use them effectively with AI agents, and
+we&rsquo;ll look into them, incl. discussing some low-level technical details to make it concrete-enough to hopefully help
+with implementation.</p>
+<p>After discussing the patterns, we&rsquo;ll take a look at an example CRUD backend project that uses them, and finish with some
+conclusions from the experience of building this service.</p>
+<h1 id="tldr">tl;dr<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h1>
+<p>For those in a hurry - this is the very short version:</p>
+<p>Our basis is to heavily rely on HTTP-API-level tests - all possible functionality will be covered by them. Nuances:</p>
+<ul>
+<li>API-level means API-level - everything is done through the HTTP interface, incl. creating test-data.</li>
+<li>We&rsquo;ll make the DB fast enough for testing (in-memory, fakes, local DB etc.)</li>
+<li>We&rsquo;ll try to use an in-process TestClient if possible.</li>
+</ul>
+<p>We also (optional, but highly recommended) have a DAL, and we&rsquo;ll have thorough tests for it as well. Nuances:</p>
+<ul>
+<li>DAL-level means DAL-level - everything is done through the DAL interface, incl. creating test-data.</li>
+<li>DB has the same considerations as with API tests.</li>
+</ul>
+<p>In this post we&rsquo;re only dealing with a local CRUD backend service - other concerns like external dependencies are
+obviously important, but there&rsquo;s only so much we can cover in one post, and what we&rsquo;re showing here are the
+fundamentals that form the base that we can build on.</p>
+<p><img alt="High-Level Architecture - without details" loading="lazy" src="/ai_frameworks/simple_crud_high_level_architechture_without_details.png"></p>
+<h1 id="whats-the-basic-goal">What&rsquo;s the basic goal?<a hidden class="anchor" aria-hidden="true" href="#whats-the-basic-goal">#</a></h1>
+<p>To enable a feedback loop that&rsquo;s actually effective, we need the agent to be able to check itself well.<br>
+For that, we need the tests to be &ldquo;good&rdquo; in specific ways:</p>
+<ul>
+<li>Close enough to the truth: &ldquo;passing or failing&rdquo; should mostly mean &ldquo;there&rsquo;s no bug or there
+is a bug&rdquo; in some area.</li>
+<li>Extensive enough: cover the vast majority of the service&rsquo;s behavior.</li>
+<li>Fast enough: so the agent can run them after small changes.</li>
+</ul>
+<p>I&rsquo;d like to stress that all these have the word &ldquo;enough&rdquo; in them.<br>
+It has to be good, but it doesn&rsquo;t need to be perfect - if the agent catches most bugs easily and quickly, we&rsquo;ll get a
+10x boost.</p>
+<h2 id="how-is-this-different-from-normal-testing">How is this different from normal testing?<a hidden class="anchor" aria-hidden="true" href="#how-is-this-different-from-normal-testing">#</a></h2>
+<p>On one hand, it&rsquo;s not very different - these same considerations are important in normal testing as well.</p>
+<p>But agents make them more important, because getting the tests right can be the difference between the agent having a
+decent feedback loop and not having it.</p>
+<p>The agent relies on the tests for its quick feedback.<br>
+If they&rsquo;re not reliable, not extensive or take too long to actually run on small changes - the agent won&rsquo;t get the
+feedback it needs. It&rsquo;ll go off in the wrong direction without any way to notice, and a lot of the verification work
+will fall back on us humans, which defeats the purpose.</p>
+<p>Agents also have different tradeoffs.<br>
+The act of writing code and tests is much cheaper now. We can easily have a thousand tests where we earlier had ten.<br>
+It&rsquo;s the quality that&rsquo;s tricky - are these tests actually testing something real?<br>
+This means that investing in a setup that makes the tests better by default, will now have a much higher ROI.</p>
+<h1 id="api-tests---the-bread-and-butter">API tests - the bread and butter<a hidden class="anchor" aria-hidden="true" href="#api-tests---the-bread-and-butter">#</a></h1>
+<p>This is the most important and also the most obvious idea.<br>
+It works with every code design, as long as you have a way to handle the DB.</p>
+<p>The &ldquo;truth&rdquo; about how an API service behaves is its HTTP interface.<br>
+If it receives HTTP requests and returns the right responses, it works.<br>
+So obviously, this is the most reliable way to test it - tests that interact with the service as if they are an external
+client.</p>
+<span class="aside">
+These are sometimes referred to as integration tests, but that's a fairly vague term so I'll stick with the more
+explicit "API tests".
+</span>
+
+<p>This means that in many cases, the basic strategy for testing a service is to heavily rely on API tests:</p>
+<ul>
+<li>Have a good setup for the API tests.</li>
+<li>Have the agent write thorough tests for all possible functionality through these API tests.</li>
+</ul>
+<p><img alt="High-Level Architecture" loading="lazy" src="/ai_frameworks/simple_crud_high_level_architechture_only_api_tests_details.png"></p>
+<p>True, it doesn&rsquo;t work for everything, but if this is your starting point, you&rsquo;re already in a pretty good place.</p>
+<p>The tricky thing here is how to create a &ldquo;good setup&rdquo; for the tests.<br>
+There are various options for how to write API tests, and we need to choose the right ones, in order to avoid some
+pitfalls.</p>
+<h2 id="performance-pitfalls">Performance pitfalls<a hidden class="anchor" aria-hidden="true" href="#performance-pitfalls">#</a></h2>
+<p>The best option is to have the API tests run as in-process unit-tests, with the DB being in-memory.</p>
+<h3 id="how-can-http-api-tests-be-in-process">How can HTTP API tests be in-process?<a hidden class="anchor" aria-hidden="true" href="#how-can-http-api-tests-be-in-process">#</a></h3>
+<p>Many web frameworks have a &ldquo;TestClient&rdquo; that allows simulating HTTP requests.<br>
+You get the exact same interface as a real HTTP client, and the framework sets it up to be functionally identical
+(or close-enough).<br>
+Example (Python - FastAPI + pytest):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_create_user_as_super_admin</span>(self, client: TestClient) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>post(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;/api/users&#34;</span>,
+</span></span><span style="display:flex;"><span>        params<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;organization_id&#34;</span>: org_id, <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;admin&#34;</span>},
+</span></span><span style="display:flex;"><span>        json<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;newuser&#34;</span>, <span style="color:#e6db74">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;new@example.com&#34;</span>, <span style="color:#e6db74">&#34;full_name&#34;</span>: <span style="color:#e6db74">&#34;New User&#34;</span>},
+</span></span><span style="display:flex;"><span>        headers<span style="color:#f92672">=</span>auth_headers(super_admin_token),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">201</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>The Pythonists among you may notice that <code>client.post</code> looks exactly like the popular <code>requests.post</code> function.</p>
+<p>So we stay within the same process and use simple function calls instead of having a separate process with an actual
+HTTP server.<br>
+Very fast and still reliable-enough.</p>
+<h3 id="what-about-the-db">What about the DB?<a hidden class="anchor" aria-hidden="true" href="#what-about-the-db">#</a></h3>
+<p>The thing we can&rsquo;t compromise about is &ldquo;the tests must be fast-enough and reliable-enough most of the time&rdquo;.<br>
+So yes - it&rsquo;s a non-trivial challenge, but there&rsquo;s a lot of wiggle room.<br>
+Here are some options for things we can do at the DB front:</p>
+<ul>
+<li>In-memory mode: if your DB supports it.</li>
+<li>Use a fake DB: a &ldquo;fake&rdquo; is a &ldquo;simulator&rdquo;: it behaves similarly to the real thing WRT tests. For example, an in-memory
+DB (e.g. SQLite) can simulate Postgres (might need a small adapter).</li>
+<li>Set up your DB so it&rsquo;s local and fast enough. E.g. local Postgres instance running on the dev machine.</li>
+<li>Might need utilities to help make the DB faster.
+<ul>
+<li>E.g. local postgres: a docker image can contain everything incl. test-data, and each test suite spins up a new
+container get a clean, instantly-available DB.</li>
+<li>Caching, pre-calculation, parallelization etc. are all options to explore.</li>
+</ul>
+</li>
+<li>Set up the agent so most of the time, it only runs a small subset of the tests that are related to the changed code.</li>
+<li>Fake the DAL: if the other solutions don&rsquo;t cut it, then your only option might be to use a DAL (Data Access
+Layer - which is a good idea anyway, see below) and create an alternative DAL implementation that doesn&rsquo;t use your DB.
+For example, it can have simple data structures that just behave like the DB in the tests. This takes more work (though
+the agent will be the one doing that work) and is less reliable - but if that&rsquo;s the only option, then that&rsquo;s life.</li>
+<li>Have &ldquo;fast mode&rdquo; (e.g. in-memory SQLite) and &ldquo;reliable mode&rdquo; (real Postgres), and only run the reliable mode
+infrequently.</li>
+</ul>
+<p>The core idea is to be pragmatic - be good-enough most of the time.<br>
+That&rsquo;s enough for a decent feedback loop.</p>
+<h2 id="correctness-pitfalls">Correctness pitfalls<a hidden class="anchor" aria-hidden="true" href="#correctness-pitfalls">#</a></h2>
+<p>While performance is obvious, battling correctness is more difficult because there are practices
+that just don&rsquo;t work but are extremely common and are often considered &ldquo;good&rdquo;.</p>
+<p>Because the only real dependency in a CRUD is the DB, the main correctness issue is how we create and access the thing
+that lives in the DB: the test data.</p>
+<p>I spent many years thinking a lot about testing, and I suggest very strongly:<br>
+Create and access the test data using the interface being tested.<br>
+For API tests, this means they should behave as if they are an external client:</p>
+<ul>
+<li>Generate all test data through the layer that we&rsquo;re testing - in this case the HTTP interface itself.</li>
+<li>Verify the results - again, though the same interface.</li>
+</ul>
+<p>Don&rsquo;t use the ORM (implementation detail), the DAL (implementation detail), mocks, stubs or any other thing that&rsquo;s not
+the real API.</p>
+<p>If you do, the data might be different than it is in the actual system, and this will make the tests unreliable.<br>
+Subtle bugs can creep in.<br>
+For example, a test might assert a value in the DB, assuming
+that this value has a certain meaning on the system, but in reality the system might combine that value with others in
+some cases.<br>
+And since the tests are the only way the agent can verify itself, it&rsquo;ll have no way
+of knowing that it&rsquo;s creating bugs.</p>
+<p>Make the effort needed to get this to work, it&rsquo;s the best investment you can make.</p>
+<p>If you&rsquo;d like a more concrete look at this -<br>
+A couple of years ago, I
+
+<a href="https://youtu.be/Ub31Ae6S1BY?t=447" target="_blank">mentioned this at a PyCon US talk</a>
+(in a non-AI context, but everything still applies), and following that talk
+<a href="/posts/10_footguns/07_improper_test_scope" target="_blank">wrote a blog post</a>
+
+about it.</p>
+<h1 id="dal-layer-and-its-tests">DAL layer and its tests<a hidden class="anchor" aria-hidden="true" href="#dal-layer-and-its-tests">#</a></h1>
+<p>A common design choice for working with DBs is to have a DAL (Data Access Layer, sometimes called repository),
+which abstracts access to the DB.<br>
+Code outside the DAL doesn&rsquo;t have access the DB or the ORM, it only knows the domain-model objects (immutable data
+structures, like User, Project, Ticket) and the DAL handles the DB itself.</p>
+<p><img alt="High-Level Architecture" loading="lazy" src="/ai_frameworks/simple_crud_high_level_architechture_with_details.png"></p>
+<p>For example, creating a User might look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_user</span>(
+</span></span><span style="display:flex;"><span>  self,
+</span></span><span style="display:flex;"><span>  user_id: str,
+</span></span><span style="display:flex;"><span>  update_command: UserUpdateCommand,  <span style="color:#75715e"># INPUT - simple data structure, not connected to DB</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">-&gt;</span> Optional[User]:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># DB ACCESS is here:</span>
+</span></span><span style="display:flex;"><span>    orm_user <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>query(UserORM)<span style="color:#f92672">.</span>filter(UserORM<span style="color:#f92672">.</span>id <span style="color:#f92672">==</span> user_id)<span style="color:#f92672">.</span>first()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Where the UserUpdateCommand is just a data structure:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserUpdateCommand</span>(BaseModel):
+</span></span><span style="display:flex;"><span>    email: Optional[EmailStr] <span style="color:#f92672">=</span> Field(<span style="color:#66d9ef">None</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;User email address&#34;</span>)
+</span></span><span style="display:flex;"><span>    full_name: Optional[str] <span style="color:#f92672">=</span> Field(<span style="color:#66d9ef">None</span>, min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">255</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;User full name&#34;</span>)
+</span></span><span style="display:flex;"><span>    role: Optional[UserRole] <span style="color:#f92672">=</span> Field(<span style="color:#66d9ef">None</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;User role&#34;</span>)
+</span></span><span style="display:flex;"><span>    is_active: Optional[bool] <span style="color:#f92672">=</span> Field(<span style="color:#66d9ef">None</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Whether user is active&#34;</span>)
+</span></span></code></pre></div><p>While this has downsides (like code bloat), in real projects I usually prefer to have this layer, and agents only make
+that preference stronger.</p>
+<p>What&rsquo;s important for us here is that this layer defines the &ldquo;full set of every interaction with our persistent state -
+both the ways we can change it and the ways we can query it&rdquo;. Useful because:</p>
+<ol>
+<li>If we test the DAL well, then we&rsquo;ve tested our state well.</li>
+<li>The DAL is much smaller than &ldquo;everything that can be done through the ORM&rdquo;, making it realistic to test
+it well. If we don&rsquo;t have a DAL, a full test suite for the state would be huge.</li>
+<li>There will be aspects of the code that are simpler to test at this level than through the API.</li>
+<li>An AI-specific consideration is that the context is much clearer with a DAL, making it easier for the agent to focus:
+<ul>
+<li>When working outside the DAL, the only context the agent usually needs about the DB is the
+limited DAL interface. If we don&rsquo;t have a DAL, DB access is typically distributed through many files, in
+many variants. It&rsquo;s far more difficult to find &ldquo;just the right thing the agent needs to notice&rdquo;.</li>
+<li>And when working inside the DAL, the agent&rsquo;s context usually doesn&rsquo;t need to be much
+more than the rest of the DAL interface and the DB access itself (which is contained in the DAL).</li>
+</ul>
+</li>
+<li>Another AI-related consideration: as mentioned above, if you don&rsquo;t have a fast-enough DB setup, you might have to
+have a DAL and create a fake (simulator) for it. <strong>BUT</strong>, even if you do have a fast DB setup today - in 6 months you
+might need to change the DB for some of your data. And the new DB might not have a fast-enough setup. If you have a DAL,
+you&rsquo;ll have a solution. If you don&rsquo;t, you&rsquo;ll have hundreds or thousands of lines of code that access the DB directly,
+and that will be game over for your agent&rsquo;s feedback loop. Don&rsquo;t risk it.</li>
+</ol>
+<p>So we want to have a DAL, and we want to have our agent write thorough tests for it.</p>
+<p>But, like with the API tests, we need to be careful about how we set up these tests to avoid pitfalls.<br>
+And these pitfalls are similar to the ones we had with the API tests. We want to</p>
+<ul>
+<li>Do all interactions through the external interface of the DAL (i.e. the repository interface that uses domain models),
+and not through the ORM or any internal APIs.</li>
+<li>Make sure the tests are fast enough. We have the same considerations WRT DB setup etc. as with the API tests.</li>
+</ul>
+<h1 id="summing-up-our-patterns">Summing up our patterns<a hidden class="anchor" aria-hidden="true" href="#summing-up-our-patterns">#</a></h1>
+<p>Because API-level tests are the &ldquo;truth&rdquo;, if we have a reliable and fast DB setup, these tests alone give us
+a solid feedback loop for our AI agent.<br>
+From my recent experience, this works so well that I suggest to never bother writing a new service without them.</p>
+<p>For a small CRUD, the API tests might actually be enough.<br>
+But I do recommend to have a DAL and to have thorough tests for it as well.<br>
+It&rsquo;s true that we pay with code bloat, an extra abstraction layer and tests that have some overlap with the API tests.<br>
+But the agent doesn&rsquo;t care (it&rsquo;s actually easier for it because of context considerations), and it makes everything more
+solid and maintainable.</p>
+<h1 id="example-project">Example project<a hidden class="anchor" aria-hidden="true" href="#example-project">#</a></h1>
+<p>To avoid a situation where I&rsquo;m recommending something but many devs don&rsquo;t have an example of what this looks like, I
+
+<a href="https://github.com/shaigeva/project_management_crud_example" target="_blank">created a small-ish CRUD backend
+project</a>
+, that uses the design patterns we talked about.<br>
+If you&rsquo;d like to get a feel of how this looks in practice, you can have a look at the code (links to specific parts
+below).</p>
+<p>It&rsquo;s a Python backend for a basic project management app. Basic features of our service:</p>
+<ul>
+<li>Organizations (tenants) with isolated data</li>
+<li>Role-based access control (Admin, Project Manager, Write Access, Read Access)</li>
+<li>Projects containing tickets with configurable workflows</li>
+<li>Epics that span multiple projects</li>
+<li>Comments on tickets</li>
+<li>Activity logs and audit trails with permission-based access</li>
+</ul>
+<p>It has a rough UI covering part of the functionality, but it&rsquo;s not really tested and not part of the organized workflow
+I&rsquo;m talking about in this post - I just created it to get a feel that the API is usable:</p>
+<p><img alt="Example project management app UI" loading="lazy" src="/ai_frameworks/project_management_example_app_gif.gif"></p>
+<h2 id="project-structure">Project structure<a hidden class="anchor" aria-hidden="true" href="#project-structure">#</a></h2>
+<p>This project was created pretty much completely by an AI agent (Claude Code, with guidance
+of course) - I set up an initial scaffolding and agent rules that define coding conventions
+and how the feedback loop works, and the rest was generated by the agent in several sessions.</p>
+<p>The tech stack contains common Python tools - FastAPI, SQLAlchemy.<br>
+It&rsquo;s a local-only dev setup (SQLite DB) - a few thousand lines of code, just enough
+to show designs on a service that&rsquo;s not a trivial &ldquo;Hello, World&rdquo;.</p>
+<p>The basic structure is exactly what&rsquo;s described above. You can have a look at the code to see
+how it looks in practice:</p>
+<ul>
+<li>One of the API routers: <a href="https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/routers/ticket_api.py" target="_blank" rel="noopener noreferrer">https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/routers/ticket_api.py</a></li>
+<li>DAL: <a href="https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/dal/sqlite/repository.py" target="_blank" rel="noopener noreferrer">https://github.com/shaigeva/project_management_crud_example/blob/main/project_management_crud_example/dal/sqlite/repository.py</a></li>
+<li>Tests:
+<ul>
+<li>One of the API tests: <a href="https://github.com/shaigeva/project_management_crud_example/blob/main/tests/api/test_ticket_api.py" target="_blank" rel="noopener noreferrer">https://github.com/shaigeva/project_management_crud_example/blob/main/tests/api/test_ticket_api.py</a></li>
+<li>One of the DAL tests: <a href="https://github.com/shaigeva/project_management_crud_example/blob/main/tests/dal/test_ticket_repository.py" target="_blank" rel="noopener noreferrer">https://github.com/shaigeva/project_management_crud_example/blob/main/tests/dal/test_ticket_repository.py</a></li>
+<li>In addition to the API and DAL tests, there are some unit tests for specific modules,
+in cases that a module can be tested in isolation without mocks etc.</li>
+</ul>
+</li>
+</ul>
+<h2 id="tests-some-extra-details">Tests: some extra details<a hidden class="anchor" aria-hidden="true" href="#tests-some-extra-details">#</a></h2>
+<p>In this setup, creating a new DB and test data is actually pretty fast.<br>
+So I went with a setup that a clean physical SQLite db (which is just a file) is created for each test (in a temp
+directory), is then initialized with test data, and the directory is discarded when the test finishes.</p>
+<p>The full test suite takes ~20 sec to run.<br>
+It&rsquo;s fine for this example project, but in a larger project this would take longer.<br>
+I&rsquo;d set it up so tests usually run in-memory, and also cache some of the setup.
+In a real project, I&rsquo;d also set up the agent to usually only run a small subset of the tests that are related to the
+changed code, so that the agent would typically only wait a couple of seconds.</p>
+<h2 id="honorary-mention-spec-driven-development">Honorary mention: Spec-driven development<a hidden class="anchor" aria-hidden="true" href="#honorary-mention-spec-driven-development">#</a></h2>
+<p>The focus of this post is on code &amp; tests design, so I won&rsquo;t get into the details here, but it&rsquo;s worth a mention that
+workflow-wise, the project is spec-driven in spirit.<br>
+It has a ~consistent pattern to move from high-level spec to low-level implementation, and this has been a major part
+in getting the agent to do consistent, focused work.</p>
+<pre tabindex="0"><code>  ┌──────────────────────────────────┐
+  │        High-Level Spec           │  (main features)
+  └────────────────┬─────────────────┘
+                   │
+                   ▼
+  ┌──────────────────────────────────┐
+  │        Detailed Specs            │  (persistent - requirements &amp; acceptance
+  └────────────────┬─────────────────┘   criteria for specific features)
+                   │
+                   ▼
+  ┌──────────────────────────────────┐
+  │  Current Feature Implementation  │  (ephemeral - archived when done)
+  │  Plan                            │
+  └────────────────┬─────────────────┘
+                   │
+                   ▼
+  ┌──────────────────────────────────┐
+  │        Code and Tests            │
+  └──────────────────────────────────┘
+</code></pre><h1 id="summing-up">Summing up<a hidden class="anchor" aria-hidden="true" href="#summing-up">#</a></h1>
+<p>My objective with this post was to highlight some basic design/testing patterns for API services, and show why they are
+better than others for AI-first development.</p>
+<p>I shared quite a bit of detail, in the hope that it would make things concrete and explicit enough to both convince
+other devs to give these ideas a shot, and help them implement.<br>
+If the rationale didn&rsquo;t convince you, I can only say that in my experiments so far, these work very well.</p>
+<p>I hope you found this post useful, and would love to hear your thoughts on social
+(<a href="https://x.com/shai_ge" target="_blank" rel="noopener noreferrer">twitter / x</a>, <a href="https://www.linkedin.com/in/shai-geva-bb51404/" target="_blank" rel="noopener noreferrer">linkedin</a>)!</p>
+<hr>
+
+<div style="text-align: center; display: block; width: 100%;">
+<a href="/posts/ai_frameworks/02_ai_feedback_loop_example">&lt;&lt; previous post: What an AI Feedback Loop Looks Like</a>
+|
+next post: (coming soon) &gt;&gt;
+</div>
+
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://shaigeva.com/tags/ai/">AI</a></li>
+      <li><a href="https://shaigeva.com/tags/ai-first/">AI-First</a></li>
+      <li><a href="https://shaigeva.com/tags/ai-driven/">AI-Driven</a></li>
+      <li><a href="https://shaigeva.com/tags/ai-first-design-patterns/">AI-First Design-Patterns</a></li>
+      <li><a href="https://shaigeva.com/tags/design-patterns/">Design-Patterns</a></li>
+      <li><a href="https://shaigeva.com/tags/testing/">Testing</a></li>
+      <li><a href="https://shaigeva.com/tags/backend/">Backend</a></li>
+      <li><a href="https://shaigeva.com/tags/api/">API</a></li>
+      <li><a href="https://shaigeva.com/tags/dal/">DAL</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shaigeva.com/">Shai Geva</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

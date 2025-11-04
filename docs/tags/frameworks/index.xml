@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Frameworks on Shai Geva</title>
+    <link>https://shaigeva.com/tags/frameworks/</link>
+    <description>Recent content in Frameworks on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Jun 2025 13:01:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/frameworks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving past vibe-coding? AI-First Design Patterns and Frameworks (blog post series)</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</link>
+      <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</guid>
+      <description>&lt;p&gt;(first post in a series)&lt;/p&gt;
+&lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
+&lt;p&gt;I belong to the camp that believes that AI is a total paradigm shift - it&amp;rsquo;ll redefine the ecosystem and what it means to
+create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;
+&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering / implementation&lt;/strong&gt; perspective, to understand
+what that change could look like.&lt;br&gt;
+This blog series will dig into this and share my thoughts and conclusions from experimentation.&lt;br&gt;
+I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

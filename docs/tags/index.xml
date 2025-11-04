@@ -6,6 +6,245 @@
     <description>Recent content in Tags on Shai Geva</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 01 Nov 2025 13:01:56 +0300</lastBuildDate>
     <atom:link href="https://shaigeva.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI</title>
+      <link>https://shaigeva.com/tags/ai/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI-Driven</title>
+      <link>https://shaigeva.com/tags/ai-driven/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/ai-driven/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI-First</title>
+      <link>https://shaigeva.com/tags/ai-first/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/ai-first/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI-First Design-Patterns</title>
+      <link>https://shaigeva.com/tags/ai-first-design-patterns/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/ai-first-design-patterns/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>API</title>
+      <link>https://shaigeva.com/tags/api/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/api/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Backend</title>
+      <link>https://shaigeva.com/tags/backend/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/backend/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DAL</title>
+      <link>https://shaigeva.com/tags/dal/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/dal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Design-Patterns</title>
+      <link>https://shaigeva.com/tags/design-patterns/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/design-patterns/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Testing</title>
+      <link>https://shaigeva.com/tags/testing/</link>
+      <pubDate>Sat, 01 Nov 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/testing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Feedback-Loop</title>
+      <link>https://shaigeva.com/tags/feedback-loop/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/feedback-loop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pydantic</title>
+      <link>https://shaigeva.com/tags/pydantic/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/pydantic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://shaigeva.com/tags/python/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TDD</title>
+      <link>https://shaigeva.com/tags/tdd/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/tdd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Frameworks</title>
+      <link>https://shaigeva.com/tags/frameworks/</link>
+      <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/frameworks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Productivity</title>
+      <link>https://shaigeva.com/tags/productivity/</link>
+      <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/productivity/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Software-Engineering</title>
+      <link>https://shaigeva.com/tags/software-engineering/</link>
+      <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/software-engineering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Best-Practices</title>
+      <link>https://shaigeva.com/tags/best-practices/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/best-practices/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Design</title>
+      <link>https://shaigeva.com/tags/test-design/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-design/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prioritization</title>
+      <link>https://shaigeva.com/tags/prioritization/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/prioritization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ROI</title>
+      <link>https://shaigeva.com/tags/roi/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/roi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Strategy</title>
+      <link>https://shaigeva.com/tags/test-strategy/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-strategy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Performance</title>
+      <link>https://shaigeva.com/tags/performance/</link>
+      <pubDate>Fri, 16 May 2025 10:18:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/performance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Speed</title>
+      <link>https://shaigeva.com/tags/test-speed/</link>
+      <pubDate>Fri, 16 May 2025 10:18:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-speed/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fakes</title>
+      <link>https://shaigeva.com/tags/fakes/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/fakes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mocking</title>
+      <link>https://shaigeva.com/tags/mocking/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/mocking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stubs</title>
+      <link>https://shaigeva.com/tags/stubs/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/stubs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Doubles</title>
+      <link>https://shaigeva.com/tags/test-doubles/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-doubles/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Integration-Testing</title>
+      <link>https://shaigeva.com/tags/integration-testing/</link>
+      <pubDate>Fri, 16 May 2025 10:16:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/integration-testing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Scope</title>
+      <link>https://shaigeva.com/tags/test-scope/</link>
+      <pubDate>Fri, 16 May 2025 10:16:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-scope/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code-Readability</title>
+      <link>https://shaigeva.com/tags/code-readability/</link>
+      <pubDate>Fri, 18 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/code-readability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Naming</title>
+      <link>https://shaigeva.com/tags/test-naming/</link>
+      <pubDate>Fri, 18 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-naming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Isolation</title>
+      <link>https://shaigeva.com/tags/test-isolation/</link>
+      <pubDate>Tue, 08 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-isolation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Test-Quality</title>
+      <link>https://shaigeva.com/tags/test-quality/</link>
+      <pubDate>Sat, 05 Oct 2024 17:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/test-quality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code-Quality</title>
+      <link>https://shaigeva.com/tags/code-quality/</link>
+      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/tags/code-quality/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

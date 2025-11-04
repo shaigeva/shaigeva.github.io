@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Footgun #5 - Unclear Language | Shai Geva</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="testing, test-naming, code-readability, best-practices">
 <meta name="description" content="
 
 
@@ -88,6 +88,10 @@ Two guidelines that help me deal with this:">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-18T20:15:56+03:00">
     <meta property="article:modified_time" content="2024-10-18T20:15:56+03:00">
+    <meta property="article:tag" content="Testing">
+    <meta property="article:tag" content="Test-Naming">
+    <meta property="article:tag" content="Code-Readability">
+    <meta property="article:tag" content="Best-Practices">
     <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_05_unclear_language.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_05_unclear_language.png">
@@ -132,7 +136,7 @@ Two guidelines that help me deal with this:">
   "name": "Footgun #5 - Unclear Language",
   "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Another problem that makes it more difficult to understand tests is unclear language.\nTwo guidelines that help me deal with this:\n",
   "keywords": [
-    
+    "testing", "test-naming", "code-readability", "best-practices"
   ],
   "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Another problem that makes it more difficult to understand tests is unclear language.\nTwo guidelines that help me deal with this:\nWe want to use decisive language We want the language to be specific and explicit Suppose we have a book store and we’re testing the functionality for editing a book.\nLet’s see some examples of test phrasing:\ndef test_edit_book(): ... This is simply too general.\nThere are so many things that might be tested, and this means almost nothing about what will get tested in practice.\ndef test_edit_book_works_correctly(): ... Adding things like “it works” or “it’s correct” - most of the time, this is just bloat.\nIt only makes the name bigger, but doesn’t give us any extra information.\ndef test_user_should_be_able_to_edit_their_own_book(): ... That’s much better - it’s a lot more specific.\nThe only problem here is the indecisive language.\nWhy “should”?\nWill this ever NOT be correct?\nIt’s both bloated and confusing.\nSo this as well - not optimal.\ndef test_user_can_edit_their_own_book(): ... That’s much better in my opinion.\nIt’s decisive, explicit and specific.\nI suggest to aim towards this whenever possible.\nConclusion When phrasing test names and descriptions, try to aim for decisive, specific and explicit language.\n\u003c\u003c previous post: No Locality of Behavior | next post: Testing Too Many Things \u003e\u003e ",
   "wordCount" : "240",
@@ -322,6 +326,10 @@ I suggest to aim towards this whenever possible.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://shaigeva.com/tags/testing/">Testing</a></li>
+      <li><a href="https://shaigeva.com/tags/test-naming/">Test-Naming</a></li>
+      <li><a href="https://shaigeva.com/tags/code-readability/">Code-Readability</a></li>
+      <li><a href="https://shaigeva.com/tags/best-practices/">Best-Practices</a></li>
     </ul>
   </footer>
 </article>

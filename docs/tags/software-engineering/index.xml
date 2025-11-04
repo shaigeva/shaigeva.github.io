@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Software-Engineering on Shai Geva</title>
+    <link>https://shaigeva.com/tags/software-engineering/</link>
+    <description>Recent content in Software-Engineering on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Jun 2025 13:01:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving past vibe-coding? AI-First Design Patterns and Frameworks (blog post series)</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</link>
+      <pubDate>Fri, 20 Jun 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</guid>
+      <description>&lt;p&gt;(first post in a series)&lt;/p&gt;
+&lt;p&gt;Like many others, I spent a lot of time thinking about AI and software development.&lt;/p&gt;
+&lt;p&gt;I belong to the camp that believes that AI is a total paradigm shift - it&amp;rsquo;ll redefine the ecosystem and what it means to
+create software, and it&amp;rsquo;ll be the deepest change we have seen to date.&lt;/p&gt;
+&lt;p&gt;My own &amp;ldquo;flavor&amp;rdquo; of thinking about this is to try, from an &lt;strong&gt;engineering / implementation&lt;/strong&gt; perspective, to understand
+what that change could look like.&lt;br&gt;
+This blog series will dig into this and share my thoughts and conclusions from experimentation.&lt;br&gt;
+I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
+&lt;p&gt;The main objective of the post series is to help you write tests that have a better ROI.&lt;br&gt;
+I&amp;rsquo;ll discuss different practices, different ways that we can work.&lt;br&gt;
+These practices affect us by changing the properties of our tests:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #1 - There Are No Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
+      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=111&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;This is a &amp;ldquo;warm-up footgun&amp;rdquo; to the blog post series.&lt;/p&gt;
+&lt;p&gt;The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.&lt;/p&gt;
+&lt;p&gt;In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&amp;rsquo;re just a drop in the sea.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

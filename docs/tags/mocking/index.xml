@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mocking on Shai Geva</title>
+    <link>https://shaigeva.com/tags/mocking/</link>
+    <description>Recent content in Mocking on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2025 10:17:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/mocking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Footgun #8 - Test Doubles Everywhere</title>
+      <link>https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/</link>
+      <pubDate>Fri, 16 May 2025 10:17:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=837&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Sometimes, in a test, we switch a part of the system, a dependency, with an alternative implementation.&lt;br&gt;
+These are called test doubles. Things like stubs, mocks and fakes.&lt;/p&gt;
+&lt;p&gt;A few of the central reasons for doing this are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Performance - if the real thing is too slow to run a lot of tests, we switch it with a
+fast test double.&lt;/li&gt;
+&lt;li&gt;Control - it might be difficult or impossible to set up the real thing in a certain state or make it behave in a
+certain way.  Maybe it&amp;rsquo;s non-deterministic, maybe it has side effects that are not acceptable in tests. But tests
+doubles are under our full control and won&amp;rsquo;t create side effects we don&amp;rsquo;t want.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;the-problem-with-test-doubles&#34;&gt;The problem with test doubles&lt;/h1&gt;
+&lt;p&gt;Test doubles can be useful, but they are a re-implementation.&lt;br&gt;
+They know the implementation details of the thing they&amp;rsquo;re replacing.&lt;br&gt;
+Different types of test doubles do it differently, but this is what they do.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #7 - Improper Test Scope</title>
+      <link>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</link>
+      <pubDate>Fri, 16 May 2025 10:16:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=447&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;The root cause of many testing problems is improper test scope, i.e. that their boundaries aren&amp;rsquo;t appropriate.&lt;/p&gt;
+&lt;h1 id=&#34;test-a-cohesive-whole---complete-story&#34;&gt;Test a cohesive whole - complete story&lt;/h1&gt;
+&lt;p&gt;My approach here is that a test should verify a cohesive whole, a &amp;ldquo;complete story&amp;rdquo;.&lt;br&gt;
+It can be a large story like an e2e test or a small story that&amp;rsquo;s part of a bigger story, like a custom sorting function
+that something else uses.&lt;br&gt;
+As long as it&amp;rsquo;s something self-contained - something whole, it might be worth testing.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

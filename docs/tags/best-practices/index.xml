@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Best-Practices on Shai Geva</title>
+    <link>https://shaigeva.com/tags/best-practices/</link>
+    <description>Recent content in Best-Practices on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2025 11:19:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/best-practices/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
+&lt;p&gt;The main objective of the post series is to help you write tests that have a better ROI.&lt;br&gt;
+I&amp;rsquo;ll discuss different practices, different ways that we can work.&lt;br&gt;
+These practices affect us by changing the properties of our tests:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #10 - Wrong Priorities</title>
+      <link>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=1511&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Strength - how well they catch bugs&lt;/li&gt;
+&lt;li&gt;Maintainability - how easy it is to work with them&lt;/li&gt;
+&lt;li&gt;Performance - how fast they run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/09_slow_tests/#the-feedback-loop-and-the-bug-funnel&#34;&gt;The bug funnel&lt;/a&gt; is all about performance.&lt;br&gt;
+&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/07_improper_test_scope/&#34;&gt;Testing a cohesive whole&lt;/a&gt; (implementation vs behavior) is about maintainability and strength.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #9 - Slow Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/09_slow_tests/</link>
+      <pubDate>Fri, 16 May 2025 10:18:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/09_slow_tests/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=1099&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Slow tests are not fun.&lt;/p&gt;
+&lt;p&gt;In this post, I&amp;rsquo;ll talk about two ways in which they are not fun&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The bottleneck and the time bomb&lt;/li&gt;
+&lt;li&gt;The feedback loop and the bug funnel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;the-bottleneck-and-the-time-bomb&#34;&gt;The bottleneck and the time bomb&lt;/h1&gt;
+&lt;p&gt;&lt;img alt=&#34;Bottleneck diagram&#34; loading=&#34;lazy&#34; src=&#34;https://shaigeva.com/10_footguns/10_footguns_the_bottleneck_and_the_time_bomb.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The bottleneck here is where the tests take so long to run, that we have a long queue of tasks waiting to be merged to the main branch.&lt;br&gt;
+(this assumes we&amp;rsquo;re merging tasks to the main branch one-by-one, and only after the tests pass. Other branching models have similar issues, but this is the simplest to explain)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #6 - Testing Too Many Things</title>
+      <link>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</link>
+      <pubDate>Fri, 16 May 2025 10:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</guid>
+      <description>&lt;style&gt;
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+&lt;/style&gt;
+
+&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=177&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Just like with product code, if we put too many things in the same place we get a mess.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #5 - Unclear Language</title>
+      <link>https://shaigeva.com/posts/10_footguns/05_unclear_language/</link>
+      <pubDate>Fri, 18 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/05_unclear_language/</guid>
+      <description>&lt;style&gt;
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+&lt;/style&gt;
+
+&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=255&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Another problem that makes it more difficult to understand tests is unclear language.&lt;/p&gt;
+&lt;p&gt;Two guidelines that help me deal with this:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #4 - No Locality of Behavior</title>
+      <link>https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/</link>
+      <pubDate>Wed, 16 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=0&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;One testing problem that doesn&amp;rsquo;t get enough attention in my opinion is tests that don&amp;rsquo;t have locality of behavior.&lt;/p&gt;
+&lt;p&gt;By that I mean cases where a test is broken down into different parts in a way that makes understanding more difficult.&lt;/p&gt;
+&lt;p&gt;This is important in every type of code, and tests are no exception.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #3 - The Tests Are Not Isolated</title>
+      <link>https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/</link>
+      <pubDate>Tue, 08 Oct 2024 20:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=412&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.&lt;/p&gt;
+&lt;p&gt;By &amp;ldquo;tests that are not isolated&amp;rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run
+only a subset of them, if we run them in a different order or if we run them in parallel.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #2 - Untested Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/02_untested_tests/</link>
+      <pubDate>Sat, 05 Oct 2024 17:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/02_untested_tests/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=135&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Sometimes our tests lie to us.&lt;/p&gt;
+&lt;p&gt;We have a test that was supposed to protect us from some bug, but that bug happened after all.&lt;/p&gt;
+&lt;p&gt;Of course, what happened was that we made a mistake, and the test didn&amp;rsquo;t really verify what we thought it does.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #1 - There Are No Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</link>
+      <pubDate>Fri, 04 Oct 2024 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=111&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;This is a &amp;ldquo;warm-up footgun&amp;rdquo; to the blog post series.&lt;/p&gt;
+&lt;p&gt;The easiest way to shoot yourself in the foot, testing-wise, is to have no tests at all.&lt;/p&gt;
+&lt;p&gt;In my experience, writing any tests often helps us - even if these tests are not well-written, and even if they&amp;rsquo;re just a drop in the sea.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

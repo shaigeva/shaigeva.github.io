@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Test-Scope on Shai Geva</title>
+    <link>https://shaigeva.com/tags/test-scope/</link>
+    <description>Recent content in Test-Scope on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2025 10:16:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/test-scope/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Footgun #7 - Improper Test Scope</title>
+      <link>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</link>
+      <pubDate>Fri, 16 May 2025 10:16:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=447&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;The root cause of many testing problems is improper test scope, i.e. that their boundaries aren&amp;rsquo;t appropriate.&lt;/p&gt;
+&lt;h1 id=&#34;test-a-cohesive-whole---complete-story&#34;&gt;Test a cohesive whole - complete story&lt;/h1&gt;
+&lt;p&gt;My approach here is that a test should verify a cohesive whole, a &amp;ldquo;complete story&amp;rdquo;.&lt;br&gt;
+It can be a large story like an e2e test or a small story that&amp;rsquo;s part of a bigger story, like a custom sorting function
+that something else uses.&lt;br&gt;
+As long as it&amp;rsquo;s something self-contained - something whole, it might be worth testing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Footgun #6 - Testing Too Many Things</title>
+      <link>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</link>
+      <pubDate>Fri, 16 May 2025 10:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</guid>
+      <description>&lt;style&gt;
+.code-example {
+  background-color: #2E2E33;
+  padding: 10px;
+  margin-bottom:10px;
+  border-radius: 5px;
+  font-family: monospace;
+  white-space: pre;
+  color: #d5d5d6;
+  font-size: .78em;
+  line-height: 1.5;
+}
+.highlight-red {
+  color: red;
+}
+.highlight-green {
+  color: green;
+}
+&lt;/style&gt;
+
+&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=177&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Just like with product code, if we put too many things in the same place we get a mess.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

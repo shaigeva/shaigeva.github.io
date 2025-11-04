@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Footgun #2 - Untested Tests | Shai Geva</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="testing, best-practices, test-quality, TDD">
 <meta name="description" content="
 This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
 
@@ -88,6 +88,10 @@ Of course, what happened was that we made a mistake, and the test didn’t reall
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-05T17:15:56+03:00">
     <meta property="article:modified_time" content="2024-10-05T17:15:56+03:00">
+    <meta property="article:tag" content="Testing">
+    <meta property="article:tag" content="Best-Practices">
+    <meta property="article:tag" content="Test-Quality">
+    <meta property="article:tag" content="TDD">
     <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_02_untested_tests_cover.png">
@@ -131,7 +135,7 @@ Of course, what happened was that we made a mistake, and the test didn&rsquo;t r
   "name": "Footgun #2 - Untested Tests",
   "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn\u0026rsquo;t really verify what we thought it does.\n",
   "keywords": [
-    
+    "testing", "best-practices", "test-quality", "TDD"
   ],
   "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Sometimes our tests lie to us.\nWe have a test that was supposed to protect us from some bug, but that bug happened after all.\nOf course, what happened was that we made a mistake, and the test didn’t really verify what we thought it does.\nAs it turns out - when we write a test, it’s a good idea to spend a little effort to verify the test actually works.\nTo make sure that if the bug happens, the test does indeed fail.\nHow to avoid this My suggestion -\nWhen you write a test, for every assertion you write, make a small change:\nEither change the code a little and introduce the bug. Or change the test a little bit, so it verifies something a little different. This way you will be able to see if the test would have failed in the way you expect it to, and you’ll be able to count on it.\n\u003c\u003c previous post: There Are No Tests | next post: The Tests Are Not Isolated \u003e\u003e ",
   "wordCount" : "201",
@@ -265,6 +269,10 @@ When you write a test, for every assertion you write, make a small change:</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://shaigeva.com/tags/testing/">Testing</a></li>
+      <li><a href="https://shaigeva.com/tags/best-practices/">Best-Practices</a></li>
+      <li><a href="https://shaigeva.com/tags/test-quality/">Test-Quality</a></li>
+      <li><a href="https://shaigeva.com/tags/tdd/">TDD</a></li>
     </ul>
   </footer>
 </article>

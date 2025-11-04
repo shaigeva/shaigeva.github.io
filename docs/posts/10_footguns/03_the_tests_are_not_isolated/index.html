@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Footgun #3 - The Tests Are Not Isolated | Shai Geva</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="testing, test-isolation, best-practices, test-design">
 <meta name="description" content="
 This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
 
@@ -87,6 +87,10 @@ By “tests that are not isolated”, I mean tests that sometimes have a differe
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-10-08T20:15:56+03:00">
     <meta property="article:modified_time" content="2024-10-08T20:15:56+03:00">
+    <meta property="article:tag" content="Testing">
+    <meta property="article:tag" content="Test-Isolation">
+    <meta property="article:tag" content="Best-Practices">
+    <meta property="article:tag" content="Test-Design">
     <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_03_the_tests_are_not_isolated.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_03_the_tests_are_not_isolated.png">
@@ -130,7 +134,7 @@ only a subset of them, if we run them in a different order or if we run them in 
   "name": "Footgun #3 - The Tests Are Not Isolated",
   "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy \u0026ldquo;tests that are not isolated\u0026rdquo;, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\n",
   "keywords": [
-    
+    "testing", "test-isolation", "best-practices", "test-design"
   ],
   "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 Writing tests that are not isolated is a sure way to create unnecessary work for ourselves.\nBy “tests that are not isolated”, I mean tests that sometimes have a different outcome (failing / passing) if we run only a subset of them, if we run them in a different order or if we run them in parallel.\nWhy is this a problem? Let’s say we have 30 tests, and test 24 passes if we run it individually but fails if we run the entire test suite.\nIf the test was isolated, then there are only a limited number of things that can go wrong. The things that the test actually executes will almost certainly be the cause of the failure.\nBut now, of course, the reason for failure is not what test 24 checks, and not what any of the other tests checks either. The failure is caused by an implicit interaction between test 24 and, say, test 8.\nThis is difficult to debug, of course, because we would first need to play detective and find that it’s test 8 that’s causing the problem (which might take a LOT of effort, especially if the tests are e2e tests that run slowly or only in CI), and then track the combined flow of the tests to find the problematic interaction.\nBut it’s worse than this - what often happens is that we run the entire test suite, either locally or in CI, and test 24 fails - so we start analyzing it as if test 24 fails individually. We don’t even consider that it’s a combined failure, and sometimes we waste hours chasing irrelevant clues, just to get to the point that we notice the test passes if its executed separately.\nSo the fact that we have “individual tests” is actually a misleading illusion that only distracts us from the unfortunate truth - we have one gigantic test with inter-connected sub-sections.\nIf e2e tests run in parallel and sometimes run in different order, which makes this cross-test-failure flaky, we get the perfect storm and we might spend days of work on this.\nAnd, lastly, the situation could actually be worse - it might be that test 24 SHOULD fail, but it passes because of test 8, hiding a bug.\nWhat are the causes behind this? There are rare cases like technical limitations (e.g. external service rate limits), but in the vast majority of cases - it’s shared mutable state.\nA typical scenario for unit tests would be a global in-memory object, and for end-to-end tests maybe a row in a database.\nTest 8 would change that shared thing, and test 24 would therefore have a different state when it starts to execute, leading to the failure.\nSharing a resource that’s immutable (or never changes in practice) is not a problem - if it never changes, then it’s the same whether or not it’s accessed by multiple “consumers”.\nI’ve also seen more subtle cases of shared mutable state, for example tests that would rely on an email being sent through an actual email-sending service, and multiple tests checked for the same email.\nWhat can we do? First of all, because in my experience this is so often a very painful problem - I suggest to avoid this from the start, even if it means extra work or delaying writing some tests if can’t make them isolated at the moment.\nDO NOT create a suite of non-isolated e2e tests that use long-living mutating database entities. This is very very likely to cause a crisis down the road.\nBecause the problem is usually shared mutable state, we mostly just need to avoid that specific issue.\nUnit tests can use the same in-memory objects, but they have to be immutable, or at least never changed by convention.\nIf this is not an option - either create the object in every test or have some original which you clone at the beginning of the tests.\nThe trickier part are higher-level tests that use expensive resources like a database, where full initializations might cause the tests to be too slow.\nIf it’s not too expensive - initialize the entire thing, of course.\nOtherwise - make sure to clean up - delete created resources and revert the database / file system / etc. to its original state before continuing.\n\u003c\u003c previous post: Untested Tests | next post: No Locality of Behavior \u003e\u003e ",
   "wordCount" : "761",
@@ -298,6 +302,10 @@ original state before continuing.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://shaigeva.com/tags/testing/">Testing</a></li>
+      <li><a href="https://shaigeva.com/tags/test-isolation/">Test-Isolation</a></li>
+      <li><a href="https://shaigeva.com/tags/best-practices/">Best-Practices</a></li>
+      <li><a href="https://shaigeva.com/tags/test-design/">Test-Design</a></li>
     </ul>
   </footer>
 </article>

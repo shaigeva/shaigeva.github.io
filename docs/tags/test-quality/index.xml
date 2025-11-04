@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Test-Quality on Shai Geva</title>
+    <link>https://shaigeva.com/tags/test-quality/</link>
+    <description>Recent content in Test-Quality on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 Oct 2024 17:15:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/test-quality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Footgun #2 - Untested Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/02_untested_tests/</link>
+      <pubDate>Sat, 05 Oct 2024 17:15:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/02_untested_tests/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=135&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;Sometimes our tests lie to us.&lt;/p&gt;
+&lt;p&gt;We have a test that was supposed to protect us from some bug, but that bug happened after all.&lt;/p&gt;
+&lt;p&gt;Of course, what happened was that we made a mistake, and the test didn&amp;rsquo;t really verify what we thought it does.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

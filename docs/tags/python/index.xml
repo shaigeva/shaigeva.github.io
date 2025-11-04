@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Shai Geva</title>
+    <link>https://shaigeva.com/tags/python/</link>
+    <description>Recent content in Python on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Oct 2025 13:01:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What an AI Feedback Loop Looks Like</title>
+      <link>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</link>
+      <pubDate>Sat, 04 Oct 2025 13:01:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about creating
+production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
+&lt;/span&gt;
+
+&lt;p&gt;In the previous post I mentioned that an internal AI feedback loop will be central to all our AI-first design patterns.&lt;/p&gt;
+&lt;p&gt;But &amp;ldquo;AI feedback loop&amp;rdquo; might mean different things to different people - so this lightweight post focuses on
+giving an example to make it concrete.&lt;/p&gt;
+&lt;p&gt;We will implement a small (but realistic) project.&lt;br&gt;
+The project is set up so the agent has an internal feedback loop - it has instructions that tell
+it to use a loop, and it has a clear way to create effective tests and run validations (the tests it creates,
+type-checking, linter).&lt;br&gt;
+We&amp;rsquo;ll see how it makes mistakes, finds them and self-heals.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>10 Ways To Shoot Yourself In The Foot With Tests</title>
+      <link>https://shaigeva.com/posts/10_footguns/ten_footguns/</link>
+      <pubDate>Fri, 16 May 2025 11:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/ten_footguns/</guid>
+      <description>&lt;p&gt;This is a series of posts, following a talk I gave (twice - at Pycon-US 2023 and Pycon-IL 2024), about testing best (and not-so-best) practices.&lt;/p&gt;
+&lt;p&gt;The talk shares 10 practices that I had bad experience with, along with ways of avoiding them.&lt;/p&gt;
+&lt;p&gt;The main objective of the post series is to help you write tests that have a better ROI.&lt;br&gt;
+I&amp;rsquo;ll discuss different practices, different ways that we can work.&lt;br&gt;
+These practices affect us by changing the properties of our tests:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

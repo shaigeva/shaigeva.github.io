@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ROI on Shai Geva</title>
+    <link>https://shaigeva.com/tags/roi/</link>
+    <description>Recent content in ROI on Shai Geva</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2025 10:19:56 +0300</lastBuildDate>
+    <atom:link href="https://shaigeva.com/tags/roi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Footgun #10 - Wrong Priorities</title>
+      <link>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</link>
+      <pubDate>Fri, 16 May 2025 10:19:56 +0300</pubDate>
+      <guid>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</guid>
+      <description>&lt;span class=&#34;aside&#34;&gt;
+This mini-post is part of a &lt;a href=&#34;https://shaigeva.com/posts/10_footguns/ten_footguns&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about good testing practices, which I also presented at a couple of conferences.
+&lt;br&gt;
+Here it is in &lt;a href=&#34;https://youtu.be/Ub31Ae6S1BY?t=1511&#34; target=&#34;_blank&#34;&gt;PyCon US 2023&lt;/a&gt;
+&lt;/span&gt;
+
+&lt;p&gt;In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing
+the properties of our tests:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Strength - how well they catch bugs&lt;/li&gt;
+&lt;li&gt;Maintainability - how easy it is to work with them&lt;/li&gt;
+&lt;li&gt;Performance - how fast they run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/09_slow_tests/#the-feedback-loop-and-the-bug-funnel&#34;&gt;The bug funnel&lt;/a&gt; is all about performance.&lt;br&gt;
+&lt;a href=&#34;https://shaigeva.com/posts/10_footguns/07_improper_test_scope/&#34;&gt;Testing a cohesive whole&lt;/a&gt; (implementation vs behavior) is about maintainability and strength.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

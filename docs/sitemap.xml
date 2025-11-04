@@ -5,34 +5,133 @@
     <loc>https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro/</loc>
     <lastmod>2025-06-20T13:01:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/ai/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/ai-driven/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/ai-first/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/ai-first-design-patterns/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/api/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/backend/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/dal/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/design-patterns/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/</loc>
-    <lastmod>2025-10-04T13:01:56+03:00</lastmod>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/testing/</loc>
+    <lastmod>2025-11-01T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/feedback-loop/</loc>
+    <lastmod>2025-10-04T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/pydantic/</loc>
+    <lastmod>2025-10-04T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/python/</loc>
+    <lastmod>2025-10-04T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/tdd/</loc>
     <lastmod>2025-10-04T13:01:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/ai_frameworks/02_ai_feedback_loop_example/</loc>
     <lastmod>2025-10-04T13:01:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/frameworks/</loc>
+    <lastmod>2025-06-20T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/productivity/</loc>
+    <lastmod>2025-06-20T13:01:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/software-engineering/</loc>
+    <lastmod>2025-06-20T13:01:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/ten_footguns/</loc>
+    <lastmod>2025-05-16T11:19:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/best-practices/</loc>
+    <lastmod>2025-05-16T11:19:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-design/</loc>
     <lastmod>2025-05-16T11:19:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/10_wrong_priorities/</loc>
     <lastmod>2025-05-16T10:19:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/prioritization/</loc>
+    <lastmod>2025-05-16T10:19:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/roi/</loc>
+    <lastmod>2025-05-16T10:19:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-strategy/</loc>
+    <lastmod>2025-05-16T10:19:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/09_slow_tests/</loc>
     <lastmod>2025-05-16T10:18:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/performance/</loc>
+    <lastmod>2025-05-16T10:18:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-speed/</loc>
+    <lastmod>2025-05-16T10:18:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/fakes/</loc>
+    <lastmod>2025-05-16T10:17:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/08_test_doubles_everywhere/</loc>
+    <lastmod>2025-05-16T10:17:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/mocking/</loc>
+    <lastmod>2025-05-16T10:17:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/stubs/</loc>
+    <lastmod>2025-05-16T10:17:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-doubles/</loc>
     <lastmod>2025-05-16T10:17:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/07_improper_test_scope/</loc>
     <lastmod>2025-05-16T10:16:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/integration-testing/</loc>
+    <lastmod>2025-05-16T10:16:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-scope/</loc>
+    <lastmod>2025-05-16T10:16:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/06_testing_too_many_things/</loc>
     <lastmod>2025-05-16T10:15:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/code-readability/</loc>
+    <lastmod>2024-10-18T20:15:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/05_unclear_language/</loc>
+    <lastmod>2024-10-18T20:15:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-naming/</loc>
     <lastmod>2024-10-18T20:15:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/04_no_locality_of_behavior/</loc>
@@ -41,11 +140,20 @@
     <loc>https://shaigeva.com/posts/10_footguns/03_the_tests_are_not_isolated/</loc>
     <lastmod>2024-10-08T20:15:56+03:00</lastmod>
   </url><url>
+    <loc>https://shaigeva.com/tags/test-isolation/</loc>
+    <lastmod>2024-10-08T20:15:56+03:00</lastmod>
+  </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/02_untested_tests/</loc>
+    <lastmod>2024-10-05T17:15:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/test-quality/</loc>
     <lastmod>2024-10-05T17:15:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/about/</loc>
     <lastmod>2024-10-05T17:00:56+03:00</lastmod>
+  </url><url>
+    <loc>https://shaigeva.com/tags/code-quality/</loc>
+    <lastmod>2024-10-04T13:01:56+03:00</lastmod>
   </url><url>
     <loc>https://shaigeva.com/posts/10_footguns/01_there_are_no_tests/</loc>
     <lastmod>2024-10-04T13:01:56+03:00</lastmod>
@@ -56,7 +164,5 @@
     <loc>https://shaigeva.com/categories/</loc>
   </url><url>
     <loc>https://shaigeva.com/search/</loc>
-  </url><url>
-    <loc>https://shaigeva.com/tags/</loc>
   </url>
 </urlset>

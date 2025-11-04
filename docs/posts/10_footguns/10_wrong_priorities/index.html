@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Footgun #10 - Wrong Priorities | Shai Geva</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="testing, test-strategy, best-practices, ROI, prioritization">
 <meta name="description" content="
 This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences.
 
@@ -94,6 +94,11 @@ Testing a cohesive whole (implementation vs behavior) is about maintainability a
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-05-16T10:19:56+03:00">
     <meta property="article:modified_time" content="2025-05-16T10:19:56+03:00">
+    <meta property="article:tag" content="Testing">
+    <meta property="article:tag" content="Test-Strategy">
+    <meta property="article:tag" content="Best-Practices">
+    <meta property="article:tag" content="ROI">
+    <meta property="article:tag" content="Prioritization">
     <meta property="og:image" content="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://shaigeva.com/10_footguns/10_footguns_10_wrong_priorities.png">
@@ -143,7 +148,7 @@ Testing a cohesive whole (implementation vs behavior) is about maintainability a
   "name": "Footgun #10 - Wrong Priorities",
   "description": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing the properties of our tests:\nStrength - how well they catch bugs Maintainability - how easy it is to work with them Performance - how fast they run The bug funnel is all about performance.\nTesting a cohesive whole (implementation vs behavior) is about maintainability and strength.\n",
   "keywords": [
-    
+    "testing", "test-strategy", "best-practices", "ROI", "prioritization"
   ],
   "articleBody": " This mini-post is part of a series about good testing practices, which I also presented at a couple of conferences. Here it is in PyCon US 2023 In this blog post series, we saw a bunch of different practices, and talked about how they will affect us by changing the properties of our tests:\nStrength - how well they catch bugs Maintainability - how easy it is to work with them Performance - how fast they run The bug funnel is all about performance.\nTesting a cohesive whole (implementation vs behavior) is about maintainability and strength.\nPriorities are counter-intuitive But how do we prioritize what we want to invest in?\nFirst and foremost - the objective of tests is their strength.\nWe have tests so that they catch bugs.\nThe unintuitive thing is that this is not what we should prioritize when we work:\nStart with making them maintainable, Then make sure they are fast enough And then make them strong.\nWhy? Here’s the thing.\nSlow tests are weak, or at least they are EVENTUALLY weak.\nLet’s say that, as a team, we decided that we are not willing to have tests that run for more than 30 minutes.\nIf, at some point the tests reach 30 minutes…\nIt becomes very difficult to add more tests.\nSo after enough time, there will be a lot of code that’s not tested well.\nAnd the same thing happens with maintenance.\nIt’s more subtle, but if tests are not maintainable, it costs more to have them, and we end up creating fewer tests.\nSo again, they will be eventually weak.\nAnd, maintainability issues can also make it difficult to handle performance.\nAn example we saw is test isolation and parallelization.\nIn other words:\nMaintainability is a necessary condition for performance, and both are necessary conditions for strength.\nConclusion So make maintainability the priority.\nTesting a single fact, code design and all the other practices we covered.\nWhen you have a choice to make - I suggest to go with the most maintainable option almost always.\nEven at the cost of other things.\nBecause in the long run, that’s how we get tests that let us move fast, and have confidence in our code.\n\u003c\u003c previous post: Slow Tests ",
   "wordCount" : "375",
@@ -300,6 +305,11 @@ Because in the long run, that&rsquo;s how we get tests that let us move fast, an
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://shaigeva.com/tags/testing/">Testing</a></li>
+      <li><a href="https://shaigeva.com/tags/test-strategy/">Test-Strategy</a></li>
+      <li><a href="https://shaigeva.com/tags/best-practices/">Best-Practices</a></li>
+      <li><a href="https://shaigeva.com/tags/roi/">ROI</a></li>
+      <li><a href="https://shaigeva.com/tags/prioritization/">Prioritization</a></li>
     </ul>
   </footer>
 </article>
