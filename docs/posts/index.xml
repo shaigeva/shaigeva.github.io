@@ -27,18 +27,15 @@ I&amp;rsquo;ll talk about both:&lt;/p&gt;</description>
       <link>https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/</link>
       <pubDate>Tue, 04 Nov 2025 13:01:56 +0300</pubDate>
       <guid>https://shaigeva.com/posts/ai_frameworks/03_simple_ai_first_crud_backend_design_pattern/</guid>
-      <description>&lt;p&gt;&lt;span class=&#34;aside&#34;&gt;
+      <description>&lt;span class=&#34;aside&#34;&gt;
 this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/01_ai_frameworks_intro&#34; target=&#34;_blank&#34;&gt;series&lt;/a&gt; about creating
 production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
 &lt;/span&gt;
 
-One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
-it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; by itself (that&amp;rsquo;s the base for this post. see earlier posts in the series for more about
-that).&lt;/p&gt;
-&lt;p&gt;Turns out that if our code is a backend API service, there are a few basic design patterns / testing styles that have
-a great ROI.&lt;br&gt;
-And we don&amp;rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
-ones that are a good fit for creating an AI-internal feedback loop.&lt;/p&gt;</description>
+&lt;p&gt;One of the best ways to help our AI agent work on our code, is to create a setup where the agent has a solid feedback
+loop so it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; by itself.&lt;br&gt;
+We define the design, and then the agent follows our conventions to create code and tests that enable a feedback loop.&lt;br&gt;
+(that&amp;rsquo;s the base for this post. see earlier posts in the series for more about that).&lt;/p&gt;</description>
     </item>
     <item>
       <title>What an AI Feedback Loop Looks Like</title>
