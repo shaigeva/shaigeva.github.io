@@ -32,10 +32,10 @@ this post is part of a &lt;a href=&#34;https://shaigeva.com/posts/ai_frameworks/
 production-grade maintainable AI-first projects, using AI-first design patterns and frameworks.
 &lt;/span&gt;
 
-&lt;p&gt;One of the best ways to help our AI agent work on our code, is to create a setup where the agent has a solid feedback
-loop so it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; by itself.&lt;br&gt;
-We define the design, and then the agent follows our conventions to create code and tests that enable a feedback loop.&lt;br&gt;
-(that&amp;rsquo;s the base for this post. see earlier posts in the series for more about that).&lt;/p&gt;</description>
+&lt;p&gt;One of the best ways to help our AI agent work on our code is to set it up with a solid feedback
+loop so it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; on its own.&lt;br&gt;
+We define the design, and the agent follows our conventions to create code and tests that enable the feedback loop.&lt;br&gt;
+(that&amp;rsquo;s the premise of this post; earlier posts in the series go deeper on the rationale).&lt;/p&gt;</description>
     </item>
     <item>
       <title>What an AI Feedback Loop Looks Like</title>
