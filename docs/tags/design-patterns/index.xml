@@ -35,9 +35,10 @@ production-grade maintainable AI-first projects, using AI-first design patterns 
 One of the best ways to help our AI agent work on our code, is to help it have a solid feedback loop so
 it can &amp;ldquo;plan -&amp;gt; do -&amp;gt; verify&amp;rdquo; by itself (that&amp;rsquo;s the base for this post. see earlier posts in the series for more about
 that).&lt;/p&gt;
-&lt;p&gt;Turns out that if our code is a backend API service, there are a few basic ideas that have a great ROI.&lt;br&gt;
+&lt;p&gt;Turns out that if our code is a backend API service, there are a few basic design patterns / testing styles that have
+a great ROI.&lt;br&gt;
 And we don&amp;rsquo;t need to invent anything new - there are well-known, established options; we just need to pick
-ones that fit.&lt;/p&gt;</description>
+ones that are a good fit for creating an AI-internal feedback loop.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
